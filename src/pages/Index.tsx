@@ -112,7 +112,7 @@ export default function Index() {
       {/* NAV */}
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b" style={{ background: "rgba(250,246,240,0.92)", borderColor: "rgba(92,51,23,0.1)" }}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-          <img src={LOGO_URL} alt="Из Поместья Мелешко" className="h-12 cursor-pointer" onClick={() => scrollTo("home")} />
+          <span className="font-display text-lg font-semibold cursor-pointer" style={{ color: "var(--brown)" }} onClick={() => scrollTo("home")}>Iz Pomest'ya Meleshko</span>
           <div className="hidden lg:flex items-center gap-7">
             {navItems.map((n) => (
               <button key={n.id} className="nav-link" onClick={() => scrollTo(n.id)}>{n.label}</button>
@@ -147,7 +147,7 @@ export default function Index() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style={{ background: "rgba(92,51,23,0.08)", color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>
               <span>🐾</span> Питомник с любовью с 2015 года
             </div>
-            <img src={LOGO_URL} alt="Из Поместья Мелешко" className="mb-6" style={{ maxWidth: 360, width: "100%" }} />
+            <img src={LOGO_URL} alt="Из Поместья Мелешко" className="mb-6" style={{ maxWidth: 520, width: "100%", mixBlendMode: "multiply" }} />
             <p className="text-lg leading-relaxed mb-8" style={{ color: "rgba(92,51,23,0.75)", maxWidth: 480, fontFamily: "'Golos Text', sans-serif" }}>
               Разводим мальтипу, пуделей, йоркширских терьеров и бивер йорк. Каждый щенок рождается с любовью — здоровым, воспитанным и готовым стать лучшим другом.
             </p>
