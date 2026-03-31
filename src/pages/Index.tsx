@@ -147,7 +147,7 @@ export default function Index() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style={{ background: "rgba(92,51,23,0.08)", color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>
               <span>🐾</span> Питомник с любовью с 2015 года
             </div>
-            <img src={LOGO_URL} alt="Из Поместья Мелешко" className="mb-6" style={{ maxWidth: 520, width: "100%", display: "block" }} />
+            <img src={LOGO_URL} alt="Из Поместья Мелешко" className="mb-6" style={{ maxWidth: 680, width: "100%", display: "block" }} />
             <p className="text-lg leading-relaxed mb-8" style={{ color: "rgba(92,51,23,0.75)", maxWidth: 480, fontFamily: "'Golos Text', sans-serif" }}>
               Разводим мальтипу, пуделей, йоркширских терьеров и бивер йорк. Каждый щенок рождается с любовью — здоровым, воспитанным и готовым стать лучшим другом.
             </p>
