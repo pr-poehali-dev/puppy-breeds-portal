@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
-const LOGO_URL = "https://cdn.poehali.dev/projects/63269b13-7221-49b6-bf61-5148e2725de2/bucket/860c823a-1175-4b35-9ba4-6e6019a9467b.png";
+const LOGO_URL = "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/84d0f242-164a-4dc6-83bb-b32303cc8d2e.png";
 const IMG_HERO = "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/files/e141e916-3cf3-4a2a-93d8-c2a528532e22.jpg";
 const IMG_PUPPY = "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/files/99d8b0b3-6041-4fc5-a07f-16be722bd796.jpg";
 const IMG_OWNER = "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/files/18c560f9-7eff-4625-a540-05deb8e7945d.jpg";
@@ -147,9 +147,7 @@ export default function Index() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style={{ background: "rgba(92,51,23,0.08)", color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>
               <span>🐾</span> Питомник с любовью с 2015 года
             </div>
-            <div className="mb-6" style={{ maxWidth: 520, width: "100%", background: "#F5EAD8", borderRadius: 16, overflow: "hidden" }}>
-              <img src={LOGO_URL} alt="Из Поместья Мелешко" style={{ width: "100%", display: "block", mixBlendMode: "multiply" }} />
-            </div>
+            <img src={LOGO_URL} alt="Из Поместья Мелешко" className="mb-6" style={{ maxWidth: 520, width: "100%", display: "block" }} />
             <p className="text-lg leading-relaxed mb-8" style={{ color: "rgba(92,51,23,0.75)", maxWidth: 480, fontFamily: "'Golos Text', sans-serif" }}>
               Разводим мальтипу, пуделей, йоркширских терьеров и бивер йорк. Каждый щенок рождается с любовью — здоровым, воспитанным и готовым стать лучшим другом.
             </p>
