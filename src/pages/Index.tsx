@@ -139,7 +139,7 @@ export default function Index() {
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Цветы и листья */}
           <div className="absolute text-6xl opacity-20 animate-float" style={{ top: "8%",  right: "6%" }}>🌸</div>
-          <div className="absolute text-5xl opacity-15 animate-float" style={{ top: "20%", left: "3%",  animationDelay: "1.2s" }}>🍁</div>
+
           <div className="absolute text-4xl opacity-20 animate-float" style={{ top: "35%", right: "4%", animationDelay: "0.6s" }}>🌼</div>
           <div className="absolute text-5xl opacity-15 animate-float" style={{ top: "15%", right: "18%",animationDelay: "2s" }}>🍂</div>
           <div className="absolute text-4xl opacity-20 animate-float" style={{ top: "55%", left: "2%",  animationDelay: "1.8s" }}>🌺</div>
@@ -177,6 +177,7 @@ export default function Index() {
             </div>
           </div>
           <div className="animate-fade-in delay-300 relative">
+            <div className="text-6xl opacity-30 animate-float absolute -top-8 -left-8 z-10" style={{ animationDelay: "1.2s" }}>🍁</div>
             <div className="relative rounded-3xl overflow-hidden shadow-2xl" style={{ aspectRatio: "4/5" }}>
               <img src={IMG_HERO} alt="Щенки питомника" className="w-full h-full object-cover" />
               <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(92,51,23,0.2) 0%, transparent 60%)" }} />
