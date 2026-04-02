@@ -141,13 +141,18 @@ export default function Index() {
           <div className="absolute bottom-32 left-16 text-5xl opacity-20 animate-float" style={{ animationDelay: "1.5s" }}>🌿</div>
           <div className="absolute top-1/2 right-8 text-4xl opacity-15 animate-float" style={{ animationDelay: "0.8s" }}>🌼</div>
           <div className="absolute top-1/3 left-8 text-3xl opacity-15 animate-float" style={{ animationDelay: "2.2s" }}>🌺</div>
-          {/* Следы лапок */}
-          <div className="absolute text-2xl" style={{ top: "18%", left: "12%", opacity: 0.12, transform: "rotate(-20deg)" }}>🐾</div>
-          <div className="absolute text-xl" style={{ top: "26%", left: "17%", opacity: 0.1, transform: "rotate(-15deg)" }}>🐾</div>
-          <div className="absolute text-2xl" style={{ top: "34%", left: "10%", opacity: 0.12, transform: "rotate(-25deg)" }}>🐾</div>
-          <div className="absolute text-xl" style={{ bottom: "20%", right: "15%", opacity: 0.1, transform: "rotate(15deg)" }}>🐾</div>
-          <div className="absolute text-2xl" style={{ bottom: "30%", right: "22%", opacity: 0.12, transform: "rotate(10deg)" }}>🐾</div>
-          <div className="absolute text-lg" style={{ top: "60%", left: "45%", opacity: 0.08, transform: "rotate(-10deg)" }}>🐾</div>
+          {/* Дорожка следов слева — сверху вниз */}
+          <div className="absolute text-4xl" style={{ top: "8%",  left: "4%",  opacity: 0.2, transform: "rotate(-30deg)" }}>🐾</div>
+          <div className="absolute text-3xl" style={{ top: "16%", left: "9%",  opacity: 0.18, transform: "rotate(-20deg)" }}>🐾</div>
+          <div className="absolute text-4xl" style={{ top: "24%", left: "5%",  opacity: 0.2, transform: "rotate(-30deg)" }}>🐾</div>
+          <div className="absolute text-3xl" style={{ top: "32%", left: "10%", opacity: 0.18, transform: "rotate(-20deg)" }}>🐾</div>
+          <div className="absolute text-4xl" style={{ top: "40%", left: "4%",  opacity: 0.2, transform: "rotate(-30deg)" }}>🐾</div>
+          <div className="absolute text-3xl" style={{ top: "48%", left: "9%",  opacity: 0.18, transform: "rotate(-20deg)" }}>🐾</div>
+          {/* Дорожка следов справа — снизу вверх */}
+          <div className="absolute text-4xl" style={{ bottom: "8%",  right: "4%",  opacity: 0.2, transform: "rotate(30deg)" }}>🐾</div>
+          <div className="absolute text-3xl" style={{ bottom: "17%", right: "9%",  opacity: 0.18, transform: "rotate(20deg)" }}>🐾</div>
+          <div className="absolute text-4xl" style={{ bottom: "26%", right: "4%",  opacity: 0.2, transform: "rotate(30deg)" }}>🐾</div>
+          <div className="absolute text-3xl" style={{ bottom: "35%", right: "9%",  opacity: 0.18, transform: "rotate(20deg)" }}>🐾</div>
         </div>
         <div className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center relative z-10">
           <div className="animate-fade-in-up">
