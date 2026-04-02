@@ -2,19 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Скрываем стандартный курсор — кастомный рендерится через PawTrail */
-*,
-*:hover,
-a,
-button,
-[role="button"],
-input,
-select,
-textarea,
-label {
-  cursor: none !important;
-}
-
 @layer base {
   :root {
     --background: 40 30% 97%;
