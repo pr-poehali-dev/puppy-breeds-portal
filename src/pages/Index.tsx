@@ -170,8 +170,8 @@ export default function Index() {
                   { label: "бивер йорков",         bg: "#E4DEFA", border: "#B8AAEE" },
                 ].map(({ label, bg, border }) => (
                   <button key={label} onClick={() => scrollTo("puppies")}
-                    className="text-base font-medium whitespace-nowrap w-full"
-                    style={{ background: bg, color: "rgba(92,51,23,0.85)", border: `1.5px solid ${border}`, borderRadius: 999, padding: "11px 12px", cursor: "pointer", transition: "box-shadow 0.2s", textAlign: "center" }}
+                    className="text-sm sm:text-base font-medium w-full leading-tight"
+                    style={{ background: bg, color: "rgba(92,51,23,0.85)", border: `1.5px solid ${border}`, borderRadius: 999, padding: "10px 8px", cursor: "pointer", transition: "box-shadow 0.2s", textAlign: "center" }}
                     onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 2px 12px rgba(92,51,23,0.15)")}
                     onMouseLeave={e => (e.currentTarget.style.boxShadow = "none")}
                   >{label}</button>
