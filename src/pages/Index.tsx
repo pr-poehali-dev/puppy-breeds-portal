@@ -160,9 +160,27 @@ export default function Index() {
               <span>🐾</span> Питомник с любовью с 2015 года
             </div>
             <img src={LOGO_URL} alt="Из Поместья Мелешко" className="mb-2" style={{ maxWidth: 1000, width: "100%", display: "block" }} />
-            <p className="text-lg leading-relaxed mb-8" style={{ color: "rgba(92,51,23,0.75)", maxWidth: 480, fontFamily: "'Golos Text', sans-serif" }}>
-              Разводим мальтипу, пуделей, йоркширских терьеров и бивер йорк. Каждый щенок рождается с любовью — здоровым, воспитанным и готовым стать лучшим другом.
-            </p>
+            <div className="mb-6" style={{ fontFamily: "'Golos Text', sans-serif" }}>
+              <p className="text-lg mb-3" style={{ color: "rgba(92,51,23,0.75)" }}>Разводим</p>
+              <div className="grid grid-cols-2 gap-3 mb-4" style={{ maxWidth: 420 }}>
+                {[
+                  { label: "мальтипу",            bg: "#F5EAD8" },
+                  { label: "йоркширских терьеров", bg: "#FAE8EF" },
+                  { label: "пуделей",              bg: "#EAF0E8" },
+                  { label: "бивер йорков",         bg: "#EDE8FA" },
+                ].map(({ label, bg }) => (
+                  <button key={label} onClick={() => scrollTo("puppies")}
+                    className="text-base font-medium whitespace-nowrap"
+                    style={{ background: bg, color: "rgba(92,51,23,0.85)", border: "1.5px solid rgba(92,51,23,0.12)", borderRadius: 999, padding: "10px 18px", cursor: "pointer", transition: "box-shadow 0.2s", textAlign: "center" }}
+                    onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 2px 12px rgba(92,51,23,0.15)")}
+                    onMouseLeave={e => (e.currentTarget.style.boxShadow = "none")}
+                  >{label}</button>
+                ))}
+              </div>
+              <p className="text-lg leading-relaxed" style={{ color: "rgba(92,51,23,0.75)", maxWidth: 480 }}>
+                Каждый щенок рождается с любовью — здоровым, воспитанным и готовым стать лучшим другом.
+              </p>
+            </div>
             <div className="flex flex-wrap gap-4">
               <button className="btn-primary" onClick={() => scrollTo("puppies")}>Смотреть щенков</button>
               <button className="btn-outline" onClick={() => scrollTo("about")}>О питомнике</button>
