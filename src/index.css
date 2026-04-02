@@ -148,6 +148,22 @@
     animation: floatPetal 4s ease-in-out infinite;
   }
 
+  @keyframes floatLogo {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(-0.8deg);
+    }
+    30% {
+      transform: translateY(-6px) rotate(0.5deg);
+    }
+    70% {
+      transform: translateY(-3px) rotate(-0.3deg);
+    }
+  }
+  .animate-float-logo {
+    animation: floatLogo 6.5s ease-in-out infinite;
+  }
+
   .delay-100 {
     animation-delay: 0.1s;
   }
