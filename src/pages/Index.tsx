@@ -141,18 +141,28 @@ export default function Index() {
           <div className="absolute bottom-32 left-16 text-5xl opacity-20 animate-float" style={{ animationDelay: "1.5s" }}>🌿</div>
           <div className="absolute top-1/2 right-8 text-4xl opacity-15 animate-float" style={{ animationDelay: "0.8s" }}>🌼</div>
           <div className="absolute top-1/3 left-8 text-3xl opacity-15 animate-float" style={{ animationDelay: "2.2s" }}>🌺</div>
-          {/* Дорожка лапок — нижняя лапа (левая), верхняя лапа посередине между двумя нижними */}
-          {/* Нижние лапы (левая) */}
-          <div className="absolute text-3xl" style={{ bottom: "8%",  left: "4%",  opacity: 0.22, transform: "rotate(50deg) scaleX(-1)" }}>🐾</div>
-          <div className="absolute text-3xl" style={{ bottom: "22%", left: "16%", opacity: 0.22, transform: "rotate(50deg) scaleX(-1)" }}>🐾</div>
-          <div className="absolute text-3xl" style={{ bottom: "36%", left: "28%", opacity: 0.22, transform: "rotate(50deg) scaleX(-1)" }}>🐾</div>
-          <div className="absolute text-3xl" style={{ bottom: "50%", left: "40%", opacity: 0.22, transform: "rotate(50deg) scaleX(-1)" }}>🐾</div>
-          <div className="absolute text-3xl" style={{ bottom: "64%", left: "52%", opacity: 0.22, transform: "rotate(50deg) scaleX(-1)" }}>🐾</div>
-          {/* Верхние лапы (правая) — строго посередине между двумя нижними */}
-          <div className="absolute text-3xl" style={{ bottom: "15%", left: "10%", opacity: 0.22, transform: "rotate(50deg)" }}>🐾</div>
-          <div className="absolute text-3xl" style={{ bottom: "29%", left: "22%", opacity: 0.22, transform: "rotate(50deg)" }}>🐾</div>
-          <div className="absolute text-3xl" style={{ bottom: "43%", left: "34%", opacity: 0.22, transform: "rotate(50deg)" }}>🐾</div>
-          <div className="absolute text-3xl" style={{ bottom: "57%", left: "46%", opacity: 0.22, transform: "rotate(50deg)" }}>🐾</div>
+          {/* Дорожка лапок SVG — диагональ снизу-слева вверх-вправо */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1000 800" preserveAspectRatio="xMidYMid slice" style={{ opacity: 0.22 }}>
+            {/* Лапка: подушечка + 4 пальца */}
+            {[
+              { x: 80,  y: 720, flip: false },
+              { x: 190, y: 640, flip: true  },
+              { x: 300, y: 560, flip: false },
+              { x: 410, y: 480, flip: true  },
+              { x: 520, y: 400, flip: false },
+              { x: 630, y: 320, flip: true  },
+              { x: 740, y: 240, flip: false },
+              { x: 850, y: 160, flip: true  },
+            ].map(({ x, y, flip }, i) => (
+              <g key={i} transform={`translate(${x}, ${y}) rotate(-40) scale(${flip ? -1 : 1}, 1)`}>
+                <ellipse cx="0" cy="0" rx="9" ry="11" fill="#5C3317" />
+                <ellipse cx="-11" cy="-14" rx="5" ry="6" fill="#5C3317" />
+                <ellipse cx="-3"  cy="-17" rx="5" ry="6" fill="#5C3317" />
+                <ellipse cx="6"   cy="-16" rx="5" ry="6" fill="#5C3317" />
+                <ellipse cx="13"  cy="-12" rx="4" ry="5" fill="#5C3317" />
+              </g>
+            ))}
+          </svg>
         </div>
         <div className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center relative z-10">
           <div className="animate-fade-in-up">
