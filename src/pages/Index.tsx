@@ -141,7 +141,17 @@ export default function Index() {
           <div className="absolute bottom-32 left-16 text-5xl opacity-20 animate-float" style={{ animationDelay: "1.5s" }}>🌿</div>
           <div className="absolute top-1/2 right-8 text-4xl opacity-15 animate-float" style={{ animationDelay: "0.8s" }}>🌼</div>
           <div className="absolute top-1/3 left-8 text-3xl opacity-15 animate-float" style={{ animationDelay: "2.2s" }}>🌺</div>
-
+          {/* Дорожка лапок — левая/правая чередуются, идут по диагонали снизу-слева наверх-вправо */}
+          <div className="absolute text-3xl" style={{ bottom: "10%", left: "5%",   opacity: 0.22, transform: "rotate(-40deg) scaleX(-1)" }}>🐾</div>
+          <div className="absolute text-3xl" style={{ bottom: "17%", left: "10%",  opacity: 0.22, transform: "rotate(-40deg)" }}>🐾</div>
+          <div className="absolute text-3xl" style={{ bottom: "24%", left: "16%",  opacity: 0.22, transform: "rotate(-40deg) scaleX(-1)" }}>🐾</div>
+          <div className="absolute text-3xl" style={{ bottom: "31%", left: "21%",  opacity: 0.22, transform: "rotate(-40deg)" }}>🐾</div>
+          <div className="absolute text-3xl" style={{ bottom: "38%", left: "27%",  opacity: 0.22, transform: "rotate(-40deg) scaleX(-1)" }}>🐾</div>
+          <div className="absolute text-3xl" style={{ bottom: "45%", left: "32%",  opacity: 0.22, transform: "rotate(-40deg)" }}>🐾</div>
+          <div className="absolute text-3xl" style={{ bottom: "52%", left: "38%",  opacity: 0.22, transform: "rotate(-40deg) scaleX(-1)" }}>🐾</div>
+          <div className="absolute text-3xl" style={{ bottom: "59%", left: "43%",  opacity: 0.22, transform: "rotate(-40deg)" }}>🐾</div>
+          <div className="absolute text-3xl" style={{ bottom: "66%", left: "49%",  opacity: 0.22, transform: "rotate(-40deg) scaleX(-1)" }}>🐾</div>
+          <div className="absolute text-3xl" style={{ bottom: "73%", left: "54%",  opacity: 0.22, transform: "rotate(-40deg)" }}>🐾</div>
         </div>
         <div className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center relative z-10">
           <div className="animate-fade-in-up">
