@@ -161,17 +161,17 @@ export default function Index() {
             </div>
             <img src={LOGO_URL} alt="Из Поместья Мелешко" className="mb-2" style={{ maxWidth: 1000, width: "100%", display: "block" }} />
             <div className="mb-6" style={{ fontFamily: "'Golos Text', sans-serif" }}>
-              <p className="text-lg mb-3" style={{ color: "rgba(92,51,23,0.75)" }}>Разводим</p>
-              <div className="grid grid-cols-2 gap-3 mb-4" style={{ maxWidth: 420 }}>
+              <p className="text-xl font-semibold mb-3 text-center" style={{ color: "rgba(92,51,23,0.85)", maxWidth: 480 }}>Разводим</p>
+              <div className="grid grid-cols-2 gap-3 mb-4" style={{ maxWidth: 480 }}>
                 {[
-                  { label: "мальтипу",            bg: "#F5EAD8" },
-                  { label: "йоркширских терьеров", bg: "#FAE8EF" },
-                  { label: "пуделей",              bg: "#EAF0E8" },
-                  { label: "бивер йорков",         bg: "#EDE8FA" },
-                ].map(({ label, bg }) => (
+                  { label: "мальтипу",             bg: "#F5E6C8", border: "#E8C98A" },
+                  { label: "йоркширских терьеров", bg: "#FAE0EC", border: "#F0AACB" },
+                  { label: "пуделей",              bg: "#DFF0E4", border: "#9FD4B0" },
+                  { label: "бивер йорков",         bg: "#E4DEFA", border: "#B8AAEE" },
+                ].map(({ label, bg, border }) => (
                   <button key={label} onClick={() => scrollTo("puppies")}
-                    className="text-base font-medium whitespace-nowrap"
-                    style={{ background: bg, color: "rgba(92,51,23,0.85)", border: "1.5px solid rgba(92,51,23,0.12)", borderRadius: 999, padding: "10px 18px", cursor: "pointer", transition: "box-shadow 0.2s", textAlign: "center" }}
+                    className="text-base font-medium whitespace-nowrap w-full"
+                    style={{ background: bg, color: "rgba(92,51,23,0.85)", border: `1.5px solid ${border}`, borderRadius: 999, padding: "11px 12px", cursor: "pointer", transition: "box-shadow 0.2s", textAlign: "center" }}
                     onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 2px 12px rgba(92,51,23,0.15)")}
                     onMouseLeave={e => (e.currentTarget.style.boxShadow = "none")}
                   >{label}</button>
