@@ -2,15 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Обычная лапка — коричневая с обводкой */
+/* Курсор — лапка с сердечком */
 * {
   cursor:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cellipse cx='20' cy='26' rx='9' ry='10' fill='%23A0522D' stroke='%23fff' stroke-width='1.5'/%3E%3Cellipse cx='9' cy='15' rx='5' ry='6' fill='%23A0522D' stroke='%23fff' stroke-width='1.5'/%3E%3Cellipse cx='16' cy='11' rx='5' ry='6' fill='%23A0522D' stroke='%23fff' stroke-width='1.5'/%3E%3Cellipse cx='24' cy='11' rx='5' ry='6' fill='%23A0522D' stroke='%23fff' stroke-width='1.5'/%3E%3Cellipse cx='31' cy='15' rx='4.5' ry='5.5' fill='%23A0522D' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E")
+    url("https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/ae716900-2ef6-4edc-9d07-e49d640e0337.jpg")
       20 20,
     auto;
 }
 
-/* Лапка при наведении на ссылки — розовая с тенью */
+/* При наведении на ссылки — оранжевое сердце */
 a,
 button,
 [role="button"],
@@ -20,7 +20,7 @@ select,
 textarea,
 label {
   cursor:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cellipse cx='20' cy='26' rx='9' ry='10' fill='%23E8849A' stroke='%23fff' stroke-width='1.5'/%3E%3Cellipse cx='9' cy='15' rx='5' ry='6' fill='%23E8849A' stroke='%23fff' stroke-width='1.5'/%3E%3Cellipse cx='16' cy='11' rx='5' ry='6' fill='%23E8849A' stroke='%23fff' stroke-width='1.5'/%3E%3Cellipse cx='24' cy='11' rx='5' ry='6' fill='%23E8849A' stroke='%23fff' stroke-width='1.5'/%3E%3Cellipse cx='31' cy='15' rx='4.5' ry='5.5' fill='%23E8849A' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E")
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 34 C20 34 4 24 4 14 C4 8 8.5 4 13.5 4 C16.5 4 19 5.8 20 8 C21 5.8 23.5 4 26.5 4 C31.5 4 36 8 36 14 C36 24 20 34 20 34Z' fill='%23FF7A00' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E")
       20 20,
     auto !important;
 }
