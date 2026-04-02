@@ -137,10 +137,21 @@ export default function Index() {
       {/* HERO */}
       <section id="home" className="relative min-h-screen flex items-center pt-16" style={{ background: "linear-gradient(135deg, #FAF6F0 0%, #F5EAD8 50%, #FAF0F2 100%)" }}>
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-16 right-10 text-6xl opacity-20 animate-float">🌸</div>
-          <div className="absolute bottom-32 left-16 text-5xl opacity-20 animate-float" style={{ animationDelay: "1.5s" }}>🌿</div>
-          <div className="absolute top-1/2 right-8 text-4xl opacity-15 animate-float" style={{ animationDelay: "0.8s" }}>🌼</div>
-          <div className="absolute top-1/3 left-8 text-3xl opacity-15 animate-float" style={{ animationDelay: "2.2s" }}>🌺</div>
+          {/* Цветы и листья */}
+          <div className="absolute text-6xl opacity-20 animate-float" style={{ top: "8%",  right: "6%" }}>🌸</div>
+          <div className="absolute text-5xl opacity-15 animate-float" style={{ top: "20%", left: "3%",  animationDelay: "1.2s" }}>🍁</div>
+          <div className="absolute text-4xl opacity-20 animate-float" style={{ top: "35%", right: "4%", animationDelay: "0.6s" }}>🌼</div>
+          <div className="absolute text-5xl opacity-15 animate-float" style={{ top: "15%", right: "18%",animationDelay: "2s" }}>🍂</div>
+          <div className="absolute text-4xl opacity-20 animate-float" style={{ top: "55%", left: "2%",  animationDelay: "1.8s" }}>🌺</div>
+          <div className="absolute text-5xl opacity-15 animate-float" style={{ top: "50%", right: "7%", animationDelay: "0.4s" }}>🍃</div>
+          <div className="absolute text-4xl opacity-20 animate-float" style={{ top: "70%", left: "8%",  animationDelay: "2.5s" }}>🌻</div>
+          <div className="absolute text-5xl opacity-15 animate-float" style={{ top: "75%", right: "3%", animationDelay: "1.0s" }}>🍁</div>
+          <div className="absolute text-4xl opacity-15 animate-float" style={{ top: "30%", left: "6%",  animationDelay: "3s"   }}>🌿</div>
+          <div className="absolute text-3xl opacity-20 animate-float" style={{ top: "65%", right: "12%",animationDelay: "1.5s" }}>🌷</div>
+          <div className="absolute text-4xl opacity-15 animate-float" style={{ top: "85%", left: "20%", animationDelay: "0.9s" }}>🍂</div>
+          <div className="absolute text-3xl opacity-15 animate-float" style={{ top: "10%", left: "20%", animationDelay: "2.2s" }}>🌾</div>
+          <div className="absolute text-4xl opacity-20 animate-float" style={{ top: "42%", right: "15%",animationDelay: "1.7s" }}>🪻</div>
+          <div className="absolute text-3xl opacity-15 animate-float" style={{ top: "88%", right: "20%",animationDelay: "0.3s" }}>🌼</div>
 
         </div>
         <div className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center relative z-10">
