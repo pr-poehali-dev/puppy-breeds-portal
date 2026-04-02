@@ -2,65 +2,73 @@ import { useEffect, useRef } from "react";
 
 const PAW_URL = "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/ae716900-2ef6-4edc-9d07-e49d640e0337.jpg";
 
-interface Trail {
-  id: number;
-  x: number;
-  y: number;
-  angle: number;
-  createdAt: number;
-}
-
 export default function PawTrail() {
-  const trailsRef = useRef<Trail[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
-  const counterRef = useRef(0);
-  const lastPosRef = useRef({ x: 0, y: 0 });
-  const minDist = 60;
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const lastPosRef = useRef({ x: -999, y: -999 });
+  const minDist = 35;
 
   useEffect(() => {
-    const handleMove = (e: MouseEvent) => {
-      const dx = e.clientX - lastPosRef.current.x;
-      const dy = e.clientY - lastPosRef.current.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < minDist) return;
+    const cursor = cursorRef.current;
+    const container = containerRef.current;
+    if (!cursor || !container) return;
+
+    const onMove = (e: MouseEvent) => {
+      const { clientX: x, clientY: y } = e;
+
+      // мгновенно двигаем курсор
+      cursor.style.left = `${x - 16}px`;
+      cursor.style.top  = `${y - 16}px`;
+
+      // определяем — над ссылкой/кнопкой?
+      const target = e.target as HTMLElement;
+      const isLink = target.closest("a, button, [role='button']") !== null;
+      cursor.innerHTML = isLink
+        ? `<svg width="28" height="28" viewBox="0 0 28 28"><path d="M14 24 C14 24 2 16 2 9 C2 5 5 2 8.5 2 C11 2 13 3.5 14 5.5 C15 3.5 17 2 19.5 2 C23 2 26 5 26 9 C26 16 14 24 14 24Z" fill="%23FF7A00"/></svg>`
+        : `<img src="${PAW_URL}" width="32" height="32" style="border-radius:50%;display:block;" />`;
+
+      // следы
+      const dx = x - lastPosRef.current.x;
+      const dy = y - lastPosRef.current.y;
+      if (Math.sqrt(dx * dx + dy * dy) < minDist) return;
+      lastPosRef.current = { x, y };
 
       const angle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
-      lastPosRef.current = { x: e.clientX, y: e.clientY };
-
-      const id = counterRef.current++;
-      const trail: Trail = { id, x: e.clientX, y: e.clientY, angle, createdAt: Date.now() };
-      trailsRef.current = [...trailsRef.current, trail];
-
-      if (!containerRef.current) return;
-
-      const el = document.createElement("div");
+      const el = document.createElement("img");
+      el.src = PAW_URL;
       el.style.cssText = `
-        position: fixed;
-        left: ${e.clientX - 16}px;
-        top: ${e.clientY - 16}px;
-        width: 32px;
-        height: 32px;
-        background-image: url('${PAW_URL}');
-        background-size: cover;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 99999;
-        transform: rotate(${angle}deg);
-        opacity: 0.7;
-        transition: opacity 0.8s ease-out;
+        position:fixed;
+        left:${x - 12}px;
+        top:${y - 12}px;
+        width:24px;height:24px;
+        border-radius:50%;
+        pointer-events:none;
+        z-index:99998;
+        transform:rotate(${angle}deg);
+        opacity:0.55;
+        transition:opacity 0.5s ease-out;
       `;
-      containerRef.current.appendChild(el);
-
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => { el.style.opacity = "0"; });
-      });
-
-      setTimeout(() => { el.remove(); }, 900);
+      container.appendChild(el);
+      requestAnimationFrame(() => requestAnimationFrame(() => { el.style.opacity = "0"; }));
+      setTimeout(() => el.remove(), 550);
     };
 
-    window.addEventListener("mousemove", handleMove);
-    return () => window.removeEventListener("mousemove", handleMove);
+    window.addEventListener("mousemove", onMove);
+    return () => window.removeEventListener("mousemove", onMove);
   }, []);
 
-  return <div ref={containerRef} style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 99999 }} />;
+  return (
+    <>
+      {/* кастомный курсор */}
+      <div
+        ref={cursorRef}
+        style={{
+          position: "fixed", pointerEvents: "none", zIndex: 999999,
+          width: 32, height: 32, transition: "none",
+        }}
+      />
+      {/* контейнер для следов */}
+      <div ref={containerRef} style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 99998 }} />
+    </>
+  );
 }
