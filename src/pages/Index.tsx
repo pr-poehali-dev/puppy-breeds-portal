@@ -141,6 +141,13 @@ export default function Index() {
           <div className="absolute bottom-32 left-16 text-5xl opacity-20 animate-float" style={{ animationDelay: "1.5s" }}>🌿</div>
           <div className="absolute top-1/2 right-8 text-4xl opacity-15 animate-float" style={{ animationDelay: "0.8s" }}>🌼</div>
           <div className="absolute top-1/3 left-8 text-3xl opacity-15 animate-float" style={{ animationDelay: "2.2s" }}>🌺</div>
+          {/* Следы лапок */}
+          <div className="absolute text-2xl" style={{ top: "18%", left: "12%", opacity: 0.12, transform: "rotate(-20deg)" }}>🐾</div>
+          <div className="absolute text-xl" style={{ top: "26%", left: "17%", opacity: 0.1, transform: "rotate(-15deg)" }}>🐾</div>
+          <div className="absolute text-2xl" style={{ top: "34%", left: "10%", opacity: 0.12, transform: "rotate(-25deg)" }}>🐾</div>
+          <div className="absolute text-xl" style={{ bottom: "20%", right: "15%", opacity: 0.1, transform: "rotate(15deg)" }}>🐾</div>
+          <div className="absolute text-2xl" style={{ bottom: "30%", right: "22%", opacity: 0.12, transform: "rotate(10deg)" }}>🐾</div>
+          <div className="absolute text-lg" style={{ top: "60%", left: "45%", opacity: 0.08, transform: "rotate(-10deg)" }}>🐾</div>
         </div>
         <div className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center relative z-10">
           <div className="animate-fade-in-up">
