@@ -177,7 +177,7 @@ export default function Index() {
             </div>
           </div>
           <div className="animate-fade-in delay-300 relative">
-            <div className="text-6xl opacity-30 animate-float absolute z-10" style={{ top: "-22px", left: "-38px", animationDelay: "1.2s" }}>🍁</div>
+            <div className="text-6xl opacity-30 animate-float absolute z-10" style={{ top: "8px", left: "-98px", animationDelay: "1.2s" }}>🍁</div>
             <div className="relative rounded-3xl overflow-hidden shadow-2xl" style={{ aspectRatio: "4/5" }}>
               <img src={IMG_HERO} alt="Щенки питомника" className="w-full h-full object-cover" />
               <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(92,51,23,0.2) 0%, transparent 60%)" }} />
