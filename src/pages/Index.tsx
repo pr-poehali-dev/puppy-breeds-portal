@@ -141,18 +141,7 @@ export default function Index() {
           <div className="absolute bottom-32 left-16 text-5xl opacity-20 animate-float" style={{ animationDelay: "1.5s" }}>🌿</div>
           <div className="absolute top-1/2 right-8 text-4xl opacity-15 animate-float" style={{ animationDelay: "0.8s" }}>🌼</div>
           <div className="absolute top-1/3 left-8 text-3xl opacity-15 animate-float" style={{ animationDelay: "2.2s" }}>🌺</div>
-          {/* Дорожка следов слева — сверху вниз */}
-          <div className="absolute text-4xl" style={{ top: "8%",  left: "4%",  opacity: 0.2, transform: "rotate(-30deg)" }}>🐾</div>
-          <div className="absolute text-3xl" style={{ top: "16%", left: "9%",  opacity: 0.18, transform: "rotate(-20deg)" }}>🐾</div>
-          <div className="absolute text-4xl" style={{ top: "24%", left: "5%",  opacity: 0.2, transform: "rotate(-30deg)" }}>🐾</div>
-          <div className="absolute text-3xl" style={{ top: "32%", left: "10%", opacity: 0.18, transform: "rotate(-20deg)" }}>🐾</div>
-          <div className="absolute text-4xl" style={{ top: "40%", left: "4%",  opacity: 0.2, transform: "rotate(-30deg)" }}>🐾</div>
-          <div className="absolute text-3xl" style={{ top: "48%", left: "9%",  opacity: 0.18, transform: "rotate(-20deg)" }}>🐾</div>
-          {/* Дорожка следов справа — снизу вверх */}
-          <div className="absolute text-4xl" style={{ bottom: "8%",  right: "4%",  opacity: 0.2, transform: "rotate(30deg)" }}>🐾</div>
-          <div className="absolute text-3xl" style={{ bottom: "17%", right: "9%",  opacity: 0.18, transform: "rotate(20deg)" }}>🐾</div>
-          <div className="absolute text-4xl" style={{ bottom: "26%", right: "4%",  opacity: 0.2, transform: "rotate(30deg)" }}>🐾</div>
-          <div className="absolute text-3xl" style={{ bottom: "35%", right: "9%",  opacity: 0.18, transform: "rotate(20deg)" }}>🐾</div>
+
         </div>
         <div className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center relative z-10">
           <div className="animate-fade-in-up">
