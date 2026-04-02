@@ -140,12 +140,12 @@ export default function Index() {
           {/* Цветы и листья */}
           <div className="absolute text-6xl opacity-20 animate-float" style={{ top: "8%",  right: "6%" }}>🌸</div>
 
-          <div className="absolute text-4xl opacity-20 animate-float" style={{ top: "35%", right: "4%", animationDelay: "0.6s" }}>🌼</div>
+          <div className="absolute text-4xl opacity-20 animate-float" style={{ top: "35%", right: "8%", animationDelay: "0.6s" }}>🌼</div>
           <div className="absolute text-5xl opacity-15 animate-float" style={{ top: "15%", right: "18%",animationDelay: "2s" }}>🍂</div>
           <div className="absolute text-4xl opacity-20 animate-float" style={{ top: "55%", left: "6%",  animationDelay: "1.8s" }}>🌺</div>
           <div className="absolute text-5xl opacity-15 animate-float" style={{ top: "50%", right: "7%", animationDelay: "0.4s" }}>🍃</div>
           <div className="absolute text-4xl opacity-20 animate-float" style={{ top: "70%", left: "8%",  animationDelay: "2.5s" }}>🌻</div>
-          <div className="absolute text-5xl opacity-15 animate-float" style={{ top: "75%", right: "3%", animationDelay: "1.0s" }}>🍁</div>
+          <div className="absolute text-5xl opacity-15 animate-float" style={{ top: "75%", right: "8%", animationDelay: "1.0s" }}>🍁</div>
           <div className="absolute text-4xl opacity-15 animate-float" style={{ top: "30%", left: "6%",  animationDelay: "3s"   }}>🌿</div>
           <div className="absolute text-3xl opacity-20 animate-float" style={{ top: "65%", right: "12%",animationDelay: "1.5s" }}>🌷</div>
           <div className="absolute text-4xl opacity-15 animate-float" style={{ top: "85%", left: "20%", animationDelay: "0.9s" }}>🍂</div>
