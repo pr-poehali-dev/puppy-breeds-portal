@@ -159,8 +159,8 @@ export default function Index() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style={{ background: "rgba(92,51,23,0.08)", color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>
               <span>🐾</span> Питомник с любовью с 2015 года
             </div>
-            <img src={LOGO_URL} alt="Из Поместья Мелешко" style={{ maxWidth: 1000, width: "100%", display: "block", marginBottom: "-8px" }} />
-            <div className="mb-6" style={{ fontFamily: "'Golos Text', sans-serif", marginTop: "-10px" }}>
+            <img src={LOGO_URL} alt="Из Поместья Мелешко" style={{ maxWidth: 1000, width: "100%", display: "block", marginBottom: "-40px" }} />
+            <div className="mb-6" style={{ fontFamily: "'Golos Text', sans-serif", marginTop: "-40px" }}>
               <p className="text-xl font-semibold mb-3 text-center" style={{ color: "rgba(92,51,23,0.85)", maxWidth: 480 }}>Разводим</p>
               <div className="grid grid-cols-2 gap-3 mb-4" style={{ maxWidth: 480 }}>
                 {[
