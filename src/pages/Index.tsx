@@ -142,7 +142,7 @@ export default function Index() {
 
           <div className="absolute text-4xl opacity-20 animate-float" style={{ top: "35%", right: "4%", animationDelay: "0.6s" }}>🌼</div>
           <div className="absolute text-5xl opacity-15 animate-float" style={{ top: "15%", right: "18%",animationDelay: "2s" }}>🍂</div>
-          <div className="absolute text-4xl opacity-20 animate-float" style={{ top: "55%", left: "2%",  animationDelay: "1.8s" }}>🌺</div>
+          <div className="absolute text-4xl opacity-20 animate-float" style={{ top: "55%", left: "6%",  animationDelay: "1.8s" }}>🌺</div>
           <div className="absolute text-5xl opacity-15 animate-float" style={{ top: "50%", right: "7%", animationDelay: "0.4s" }}>🍃</div>
           <div className="absolute text-4xl opacity-20 animate-float" style={{ top: "70%", left: "8%",  animationDelay: "2.5s" }}>🌻</div>
           <div className="absolute text-5xl opacity-15 animate-float" style={{ top: "75%", right: "3%", animationDelay: "1.0s" }}>🍁</div>
