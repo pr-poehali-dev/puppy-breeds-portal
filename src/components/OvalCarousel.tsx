@@ -11,20 +11,19 @@ const PHOTOS = [
   "https://cdn.poehali.dev/files/7ebbce74-36c0-4e56-b69e-ebbb5a164df1.jpg",
 ];
 
-// Эффекты: [from-transform, to-transform] — opacity всегда 0→1
-const EFFECTS = [
-  ["scale(1.15)", "scale(1)"],
-  ["scale(0.82)", "scale(1)"],
-  ["translateY(48px) scale(0.97)", "translateY(0) scale(1)"],
-  ["translateX(56px)", "translateX(0)"],
-  ["translateX(-56px)", "translateX(0)"],
-  ["rotate(-7deg) scale(0.9)", "rotate(0deg) scale(1)"],
-  ["scale(1.08)", "scale(1)"],   // blur делаем отдельно
-];
-const BLUR_IDX = 6; // индекс эффекта с blur
-
-const DURATION = 900;
+const DURATION = 1000;
 const INTERVAL = 2500;
+
+// Эффекты: трансформация входящего фото (от → до)
+const EFFECTS = [
+  { from: "scale(1.12)",                        to: "scale(1)" },
+  { from: "scale(0.88)",                        to: "scale(1)" },
+  { from: "translateY(40px) scale(0.96)",       to: "translateY(0) scale(1)" },
+  { from: "translateX(50px)",                   to: "translateX(0)" },
+  { from: "translateX(-50px)",                  to: "translateX(0)" },
+  { from: "rotate(-5deg) scale(0.92)",          to: "rotate(0deg) scale(1)" },
+  { from: "scale(1.06)",                        to: "scale(1)" },
+];
 
 function nextRandom(current: number, total: number) {
   let n = Math.floor(Math.random() * (total - 1));
@@ -33,139 +32,132 @@ function nextRandom(current: number, total: number) {
 }
 
 export default function OvalCarousel() {
-  const [idxA, setIdxA] = useState(0);
-  const [idxB, setIdxB] = useState(1);
-  // true = A сверху (видно), false = B сверху
-  const [aOnTop, setAOnTop] = useState(true);
+  const [current, setCurrent] = useState(0);
+  const [prev, setPrev]       = useState<number | null>(null);
+  const [entering, setEntering] = useState(false);
   const effectRef = useRef(0);
+  const timerRef  = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const busyRef   = useRef(false);
 
-  const topRef = useRef<HTMLImageElement>(null);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const busyRef = useRef(false);
+  // Предзагрузка всех фото
+  useEffect(() => {
+    PHOTOS.forEach(src => { const img = new Image(); img.src = src; });
+  }, []);
 
-  function animate(fromTransform: string, toTransform: string, withBlur: boolean) {
-    const el = topRef.current;
-    if (!el) return;
-
-    // Начальное состояние
-    el.style.transition = "none";
-    el.style.opacity = "0";
-    el.style.transform = fromTransform;
-    if (withBlur) el.style.filter = "blur(14px)";
-
-    // Принудительный reflow — КРИТИЧНО
-    el.getBoundingClientRect();
-
-    // Анимация к финальному состоянию
-    el.style.transition = `opacity ${DURATION}ms ease, transform ${DURATION}ms cubic-bezier(0.4,0,0.2,1), filter ${DURATION}ms ease`;
-    el.style.opacity = "1";
-    el.style.transform = toTransform;
-    if (withBlur) el.style.filter = "blur(0px)";
-  }
-
-  function goTo(nextPhoto: number) {
-    if (busyRef.current) return;
+  function goTo(next: number) {
+    if (busyRef.current || next === current) return;
     busyRef.current = true;
 
-    const effIdx = effectRef.current % EFFECTS.length;
+    const eff = EFFECTS[effectRef.current % EFFECTS.length];
     effectRef.current++;
-    const [fromT, toT] = EFFECTS[effIdx];
-    const withBlur = effIdx === BLUR_IDX;
 
-    if (aOnTop) {
-      // Загружаем следующее фото в B (снизу), потом A станет следующим видимым
-      setIdxB(nextPhoto);
-      setAOnTop(false);
-      // Даём React отрендерить B, затем анимируем... но сейчас сверху будет B
-      // Нет — логика: когда aOnTop=false → B рендерится сверху с анимацией
-      setTimeout(() => {
-        animate(fromT, toT, withBlur);
-        setTimeout(() => { busyRef.current = false; }, DURATION);
-      }, 20);
-    } else {
-      setIdxA(nextPhoto);
-      setAOnTop(true);
-      setTimeout(() => {
-        animate(fromT, toT, withBlur);
-        setTimeout(() => { busyRef.current = false; }, DURATION);
-      }, 20);
-    }
+    setPrev(current);
+    setCurrent(next);
+    setEntering(false); // сначала from-состояние
+
+    // Один rAF — React зарендерил, но браузер ещё не покрасил
+    requestAnimationFrame(() => {
+      // Второй rAF — браузер применил from, теперь запускаем to
+      requestAnimationFrame(() => {
+        setEntering(true);
+        setTimeout(() => {
+          setPrev(null);
+          setEntering(false);
+          busyRef.current = false;
+        }, DURATION + 50);
+      });
+    });
+
+    // Сохраняем эффект для использования в стилях
+    currentEffectRef.current = eff;
   }
+
+  const currentEffectRef = useRef(EFFECTS[0]);
 
   useEffect(() => {
     timerRef.current = setTimeout(() => {
-      const current = aOnTop ? idxA : idxB;
       goTo(nextRandom(current, PHOTOS.length));
     }, INTERVAL);
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [aOnTop, idxA, idxB]);
+  }, [current]);
 
-  // Кто сейчас снизу (фон), кто сверху (анимируется)
-  const bottomSrc = aOnTop ? PHOTOS[idxB] : PHOTOS[idxA];
-  const topSrc    = aOnTop ? PHOTOS[idxA] : PHOTOS[idxB];
-  const currentDotIdx = aOnTop ? idxA : idxB;
-
-  const radius = 32;
+  const eff = currentEffectRef.current;
 
   return (
     <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
 
-      {/* Горизонтальный прямоугольник */}
       <div style={{
         position: "relative",
         width: "100%",
         aspectRatio: "5/4",
-        borderRadius: radius,
+        borderRadius: 32,
         overflow: "hidden",
         boxShadow: "0 16px 50px rgba(92,51,23,0.18), 0 4px 16px rgba(92,51,23,0.1)",
-        border: "2px solid rgba(196,150,58,0.3)",
+        border: "2px solid rgba(196,150,58,0.28)",
+        background: "#f5ead8",
       }}>
 
-        {/* Фоновое фото */}
-        <img
-          src={bottomSrc}
-          alt="Щенок"
-          style={{
+        {/* Уходящее фото — плавно гаснет */}
+        {prev !== null && (
+          <div style={{
             position: "absolute", inset: 0,
-            width: "100%", height: "100%",
-            objectFit: "cover", objectPosition: "center 30%",
-          }}
-        />
+            transition: `opacity ${DURATION}ms ease`,
+            opacity: entering ? 0 : 1,
+            zIndex: 1,
+          }}>
+            <img
+              src={PHOTOS[prev]}
+              alt="Щенок"
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }}
+            />
+            {/* Осветление фона */}
+            <div style={{
+              position: "absolute", inset: 0,
+              background: "radial-gradient(ellipse at center, transparent 30%, rgba(250,240,224,0.55) 100%)",
+              mixBlendMode: "lighten",
+            }} />
+          </div>
+        )}
 
-        {/* Верхнее фото — анимируется */}
-        <img
-          ref={topRef}
-          src={topSrc}
-          alt="Щенок"
-          style={{
+        {/* Входящее фото — появляется с трансформацией */}
+        <div style={{
+          position: "absolute", inset: 0,
+          transition: prev !== null ? `opacity ${DURATION}ms ease, transform ${DURATION}ms cubic-bezier(0.4,0,0.2,1)` : "none",
+          opacity: entering ? 1 : (prev !== null ? 0 : 1),
+          transform: entering ? eff.to : (prev !== null ? eff.from : eff.to),
+          zIndex: 2,
+        }}>
+          <img
+            src={PHOTOS[current]}
+            alt="Щенок"
+            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }}
+          />
+          {/* Осветление краёв */}
+          <div style={{
             position: "absolute", inset: 0,
-            width: "100%", height: "100%",
-            objectFit: "cover", objectPosition: "center 30%",
-            opacity: 1,
-          }}
-        />
+            background: "radial-gradient(ellipse at center, transparent 30%, rgba(250,240,224,0.55) 100%)",
+            mixBlendMode: "lighten",
+          }} />
+        </div>
 
-        {/* Тёплый оверлей */}
+        {/* Нижний затемняющий градиент */}
         <div style={{
           position: "absolute", inset: 0, zIndex: 10,
-          background: "linear-gradient(to bottom, rgba(250,240,224,0.04) 0%, rgba(92,51,23,0.14) 100%)",
+          background: "linear-gradient(to bottom, rgba(250,240,224,0.08) 0%, rgba(92,51,23,0.12) 100%)",
           pointerEvents: "none",
         }} />
       </div>
 
       {/* Точки */}
-      <div style={{ display: "flex", gap: 8, marginTop: 16, zIndex: 5 }}>
+      <div style={{ display: "flex", gap: 8, marginTop: 16 }}>
         {PHOTOS.map((_, i) => (
           <button
             key={i}
-            onClick={() => {
-              if (timerRef.current) clearTimeout(timerRef.current);
-              if (i !== currentDotIdx) goTo(i);
-            }}
+            onClick={() => { if (timerRef.current) clearTimeout(timerRef.current); goTo(i); }}
             style={{
-              width: i === currentDotIdx ? 22 : 8, height: 8,
+              width: i === current ? 22 : 8, height: 8,
               borderRadius: 999, border: "none", cursor: "pointer",
-              background: i === currentDotIdx ? "#5C3317" : "rgba(92,51,23,0.25)",
+              background: i === current ? "#5C3317" : "rgba(92,51,23,0.25)",
               transition: "all 0.4s ease", padding: 0,
             }}
           />
