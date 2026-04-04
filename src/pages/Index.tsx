@@ -162,13 +162,12 @@ export default function Index() {
             </div>
             <img src={LOGO_URL} alt="Из Поместья Мелешко" className="animate-float-logo" style={{ maxWidth: 1000, width: "100%", display: "block", marginBottom: "-40px" }} />
             <div className="mb-6" style={{ fontFamily: "'Golos Text', sans-serif", marginTop: "-40px" }}>
-              <p className="text-xl font-semibold mb-3 text-center" style={{ color: "rgba(92,51,23,0.85)", maxWidth: 480 }}>Разводим</p>
-              <div className="grid grid-cols-2 gap-3 mb-4" style={{ maxWidth: 480 }}>
+              <p className="text-xl font-semibold mb-3 text-center" style={{ color: "rgba(92,51,23,0.85)", maxWidth: 480 }}>Наши породы</p>
+              <div className="grid grid-cols-3 gap-3 mb-4" style={{ maxWidth: 480 }}>
                 {[
-                  { label: "мальтипу",             bg: "#F5E6C8", border: "#E8C98A" },
-                  { label: "йоркширских терьеров", bg: "#FAE0EC", border: "#F0AACB" },
-                  { label: "пуделей",              bg: "#DFF0E4", border: "#9FD4B0" },
-                  { label: "бивер йорков",         bg: "#E4DEFA", border: "#B8AAEE" },
+                  { label: "Мальтипу",    bg: "#F5E6C8", border: "#E8C98A" },
+                  { label: "Той-пудели", bg: "#DFF0E4", border: "#9FD4B0" },
+                  { label: "Йорки",      bg: "#FAE0EC", border: "#F0AACB" },
                 ].map(({ label, bg, border }) => (
                   <button key={label} onClick={() => scrollTo("puppies")}
                     className="text-sm sm:text-base font-medium w-full leading-tight"
