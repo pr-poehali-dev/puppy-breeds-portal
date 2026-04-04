@@ -11,129 +11,169 @@ const PHOTOS = [
   "https://cdn.poehali.dev/files/7ebbce74-36c0-4e56-b69e-ebbb5a164df1.jpg",
 ];
 
-type AnimationType = "fade" | "zoomIn" | "slideUp" | "slideLeft" | "rotateFade" | "blurIn" | "scaleRotate";
-
-const ANIMATIONS: AnimationType[] = ["fade", "zoomIn", "slideUp", "slideLeft", "rotateFade", "blurIn", "scaleRotate"];
-
-const enterKeyframes: Record<AnimationType, string> = {
-  fade:        "opacity: 0; transform: scale(1)",
-  zoomIn:      "opacity: 0; transform: scale(0.75)",
-  slideUp:     "opacity: 0; transform: translateY(40px) scale(0.97)",
-  slideLeft:   "opacity: 0; transform: translateX(50px)",
-  rotateFade:  "opacity: 0; transform: rotate(-6deg) scale(0.9)",
-  blurIn:      "opacity: 0; filter: blur(14px); transform: scale(1.04)",
-  scaleRotate: "opacity: 0; transform: scale(0.8) rotate(4deg)",
+type AnimDef = {
+  fromStyle: React.CSSProperties;
+  toStyle: React.CSSProperties;
+  duration: number;
 };
 
-function getAnimStyle(anim: AnimationType, phase: "from" | "to") {
-  if (phase === "to") return { opacity: 1, transform: "none", filter: "none", transition: "all 1s cubic-bezier(0.4,0,0.2,1)" };
-  const base = { transition: "all 1s cubic-bezier(0.4,0,0.2,1)" } as React.CSSProperties;
-  switch (anim) {
-    case "fade":        return { ...base, opacity: 0, transform: "scale(1)" };
-    case "zoomIn":      return { ...base, opacity: 0, transform: "scale(0.75)" };
-    case "slideUp":     return { ...base, opacity: 0, transform: "translateY(40px) scale(0.97)" };
-    case "slideLeft":   return { ...base, opacity: 0, transform: "translateX(50px)" };
-    case "rotateFade":  return { ...base, opacity: 0, transform: "rotate(-6deg) scale(0.9)" };
-    case "blurIn":      return { ...base, opacity: 0, filter: "blur(14px)", transform: "scale(1.04)" };
-    case "scaleRotate": return { ...base, opacity: 0, transform: "scale(0.8) rotate(4deg)" };
-  }
-}
+const ANIMS: AnimDef[] = [
+  {
+    fromStyle: { opacity: 0 },
+    toStyle: { opacity: 1 },
+    duration: 900,
+  },
+  {
+    fromStyle: { opacity: 0, transform: "scale(1.18)" },
+    toStyle: { opacity: 1, transform: "scale(1)" },
+    duration: 1000,
+  },
+  {
+    fromStyle: { opacity: 0, transform: "scale(0.78)" },
+    toStyle: { opacity: 1, transform: "scale(1)" },
+    duration: 1000,
+  },
+  {
+    fromStyle: { opacity: 0, transform: "translateY(60px)" },
+    toStyle: { opacity: 1, transform: "translateY(0)" },
+    duration: 900,
+  },
+  {
+    fromStyle: { opacity: 0, transform: "translateX(70px)" },
+    toStyle: { opacity: 1, transform: "translateX(0)" },
+    duration: 900,
+  },
+  {
+    fromStyle: { opacity: 0, transform: "rotate(-8deg) scale(0.88)" },
+    toStyle: { opacity: 1, transform: "rotate(0deg) scale(1)" },
+    duration: 1100,
+  },
+  {
+    fromStyle: { opacity: 0, filter: "blur(16px)", transform: "scale(1.06)" },
+    toStyle: { opacity: 1, filter: "blur(0px)", transform: "scale(1)" },
+    duration: 1000,
+  },
+];
 
 export default function OvalCarousel() {
   const [current, setCurrent] = useState(0);
-  const [phase, setPhase] = useState<"from" | "to">("to");
-  const [animType, setAnimType] = useState<AnimationType>("fade");
-  const animIndexRef = useRef(0);
+  const [next, setNext] = useState<number | null>(null);
+  const [animating, setAnimating] = useState(false);
+  const [nextStyle, setNextStyle] = useState<React.CSSProperties>({});
+  const animRef = useRef(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  function goTo(next: number) {
-    const nextAnim = ANIMATIONS[animIndexRef.current % ANIMATIONS.length];
-    animIndexRef.current++;
-    setAnimType(nextAnim);
-    setPhase("from");
-    setTimeout(() => {
-      setCurrent(next);
-      setPhase("to");
-    }, 80);
+  function goTo(idx: number) {
+    if (animating || idx === current) return;
+    const anim = ANIMS[animRef.current % ANIMS.length];
+    animRef.current++;
+
+    setNext(idx);
+    setNextStyle(anim.fromStyle);
+    setAnimating(true);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setNextStyle({
+          ...anim.toStyle,
+          transition: `all ${anim.duration}ms cubic-bezier(0.4,0,0.2,1)`,
+        });
+
+        setTimeout(() => {
+          setCurrent(idx);
+          setNext(null);
+          setAnimating(false);
+        }, anim.duration);
+      });
+    });
   }
 
   useEffect(() => {
     timerRef.current = setTimeout(() => {
       goTo((current + 1) % PHOTOS.length);
-    }, 4200);
+    }, 4000);
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [current]);
+  }, [current, animating]);
 
-  const imgStyle = getAnimStyle(animType, phase);
+  const oval = "56% 44% 60% 40% / 50% 48% 52% 50%";
 
   return (
-    <div className="relative flex flex-col items-center select-none" style={{ width: "100%" }}>
-      {/* Декоративное свечение за овалом */}
+    <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", position: "relative" }}>
+      {/* Свечение */}
       <div style={{
         position: "absolute",
-        inset: "-18px",
-        borderRadius: "56% 44% 60% 40% / 50% 48% 52% 50%",
-        background: "radial-gradient(ellipse at center, rgba(240,198,161,0.45) 0%, rgba(250,222,210,0.25) 55%, transparent 80%)",
+        inset: "-20px",
+        borderRadius: oval,
+        background: "radial-gradient(ellipse, rgba(240,198,161,0.4) 0%, transparent 75%)",
+        filter: "blur(10px)",
         zIndex: 0,
-        filter: "blur(8px)",
+        pointerEvents: "none",
       }} />
 
-      {/* Внешняя рамка-бордюр */}
+      {/* Рамка */}
       <div style={{
         position: "absolute",
         inset: "-6px",
-        borderRadius: "56% 44% 60% 40% / 50% 48% 52% 50%",
-        border: "2.5px solid rgba(210,160,110,0.45)",
+        borderRadius: oval,
+        border: "2.5px solid rgba(210,160,110,0.4)",
         zIndex: 1,
         pointerEvents: "none",
       }} />
 
-      {/* Основной овал с фото */}
+      {/* Овал */}
       <div style={{
         position: "relative",
         zIndex: 2,
         width: "100%",
         aspectRatio: "4/5",
-        borderRadius: "56% 44% 60% 40% / 50% 48% 52% 50%",
+        borderRadius: oval,
         overflow: "hidden",
         boxShadow: "0 20px 60px rgba(92,51,23,0.18), 0 4px 20px rgba(92,51,23,0.1)",
       }}>
-        {/* Тёплый цветовой оверлей для гармонии с сайтом */}
-        <div style={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 2,
-          background: "linear-gradient(to bottom, rgba(250,240,224,0.08) 0%, rgba(92,51,23,0.18) 100%)",
-          mixBlendMode: "multiply",
-          pointerEvents: "none",
-        }} />
-        {/* Тёплый тонирующий слой */}
-        <div style={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 3,
-          background: "rgba(255,230,180,0.10)",
-          mixBlendMode: "soft-light",
-          pointerEvents: "none",
-        }} />
-
+        {/* Текущее фото */}
         <img
-          key={current}
           src={PHOTOS[current]}
-          alt="Щенок питомника"
+          alt="Щенок"
           style={{
+            position: "absolute",
+            inset: 0,
             width: "100%",
             height: "100%",
             objectFit: "cover",
             objectPosition: "center 20%",
-            display: "block",
-            ...imgStyle,
           }}
         />
+
+        {/* Следующее фото поверх с анимацией */}
+        {next !== null && (
+          <img
+            key={next}
+            src={PHOTOS[next]}
+            alt="Щенок"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center 20%",
+              ...nextStyle,
+            }}
+          />
+        )}
+
+        {/* Тёплый оверлей */}
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 10,
+          background: "linear-gradient(to bottom, rgba(250,240,224,0.06) 0%, rgba(92,51,23,0.16) 100%)",
+          pointerEvents: "none",
+        }} />
       </div>
 
-      {/* Точки-навигация */}
-      <div style={{ display: "flex", gap: 8, marginTop: 20, zIndex: 5, position: "relative" }}>
+      {/* Точки */}
+      <div style={{ display: "flex", gap: 8, marginTop: 20, zIndex: 5 }}>
         {PHOTOS.map((_, i) => (
           <button
             key={i}
