@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
+import OvalCarousel from "@/components/OvalCarousel";
 
 const LOGO_URL = "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/c5d43a1f-8b5a-4d3a-b8c4-1e25670f732f.png";
 const IMG_HERO = "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/files/e141e916-3cf3-4a2a-93d8-c2a528532e22.jpg";
@@ -194,13 +195,10 @@ export default function Index() {
               ))}
             </div>
           </div>
-          <div className="animate-fade-in delay-300 relative">
+          <div className="animate-fade-in delay-300 relative flex flex-col items-center">
             <div className="text-6xl opacity-30 animate-float absolute z-10" style={{ top: "8px", left: "-98px", animationDelay: "1.2s" }}>🍁</div>
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl" style={{ aspectRatio: "4/5" }}>
-              <img src={IMG_HERO} alt="Щенки питомника" className="w-full h-full object-cover" />
-              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(92,51,23,0.2) 0%, transparent 60%)" }} />
-            </div>
-            <div className="absolute -bottom-4 -left-6 bg-white rounded-2xl shadow-xl px-5 py-4 animate-fade-in delay-500">
+            <OvalCarousel />
+            <div className="absolute -bottom-4 -left-6 bg-white rounded-2xl shadow-xl px-5 py-4 animate-fade-in delay-500" style={{ zIndex: 10 }}>
               <div className="font-display text-lg" style={{ color: "var(--brown)" }}>Есть свободные щенки</div>
               <div className="text-sm" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>Уточните наличие у нас</div>
             </div>
