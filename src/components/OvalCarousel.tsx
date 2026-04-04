@@ -84,10 +84,9 @@ export default function OvalCarousel() {
             src={PHOTOS[prev]}
             alt=""
             style={{
-              position: "absolute",
-              width: "75%", height: "75%",
-              top: "12.5%", left: "12.5%",
-              objectFit: "contain", objectPosition: "center center",
+              position: "absolute", inset: 0,
+              width: "100%", height: "100%",
+              objectFit: "cover", objectPosition: "center 40%",
               zIndex: 1,
             }}
           />
@@ -99,10 +98,9 @@ export default function OvalCarousel() {
           src={PHOTOS[cur]}
           alt="Щенок"
           style={{
-            position: "absolute",
-            width: "75%", height: "75%",
-            top: "12.5%", left: "12.5%",
-            objectFit: "contain", objectPosition: "center center",
+            position: "absolute", inset: 0,
+            width: "100%", height: "100%",
+            objectFit: "cover", objectPosition: "center 40%",
             zIndex: 2,
             opacity: show ? 1 : 0,
             transform: show ? "scale(1)" : "scale(1.06)",
