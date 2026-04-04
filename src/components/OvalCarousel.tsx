@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const PHOTOS = [
-  "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/efbf36ef-1ae2-4f32-9bad-2013b5184fa2.png",
+  "https://cdn.poehali.dev/files/700d26e5-42f7-4ef8-a655-02a7bb3d11e8.jpg",
   "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/5e0cad45-b08c-41e7-a75f-487ce65b1f11.jpg",
   "https://cdn.poehali.dev/files/45c0a6b3-5d09-458c-a187-7a3783ce0f41.jpg",
   "https://cdn.poehali.dev/files/1d0919dd-9ba0-4e8d-950b-8b581e35ed68.jpg",
