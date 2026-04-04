@@ -11,144 +11,139 @@ const PHOTOS = [
   "https://cdn.poehali.dev/files/7ebbce74-36c0-4e56-b69e-ebbb5a164df1.jpg",
 ];
 
-type AnimDef = {
-  fromStyle: React.CSSProperties;
-  toStyle: React.CSSProperties;
-  duration: number;
-};
-
-const ANIMS: AnimDef[] = [
-  {
-    fromStyle: { opacity: 0 },
-    toStyle: { opacity: 1 },
-    duration: 900,
-  },
-  {
-    fromStyle: { opacity: 0, transform: "scale(1.18)" },
-    toStyle: { opacity: 1, transform: "scale(1)" },
-    duration: 1000,
-  },
-  {
-    fromStyle: { opacity: 0, transform: "scale(0.78)" },
-    toStyle: { opacity: 1, transform: "scale(1)" },
-    duration: 1000,
-  },
-  {
-    fromStyle: { opacity: 0, transform: "translateY(60px)" },
-    toStyle: { opacity: 1, transform: "translateY(0)" },
-    duration: 900,
-  },
-  {
-    fromStyle: { opacity: 0, transform: "translateX(70px)" },
-    toStyle: { opacity: 1, transform: "translateX(0)" },
-    duration: 900,
-  },
-  {
-    fromStyle: { opacity: 0, transform: "rotate(-8deg) scale(0.88)" },
-    toStyle: { opacity: 1, transform: "rotate(0deg) scale(1)" },
-    duration: 1100,
-  },
-  {
-    fromStyle: { opacity: 0, filter: "blur(16px)", transform: "scale(1.06)" },
-    toStyle: { opacity: 1, filter: "blur(0px)", transform: "scale(1)" },
-    duration: 1000,
-  },
+const ANIM_CLASSES = [
+  "carousel-anim-fade",
+  "carousel-anim-zoom-in",
+  "carousel-anim-zoom-out",
+  "carousel-anim-slide-up",
+  "carousel-anim-slide-left",
+  "carousel-anim-rotate",
+  "carousel-anim-blur",
 ];
+
+const DURATIONS = [950, 1000, 1000, 950, 950, 1100, 1000];
 
 export default function OvalCarousel() {
   const [current, setCurrent] = useState(0);
-  const [next, setNext] = useState<number | null>(null);
-  const [animating, setAnimating] = useState(false);
-  const [nextStyle, setNextStyle] = useState<React.CSSProperties>({});
+  const [incoming, setIncoming] = useState<{ idx: number; key: number; cls: string } | null>(null);
   const animRef = useRef(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const keyRef = useRef(0);
 
   function goTo(idx: number) {
-    if (animating || idx === current) return;
-    const anim = ANIMS[animRef.current % ANIMS.length];
+    if (incoming !== null || idx === current) return;
+    const animIdx = animRef.current % ANIM_CLASSES.length;
     animRef.current++;
+    keyRef.current++;
+    const cls = ANIM_CLASSES[animIdx];
+    const dur = DURATIONS[animIdx];
 
-    setNext(idx);
-    setNextStyle(anim.fromStyle);
-    setAnimating(true);
+    setIncoming({ idx, key: keyRef.current, cls });
 
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        setNextStyle({
-          ...anim.toStyle,
-          transition: `all ${anim.duration}ms cubic-bezier(0.4,0,0.2,1)`,
-        });
-
-        setTimeout(() => {
-          setCurrent(idx);
-          setNext(null);
-          setAnimating(false);
-        }, anim.duration);
-      });
-    });
+    setTimeout(() => {
+      setCurrent(idx);
+      setIncoming(null);
+    }, dur);
   }
 
   useEffect(() => {
     timerRef.current = setTimeout(() => {
       goTo((current + 1) % PHOTOS.length);
-    }, 4000);
+    }, 4200);
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [current, animating]);
-
-  const oval = "56% 44% 60% 40% / 50% 48% 52% 50%";
+  }, [current, incoming]);
 
   return (
     <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", position: "relative" }}>
-      {/* Свечение */}
-      <div style={{
-        position: "absolute",
-        inset: "-20px",
-        borderRadius: oval,
-        background: "radial-gradient(ellipse, rgba(240,198,161,0.4) 0%, transparent 75%)",
-        filter: "blur(10px)",
-        zIndex: 0,
-        pointerEvents: "none",
-      }} />
 
-      {/* Рамка */}
-      <div style={{
-        position: "absolute",
-        inset: "-6px",
-        borderRadius: oval,
-        border: "2.5px solid rgba(210,160,110,0.4)",
-        zIndex: 1,
-        pointerEvents: "none",
-      }} />
+      <div style={{ position: "relative", width: "100%", aspectRatio: "1/1" }}>
 
-      {/* Овал */}
-      <div style={{
-        position: "relative",
-        zIndex: 2,
-        width: "100%",
-        aspectRatio: "4/5",
-        borderRadius: oval,
-        overflow: "hidden",
-        boxShadow: "0 20px 60px rgba(92,51,23,0.18), 0 4px 20px rgba(92,51,23,0.1)",
-      }}>
-        {/* Текущее фото */}
-        <img
-          src={PHOTOS[current]}
-          alt="Щенок"
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "center 20%",
-          }}
-        />
+        {/* SVG обрамление — тонкие веточки с листьями по кругу */}
+        <svg
+          viewBox="0 0 400 400"
+          style={{ position: "absolute", inset: "-12%", width: "124%", height: "124%", zIndex: 3, pointerEvents: "none" }}
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Пунктирное кольцо */}
+          <circle cx="200" cy="200" r="175" stroke="#C4963A" strokeWidth="1" opacity="0.28" strokeDasharray="3 9"/>
 
-        {/* Следующее фото поверх с анимацией */}
-        {next !== null && (
+          {/* Верх слева — стебель */}
+          <path d="M 130 70 Q 145 54 162 49" stroke="#8B6340" strokeWidth="1.4" strokeLinecap="round" opacity="0.5"/>
+          <ellipse cx="163" cy="47" rx="7.5" ry="4" transform="rotate(-35 163 47)" fill="#A07848" opacity="0.42"/>
+          <ellipse cx="146" cy="57" rx="6" ry="3.2" transform="rotate(-10 146 57)" fill="#A07848" opacity="0.35"/>
+          <ellipse cx="132" cy="70" rx="5.5" ry="3" transform="rotate(-55 132 70)" fill="#A07848" opacity="0.32"/>
+
+          {/* Верх справа — стебель */}
+          <path d="M 270 70 Q 255 54 238 49" stroke="#8B6340" strokeWidth="1.4" strokeLinecap="round" opacity="0.5"/>
+          <ellipse cx="237" cy="47" rx="7.5" ry="4" transform="rotate(35 237 47)" fill="#A07848" opacity="0.42"/>
+          <ellipse cx="254" cy="57" rx="6" ry="3.2" transform="rotate(10 254 57)" fill="#A07848" opacity="0.35"/>
+          <ellipse cx="268" cy="70" rx="5.5" ry="3" transform="rotate(55 268 70)" fill="#A07848" opacity="0.32"/>
+
+          {/* Цветочек сверху по центру */}
+          <circle cx="200" cy="42" r="5" fill="#D4956A" opacity="0.45"/>
+          <circle cx="200" cy="42" r="2.5" fill="#F5C49A" opacity="0.65"/>
+          <circle cx="193" cy="46" r="3.2" fill="#C4963A" opacity="0.3"/>
+          <circle cx="207" cy="46" r="3.2" fill="#C4963A" opacity="0.3"/>
+
+          {/* Слева */}
+          <path d="M 50 182 Q 40 200 50 218" stroke="#8B6340" strokeWidth="1.3" strokeLinecap="round" opacity="0.42"/>
+          <ellipse cx="41" cy="200" rx="6.5" ry="3.5" transform="rotate(90 41 200)" fill="#A07848" opacity="0.35"/>
+          <ellipse cx="51" cy="181" rx="5.5" ry="3" transform="rotate(55 51 181)" fill="#A07848" opacity="0.3"/>
+          <ellipse cx="51" cy="219" rx="5.5" ry="3" transform="rotate(125 51 219)" fill="#A07848" opacity="0.3"/>
+
+          {/* Справа */}
+          <path d="M 350 182 Q 360 200 350 218" stroke="#8B6340" strokeWidth="1.3" strokeLinecap="round" opacity="0.42"/>
+          <ellipse cx="359" cy="200" rx="6.5" ry="3.5" transform="rotate(90 359 200)" fill="#A07848" opacity="0.35"/>
+          <ellipse cx="349" cy="181" rx="5.5" ry="3" transform="rotate(125 349 181)" fill="#A07848" opacity="0.3"/>
+          <ellipse cx="349" cy="219" rx="5.5" ry="3" transform="rotate(55 349 219)" fill="#A07848" opacity="0.3"/>
+
+          {/* Низ слева */}
+          <path d="M 132 330 Q 152 347 172 352" stroke="#8B6340" strokeWidth="1.3" strokeLinecap="round" opacity="0.42"/>
+          <ellipse cx="130" cy="331" rx="5.5" ry="3" transform="rotate(38 130 331)" fill="#A07848" opacity="0.33"/>
+          <ellipse cx="154" cy="348" rx="6" ry="3.3" transform="rotate(-8 154 348)" fill="#A07848" opacity="0.33"/>
+          <ellipse cx="174" cy="353" rx="5" ry="2.8" transform="rotate(-32 174 353)" fill="#A07848" opacity="0.3"/>
+
+          {/* Низ справа */}
+          <path d="M 268 330 Q 248 347 228 352" stroke="#8B6340" strokeWidth="1.3" strokeLinecap="round" opacity="0.42"/>
+          <ellipse cx="270" cy="331" rx="5.5" ry="3" transform="rotate(-38 270 331)" fill="#A07848" opacity="0.33"/>
+          <ellipse cx="246" cy="348" rx="6" ry="3.3" transform="rotate(8 246 348)" fill="#A07848" opacity="0.33"/>
+          <ellipse cx="226" cy="353" rx="5" ry="2.8" transform="rotate(32 226 353)" fill="#A07848" opacity="0.3"/>
+        </svg>
+
+        {/* Свечение */}
+        <div style={{
+          position: "absolute",
+          inset: "-4px",
+          borderRadius: "50%",
+          background: "radial-gradient(ellipse, rgba(240,198,161,0.3) 0%, transparent 70%)",
+          filter: "blur(14px)",
+          zIndex: 0,
+        }} />
+
+        {/* Кольцо-рамка */}
+        <div style={{
+          position: "absolute",
+          inset: "-3px",
+          borderRadius: "50%",
+          border: "2px solid rgba(196,150,58,0.38)",
+          zIndex: 4,
+          pointerEvents: "none",
+        }} />
+
+        {/* Круг с фото */}
+        <div style={{
+          position: "relative",
+          zIndex: 2,
+          width: "100%",
+          height: "100%",
+          borderRadius: "50%",
+          overflow: "hidden",
+          boxShadow: "0 16px 50px rgba(92,51,23,0.18), 0 4px 16px rgba(92,51,23,0.1)",
+        }}>
+          {/* Текущее фото */}
           <img
-            key={next}
-            src={PHOTOS[next]}
+            src={PHOTOS[current]}
             alt="Щенок"
             style={{
               position: "absolute",
@@ -157,23 +152,40 @@ export default function OvalCarousel() {
               height: "100%",
               objectFit: "cover",
               objectPosition: "center 20%",
-              ...nextStyle,
             }}
           />
-        )}
 
-        {/* Тёплый оверлей */}
-        <div style={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 10,
-          background: "linear-gradient(to bottom, rgba(250,240,224,0.06) 0%, rgba(92,51,23,0.16) 100%)",
-          pointerEvents: "none",
-        }} />
+          {/* Новое фото — CSS-анимация */}
+          {incoming && (
+            <img
+              key={incoming.key}
+              src={PHOTOS[incoming.idx]}
+              alt="Щенок"
+              className={incoming.cls}
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center 20%",
+              }}
+            />
+          )}
+
+          {/* Тёплый оверлей */}
+          <div style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 10,
+            background: "linear-gradient(to bottom, rgba(250,240,224,0.05) 0%, rgba(92,51,23,0.13) 100%)",
+            pointerEvents: "none",
+          }} />
+        </div>
       </div>
 
       {/* Точки */}
-      <div style={{ display: "flex", gap: 8, marginTop: 20, zIndex: 5 }}>
+      <div style={{ display: "flex", gap: 8, marginTop: 18, zIndex: 5 }}>
         {PHOTOS.map((_, i) => (
           <button
             key={i}
@@ -184,7 +196,7 @@ export default function OvalCarousel() {
               borderRadius: 999,
               border: "none",
               cursor: "pointer",
-              background: i === current ? "var(--brown, #5C3317)" : "rgba(92,51,23,0.25)",
+              background: i === current ? "#5C3317" : "rgba(92,51,23,0.25)",
               transition: "all 0.4s ease",
               padding: 0,
             }}
