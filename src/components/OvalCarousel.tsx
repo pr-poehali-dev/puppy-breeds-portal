@@ -11,8 +11,8 @@ const PHOTOS = [
   "https://cdn.poehali.dev/files/7ebbce74-36c0-4e56-b69e-ebbb5a164df1.jpg",
 ];
 
-const INTERVAL_MS = 2500;
-const ANIM_MS = 750;
+const INTERVAL_MS = 3000;
+const ANIM_MS = 1100;
 
 function nextRandom(current: number) {
   let n = Math.floor(Math.random() * (PHOTOS.length - 1));

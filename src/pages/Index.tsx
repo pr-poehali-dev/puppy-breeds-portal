@@ -195,7 +195,7 @@ export default function Index() {
               ))}
             </div>
           </div>
-          <div className="animate-fade-in delay-300 relative flex flex-col items-center" style={{ alignSelf: "flex-start", marginTop: "44px" }}>
+          <div className="animate-fade-in delay-300 relative flex flex-col items-center" style={{ alignSelf: "flex-start", marginTop: "76px" }}>
             <div className="text-6xl opacity-30 animate-float absolute z-10" style={{ top: "8px", left: "-98px", animationDelay: "1.2s" }}>🍁</div>
             <OvalCarousel />
             <div className="absolute -bottom-4 -left-6 bg-white rounded-2xl shadow-xl px-5 py-4 animate-fade-in delay-500" style={{ zIndex: 10 }}>
