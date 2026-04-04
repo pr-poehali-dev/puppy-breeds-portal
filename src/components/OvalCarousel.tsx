@@ -11,18 +11,8 @@ const PHOTOS = [
   "https://cdn.poehali.dev/files/7ebbce74-36c0-4e56-b69e-ebbb5a164df1.jpg",
 ];
 
-const TRANSITION = "opacity 800ms ease, transform 800ms cubic-bezier(0.4,0,0.2,1)";
 const INTERVAL_MS = 2500;
-
-const TRANSFORMS = [
-  "scale(1.1)",
-  "scale(0.92)",
-  "translateY(36px)",
-  "translateX(44px)",
-  "translateX(-44px)",
-  "rotate(-4deg) scale(0.94)",
-  "scale(1.08)",
-];
+const ANIM_MS = 750;
 
 function nextRandom(current: number) {
   let n = Math.floor(Math.random() * (PHOTOS.length - 1));
@@ -31,75 +21,52 @@ function nextRandom(current: number) {
 }
 
 export default function OvalCarousel() {
-  // Каждый слой — отдельный img, переключаем active между 0 и 1
-  const [active, setActive] = useState(0); // какой слой сейчас виден
-  const [slots, setSlots] = useState([0, 1]); // индексы фото в слотах
-  const [visible, setVisible] = useState([true, false]); // opacity
-  const [transforms, setTransforms] = useState(["scale(1)", "scale(1)"]);
-  const effectRef = useRef(0);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  // Просто индекс текущего и предыдущего фото
+  const [cur, setCur] = useState(0);
+  const [prev, setPrev] = useState<number | null>(null);
+  // true = анимируем (новое фото становится видимым)
+  const [show, setShow] = useState(true);
+
+  const curRef = useRef(0);
+  const busyRef = useRef(false);
 
   // Предзагрузка
   useEffect(() => {
     PHOTOS.forEach(src => { const img = new Image(); img.src = src; });
   }, []);
 
-  function switchTo(nextPhotoIdx: number) {
-    const nextSlot = active === 0 ? 1 : 0;
-    const effTransform = TRANSFORMS[effectRef.current % TRANSFORMS.length];
-    effectRef.current++;
+  function advance() {
+    if (busyRef.current) return;
+    busyRef.current = true;
 
-    // Кладём новое фото в следующий слот
-    setSlots(prev => {
-      const s = [...prev];
-      s[nextSlot] = nextPhotoIdx;
-      return s;
-    });
+    const next = nextRandom(curRef.current);
 
-    // Ставим начальный transform для входящего (без transition)
-    setTransforms(prev => {
-      const t = [...prev];
-      t[nextSlot] = effTransform;
-      return t;
-    });
-    setVisible(prev => {
-      const v = [...prev];
-      v[nextSlot] = false;
-      return v;
-    });
+    // 1. Показываем prev = старое, cur = новое, новое пока opacity:0
+    setPrev(curRef.current);
+    setCur(next);
+    setShow(false);
+    curRef.current = next;
 
-    // Через один кадр — запускаем анимацию
+    // 2. Через один двойной rAF запускаем появление нового
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        setTransforms(prev => {
-          const t = [...prev];
-          t[nextSlot] = "scale(1) translateX(0) translateY(0) rotate(0deg)";
-          return t;
-        });
-        setVisible(prev => {
-          const v = [...prev];
-          v[nextSlot] = true;
-          return v;
-        });
-        setActive(nextSlot);
+        setShow(true);
+        setTimeout(() => {
+          setPrev(null);
+          busyRef.current = false;
+        }, ANIM_MS + 100);
       });
     });
   }
 
-  const currentPhotoRef = useRef(0);
-
+  // Простой интервал — никаких зависимостей
   useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      const next = nextRandom(currentPhotoRef.current);
-      currentPhotoRef.current = next;
-      switchTo(next);
-    }, INTERVAL_MS);
-    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
-  }, [active]);
+    const id = setInterval(advance, INTERVAL_MS);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
-
       <div style={{
         position: "relative",
         width: "100%",
@@ -111,24 +78,37 @@ export default function OvalCarousel() {
         background: "#f5ead8",
       }}>
 
-        {[0, 1].map(slot => (
+        {/* Старое фото — уходит (остаётся на месте, перекрывается новым) */}
+        {prev !== null && (
           <img
-            key={slot}
-            src={PHOTOS[slots[slot]]}
-            alt="Щенок"
+            src={PHOTOS[prev]}
+            alt=""
             style={{
               position: "absolute", inset: 0,
               width: "100%", height: "100%",
               objectFit: "cover", objectPosition: "center 25%",
-              opacity: visible[slot] ? 1 : 0,
-              transform: transforms[slot],
-              transition: TRANSITION,
-              zIndex: slot === active ? 2 : 1,
+              zIndex: 1,
             }}
           />
-        ))}
+        )}
 
-        {/* Лёгкий нижний оверлей */}
+        {/* Новое фото — появляется поверх */}
+        <img
+          key={cur}
+          src={PHOTOS[cur]}
+          alt="Щенок"
+          style={{
+            position: "absolute", inset: 0,
+            width: "100%", height: "100%",
+            objectFit: "cover", objectPosition: "center 25%",
+            zIndex: 2,
+            opacity: show ? 1 : 0,
+            transform: show ? "scale(1)" : "scale(1.06)",
+            transition: show ? `opacity ${ANIM_MS}ms ease, transform ${ANIM_MS}ms ease` : "none",
+          }}
+        />
+
+        {/* Нижний оверлей */}
         <div style={{
           position: "absolute", inset: 0, zIndex: 10,
           background: "linear-gradient(to bottom, transparent 60%, rgba(92,51,23,0.1) 100%)",
@@ -142,14 +122,23 @@ export default function OvalCarousel() {
           <button
             key={i}
             onClick={() => {
-              if (intervalRef.current) clearInterval(intervalRef.current);
-              currentPhotoRef.current = i;
-              switchTo(i);
+              if (busyRef.current) return;
+              busyRef.current = true;
+              setPrev(curRef.current);
+              setCur(i);
+              setShow(false);
+              curRef.current = i;
+              requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                  setShow(true);
+                  setTimeout(() => { setPrev(null); busyRef.current = false; }, ANIM_MS + 100);
+                });
+              });
             }}
             style={{
-              width: i === slots[active] ? 22 : 8, height: 8,
+              width: i === cur ? 22 : 8, height: 8,
               borderRadius: 999, border: "none", cursor: "pointer",
-              background: i === slots[active] ? "#5C3317" : "rgba(92,51,23,0.25)",
+              background: i === cur ? "#5C3317" : "rgba(92,51,23,0.25)",
               transition: "all 0.4s ease", padding: 0,
             }}
           />
