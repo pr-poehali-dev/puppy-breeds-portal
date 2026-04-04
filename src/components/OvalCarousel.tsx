@@ -78,15 +78,16 @@ export default function OvalCarousel() {
         background: "#f5ead8",
       }}>
 
-        {/* Старое фото — уходит (остаётся на месте, перекрывается новым) */}
+        {/* Старое фото — уходит */}
         {prev !== null && (
           <img
             src={PHOTOS[prev]}
             alt=""
             style={{
-              position: "absolute", inset: 0,
-              width: "100%", height: "100%",
-              objectFit: "cover", objectPosition: "center 40%",
+              position: "absolute",
+              width: "75%", height: "75%",
+              top: "12.5%", left: "12.5%",
+              objectFit: "contain", objectPosition: "center center",
               zIndex: 1,
             }}
           />
@@ -98,9 +99,10 @@ export default function OvalCarousel() {
           src={PHOTOS[cur]}
           alt="Щенок"
           style={{
-            position: "absolute", inset: 0,
-            width: "100%", height: "100%",
-            objectFit: "cover", objectPosition: "center 40%",
+            position: "absolute",
+            width: "75%", height: "75%",
+            top: "12.5%", left: "12.5%",
+            objectFit: "contain", objectPosition: "center center",
             zIndex: 2,
             opacity: show ? 1 : 0,
             transform: show ? "scale(1)" : "scale(1.06)",
