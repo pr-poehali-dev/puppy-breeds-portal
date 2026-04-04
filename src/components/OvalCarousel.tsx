@@ -11,77 +11,91 @@ const PHOTOS = [
   "https://cdn.poehali.dev/files/7ebbce74-36c0-4e56-b69e-ebbb5a164df1.jpg",
 ];
 
-const DURATION = 1000;
-const INTERVAL = 2500;
+const TRANSITION = "opacity 800ms ease, transform 800ms cubic-bezier(0.4,0,0.2,1)";
+const INTERVAL_MS = 2500;
 
-// Эффекты: трансформация входящего фото (от → до)
-const EFFECTS = [
-  { from: "scale(1.12)",                        to: "scale(1)" },
-  { from: "scale(0.88)",                        to: "scale(1)" },
-  { from: "translateY(40px) scale(0.96)",       to: "translateY(0) scale(1)" },
-  { from: "translateX(50px)",                   to: "translateX(0)" },
-  { from: "translateX(-50px)",                  to: "translateX(0)" },
-  { from: "rotate(-5deg) scale(0.92)",          to: "rotate(0deg) scale(1)" },
-  { from: "scale(1.06)",                        to: "scale(1)" },
+const TRANSFORMS = [
+  "scale(1.1)",
+  "scale(0.92)",
+  "translateY(36px)",
+  "translateX(44px)",
+  "translateX(-44px)",
+  "rotate(-4deg) scale(0.94)",
+  "scale(1.08)",
 ];
 
-function nextRandom(current: number, total: number) {
-  let n = Math.floor(Math.random() * (total - 1));
+function nextRandom(current: number) {
+  let n = Math.floor(Math.random() * (PHOTOS.length - 1));
   if (n >= current) n++;
   return n;
 }
 
 export default function OvalCarousel() {
-  const [current, setCurrent] = useState(0);
-  const [prev, setPrev]       = useState<number | null>(null);
-  const [entering, setEntering] = useState(false);
+  // Каждый слой — отдельный img, переключаем active между 0 и 1
+  const [active, setActive] = useState(0); // какой слой сейчас виден
+  const [slots, setSlots] = useState([0, 1]); // индексы фото в слотах
+  const [visible, setVisible] = useState([true, false]); // opacity
+  const [transforms, setTransforms] = useState(["scale(1)", "scale(1)"]);
   const effectRef = useRef(0);
-  const timerRef  = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const busyRef   = useRef(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // Предзагрузка всех фото
+  // Предзагрузка
   useEffect(() => {
     PHOTOS.forEach(src => { const img = new Image(); img.src = src; });
   }, []);
 
-  function goTo(next: number) {
-    if (busyRef.current || next === current) return;
-    busyRef.current = true;
-
-    const eff = EFFECTS[effectRef.current % EFFECTS.length];
+  function switchTo(nextPhotoIdx: number) {
+    const nextSlot = active === 0 ? 1 : 0;
+    const effTransform = TRANSFORMS[effectRef.current % TRANSFORMS.length];
     effectRef.current++;
 
-    setPrev(current);
-    setCurrent(next);
-    setEntering(false); // сначала from-состояние
-
-    // Один rAF — React зарендерил, но браузер ещё не покрасил
-    requestAnimationFrame(() => {
-      // Второй rAF — браузер применил from, теперь запускаем to
-      requestAnimationFrame(() => {
-        setEntering(true);
-        setTimeout(() => {
-          setPrev(null);
-          setEntering(false);
-          busyRef.current = false;
-        }, DURATION + 50);
-      });
+    // Кладём новое фото в следующий слот
+    setSlots(prev => {
+      const s = [...prev];
+      s[nextSlot] = nextPhotoIdx;
+      return s;
     });
 
-    // Сохраняем эффект для использования в стилях
-    currentEffectRef.current = eff;
+    // Ставим начальный transform для входящего (без transition)
+    setTransforms(prev => {
+      const t = [...prev];
+      t[nextSlot] = effTransform;
+      return t;
+    });
+    setVisible(prev => {
+      const v = [...prev];
+      v[nextSlot] = false;
+      return v;
+    });
+
+    // Через один кадр — запускаем анимацию
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setTransforms(prev => {
+          const t = [...prev];
+          t[nextSlot] = "scale(1) translateX(0) translateY(0) rotate(0deg)";
+          return t;
+        });
+        setVisible(prev => {
+          const v = [...prev];
+          v[nextSlot] = true;
+          return v;
+        });
+        setActive(nextSlot);
+      });
+    });
   }
 
-  const currentEffectRef = useRef(EFFECTS[0]);
+  const currentPhotoRef = useRef(0);
 
   useEffect(() => {
-    timerRef.current = setTimeout(() => {
-      goTo(nextRandom(current, PHOTOS.length));
-    }, INTERVAL);
-    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [current]);
-
-  const eff = currentEffectRef.current;
+    intervalRef.current = setInterval(() => {
+      const next = nextRandom(currentPhotoRef.current);
+      currentPhotoRef.current = next;
+      switchTo(next);
+    }, INTERVAL_MS);
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, [active]);
 
   return (
     <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -97,53 +111,27 @@ export default function OvalCarousel() {
         background: "#f5ead8",
       }}>
 
-        {/* Уходящее фото — плавно гаснет */}
-        {prev !== null && (
-          <div style={{
-            position: "absolute", inset: 0,
-            transition: `opacity ${DURATION}ms ease`,
-            opacity: entering ? 0 : 1,
-            zIndex: 1,
-          }}>
-            <img
-              src={PHOTOS[prev]}
-              alt="Щенок"
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }}
-            />
-            {/* Осветление фона */}
-            <div style={{
-              position: "absolute", inset: 0,
-              background: "radial-gradient(ellipse at center, transparent 30%, rgba(250,240,224,0.55) 100%)",
-              mixBlendMode: "lighten",
-            }} />
-          </div>
-        )}
-
-        {/* Входящее фото — появляется с трансформацией */}
-        <div style={{
-          position: "absolute", inset: 0,
-          transition: prev !== null ? `opacity ${DURATION}ms ease, transform ${DURATION}ms cubic-bezier(0.4,0,0.2,1)` : "none",
-          opacity: entering ? 1 : (prev !== null ? 0 : 1),
-          transform: entering ? eff.to : (prev !== null ? eff.from : eff.to),
-          zIndex: 2,
-        }}>
+        {[0, 1].map(slot => (
           <img
-            src={PHOTOS[current]}
+            key={slot}
+            src={PHOTOS[slots[slot]]}
             alt="Щенок"
-            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }}
+            style={{
+              position: "absolute", inset: 0,
+              width: "100%", height: "100%",
+              objectFit: "cover", objectPosition: "center 25%",
+              opacity: visible[slot] ? 1 : 0,
+              transform: transforms[slot],
+              transition: TRANSITION,
+              zIndex: slot === active ? 2 : 1,
+            }}
           />
-          {/* Осветление краёв */}
-          <div style={{
-            position: "absolute", inset: 0,
-            background: "radial-gradient(ellipse at center, transparent 30%, rgba(250,240,224,0.55) 100%)",
-            mixBlendMode: "lighten",
-          }} />
-        </div>
+        ))}
 
-        {/* Нижний затемняющий градиент */}
+        {/* Лёгкий нижний оверлей */}
         <div style={{
           position: "absolute", inset: 0, zIndex: 10,
-          background: "linear-gradient(to bottom, rgba(250,240,224,0.08) 0%, rgba(92,51,23,0.12) 100%)",
+          background: "linear-gradient(to bottom, transparent 60%, rgba(92,51,23,0.1) 100%)",
           pointerEvents: "none",
         }} />
       </div>
@@ -153,11 +141,15 @@ export default function OvalCarousel() {
         {PHOTOS.map((_, i) => (
           <button
             key={i}
-            onClick={() => { if (timerRef.current) clearTimeout(timerRef.current); goTo(i); }}
+            onClick={() => {
+              if (intervalRef.current) clearInterval(intervalRef.current);
+              currentPhotoRef.current = i;
+              switchTo(i);
+            }}
             style={{
-              width: i === current ? 22 : 8, height: 8,
+              width: i === slots[active] ? 22 : 8, height: 8,
               borderRadius: 999, border: "none", cursor: "pointer",
-              background: i === current ? "#5C3317" : "rgba(92,51,23,0.25)",
+              background: i === slots[active] ? "#5C3317" : "rgba(92,51,23,0.25)",
               transition: "all 0.4s ease", padding: 0,
             }}
           />
