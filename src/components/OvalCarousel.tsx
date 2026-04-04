@@ -14,10 +14,8 @@ const PHOTOS = [
 const INTERVAL_MS = 3000;
 const ANIM_MS = 1500;
 
-function nextRandom(current: number) {
-  let n = Math.floor(Math.random() * (PHOTOS.length - 1));
-  if (n >= current) n++;
-  return n;
+function nextSequential(current: number) {
+  return (current + 1) % PHOTOS.length;
 }
 
 export default function OvalCarousel() {
@@ -39,7 +37,7 @@ export default function OvalCarousel() {
     if (busyRef.current) return;
     busyRef.current = true;
 
-    const next = nextRandom(curRef.current);
+    const next = nextSequential(curRef.current);
 
     // 1. Показываем prev = старое, cur = новое, новое пока opacity:0
     setPrev(curRef.current);
