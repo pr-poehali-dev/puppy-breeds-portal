@@ -12,7 +12,7 @@ const PHOTOS = [
 ];
 
 const INTERVAL_MS = 3000;
-const ANIM_MS = 1100;
+const ANIM_MS = 1500;
 
 function nextRandom(current: number) {
   let n = Math.floor(Math.random() * (PHOTOS.length - 1));
@@ -70,7 +70,7 @@ export default function OvalCarousel() {
       <div style={{
         position: "relative",
         width: "100%",
-        aspectRatio: "5/4",
+        aspectRatio: "5/4.2",
         borderRadius: 32,
         overflow: "hidden",
         boxShadow: "0 16px 50px rgba(92,51,23,0.18), 0 4px 16px rgba(92,51,23,0.1)",
@@ -86,7 +86,7 @@ export default function OvalCarousel() {
             style={{
               position: "absolute", inset: 0,
               width: "100%", height: "100%",
-              objectFit: "cover", objectPosition: "center 25%",
+              objectFit: "cover", objectPosition: "center 40%",
               zIndex: 1,
             }}
           />
@@ -100,7 +100,7 @@ export default function OvalCarousel() {
           style={{
             position: "absolute", inset: 0,
             width: "100%", height: "100%",
-            objectFit: "cover", objectPosition: "center 25%",
+            objectFit: "cover", objectPosition: "center 40%",
             zIndex: 2,
             opacity: show ? 1 : 0,
             transform: show ? "scale(1)" : "scale(1.06)",
