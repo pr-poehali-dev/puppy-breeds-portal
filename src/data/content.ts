@@ -39,8 +39,6 @@ export const NAV_ITEMS = [
   { label: "Главная",     id: "home" },
   { label: "О питомнике", id: "about" },
   { label: "Породы",      id: "breeds", href: "/breeds" },
-  { label: "Щенки",       id: "puppies" },
-  { label: "Родители",    id: "parents" },
   { label: "Галерея",     id: "gallery", href: "/gallery" },
   { label: "Отзывы",      id: "reviews" },
   { label: "Контакты",    id: "contacts" },
