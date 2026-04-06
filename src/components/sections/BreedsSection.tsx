@@ -12,7 +12,7 @@ export default function BreedsSection() {
   const navigate = useNavigate();
 
   return (
-    <section id="breeds" className="py-12" style={{ background: "var(--cream)" }}>
+    <section id="breeds" className="py-20" style={{ background: "var(--cream)" }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-14">
           <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)", fontFamily: "'Golos Text', sans-serif" }}>Наши породы</div>
