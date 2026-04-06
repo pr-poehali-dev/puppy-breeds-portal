@@ -4,7 +4,6 @@ import AboutSection from "@/components/sections/AboutSection";
 import BreedsSection from "@/components/sections/BreedsSection";
 import PuppiesSection from "@/components/sections/PuppiesSection";
 import ParentsSection from "@/components/sections/ParentsSection";
-import GallerySection from "@/components/sections/GallerySection";
 import ReviewsSection from "@/components/sections/ReviewsSection";
 import ContactsSection from "@/components/sections/ContactsSection";
 import FooterSection from "@/components/sections/FooterSection";
@@ -18,7 +17,6 @@ export default function Index() {
       <BreedsSection />
       <PuppiesSection />
       <ParentsSection />
-      <GallerySection />
       <ReviewsSection />
       <ContactsSection />
       <FooterSection />

@@ -41,7 +41,7 @@ export const NAV_ITEMS = [
   { label: "Породы",      id: "breeds" },
   { label: "Щенки",       id: "puppies" },
   { label: "Родители",    id: "parents" },
-  { label: "Галерея",     id: "gallery" },
+  { label: "Галерея",     id: "gallery", href: "/gallery" },
   { label: "Отзывы",      id: "reviews" },
   { label: "Контакты",    id: "contacts" },
 ];
