@@ -158,7 +158,7 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center relative z-10">
           <div className="animate-fade-in-up">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style={{ background: "rgba(92,51,23,0.08)", color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>
-              <span>🐾</span> Питомник с любовью с 2012 года
+              <span style={{ fontSize: "1.4em" }}>🐾</span> Питомник с любовью с 2012 года
             </div>
             <img src={LOGO_URL} alt="Из Поместья Мелешко" className="animate-float-logo" style={{ maxWidth: 1000, width: "100%", display: "block", marginBottom: "-40px" }} />
             <div className="mb-6" style={{ fontFamily: "'Golos Text', sans-serif", marginTop: "-40px" }}>
@@ -222,7 +222,7 @@ export default function Index() {
               <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)", fontFamily: "'Golos Text', sans-serif" }}>О нас</div>
               <h2 className="section-title mb-6">Питомник с душой<br /><em>и историей</em></h2>
               <p className="text-base leading-relaxed mb-4" style={{ color: "rgba(92,51,23,0.75)", fontFamily: "'Golos Text', sans-serif" }}>
-                Питомник «Из Поместья Мелешко» основан в 2015 году. Мы — небольшой семейный питомник, где каждый щенок воспитывается в доме, среди людей и получает максимум внимания и любви.
+                Питомник «Из Поместья Мелешко» основан в 2012 году. Мы — небольшой семейный питомник, где каждый щенок воспитывается в доме, среди людей и получает максимум внимания и любви.
               </p>
               <p className="text-base leading-relaxed mb-8" style={{ color: "rgba(92,51,23,0.75)", fontFamily: "'Golos Text', sans-serif" }}>
                 Все наши производители проходят обязательные ветеринарные проверки, имеют титулы и чистые родословные. Мы следим за здоровьем каждого щенка с первых дней жизни и сопровождаем новых хозяев на протяжении всей жизни питомца.
