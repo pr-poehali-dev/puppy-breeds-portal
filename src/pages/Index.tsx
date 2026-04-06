@@ -211,7 +211,7 @@ export default function Index() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative">
               <div className="rounded-3xl overflow-hidden shadow-xl" style={{ aspectRatio: "1/1" }}>
-                <img src={IMG_PUPPY} alt="Наши щенки" className="w-full h-full object-cover" />
+                <img src="https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/e1b10a91-df02-43f8-a685-7500ecc4f0fe.png" alt="Наши щенки" className="w-full h-full object-cover" />
               </div>
               <div className="absolute -top-6 -right-6 rounded-2xl p-5 shadow-lg" style={{ background: "var(--cream-dark)" }}>
                 <div className="font-display text-4xl font-semibold" style={{ color: "var(--brown)" }}>14+</div>
