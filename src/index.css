@@ -346,4 +346,83 @@
   .nav-link:hover {
     opacity: 0.6;
   }
+
+  /* --- Плавные переходы между секциями --- */
+  /* Каждая секция относительно позиционирована, переход через ::before сверху */
+
+  #about,
+  #breeds,
+  #puppies,
+  #parents,
+  #reviews,
+  #contacts {
+    position: relative;
+  }
+
+  /* Hero → About: gradient → white */
+  #about::before {
+    content: "";
+    position: absolute;
+    top: -60px;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, #ffffff);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* About (white) → Breeds (cream) */
+  #breeds::before {
+    content: "";
+    position: absolute;
+    top: -60px;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, #ffffff, var(--cream));
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Breeds (cream) → Puppies (white) */
+  #puppies::before {
+    content: "";
+    position: absolute;
+    top: -60px;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, var(--cream), #ffffff);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Puppies (white) → Parents (cream) */
+  #parents::before {
+    content: "";
+    position: absolute;
+    top: -60px;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, #ffffff, var(--cream));
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Parents (cream) → Reviews (cream) — одинаковый фон, без перехода */
+
+  /* Reviews (cream) → Contacts (brown) */
+  #contacts::before {
+    content: "";
+    position: absolute;
+    top: -60px;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, var(--cream), var(--brown));
+    pointer-events: none;
+    z-index: 1;
+  }
 }
