@@ -2,14 +2,16 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import NavBar from "@/components/sections/NavBar";
-import { MALTIPOO_SUBTYPES, IMAGES } from "@/data/content";
+import { MALTIPOO_SUBTYPES, YORK_SUBTYPES, IMAGES } from "@/data/content";
+
+const ALL_SUBTYPES = [...MALTIPOO_SUBTYPES, ...YORK_SUBTYPES];
 
 export default function SubbreedDetail() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const [lightbox, setLightbox] = useState<number | null>(null);
 
-  const breed = MALTIPOO_SUBTYPES.find((b) => b.slug === slug);
+  const breed = ALL_SUBTYPES.find((b) => b.slug === slug);
 
   if (!breed) {
     return (
@@ -138,7 +140,7 @@ export default function SubbreedDetail() {
         <div className="max-w-5xl mx-auto px-6">
           <h2 className="font-display text-2xl font-semibold mb-6" style={{ color: "var(--brown)" }}>Другие породы питомника</h2>
           <div className="grid sm:grid-cols-3 gap-4">
-            {MALTIPOO_SUBTYPES.filter((b) => b.slug !== breed.slug).map((b) => (
+            {ALL_SUBTYPES.filter((b) => b.slug !== breed.slug).map((b) => (
               <div
                 key={b.slug}
                 className="rounded-2xl p-5 cursor-pointer flex items-center gap-4 hover:shadow-md transition-all"
