@@ -11,7 +11,7 @@ export default function BreedsSection() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-14">
           <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)", fontFamily: "'Golos Text', sans-serif" }}>Наши породы</div>
-          <h2 className="section-title">Три породы —<br /><em>одна любовь</em></h2>
+          <h2 className="section-title whitespace-nowrap">Три породы — <em>одна любовь</em></h2>
         </div>
         <div className="flex flex-wrap gap-2 justify-center mb-10">
           {BREEDS.map((b, i) => (
