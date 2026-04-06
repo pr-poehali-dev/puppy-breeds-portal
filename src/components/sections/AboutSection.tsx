@@ -10,7 +10,7 @@ const ABOUT_FEATURES = [
 
 export default function AboutSection() {
   return (
-    <section id="about" className="py-24 bg-white">
+    <section id="about" className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
