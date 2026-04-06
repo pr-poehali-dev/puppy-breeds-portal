@@ -158,7 +158,7 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center relative z-10">
           <div className="animate-fade-in-up">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style={{ background: "rgba(92,51,23,0.08)", color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>
-              <span style={{ fontSize: "1.4em" }}>🐾</span> Питомник с любовью с 2012 года
+              <span style={{ fontSize: "1.4em" }}>🐕</span> Питомник с любовью с 2012 года
             </div>
             <img src={LOGO_URL} alt="Из Поместья Мелешко" className="animate-float-logo" style={{ maxWidth: 1000, width: "100%", display: "block", marginBottom: "-40px" }} />
             <div className="mb-6" style={{ fontFamily: "'Golos Text', sans-serif", marginTop: "-40px" }}>
