@@ -55,7 +55,7 @@ export default function HeroSection() {
               ))}
             </div>
             <p className="text-lg leading-relaxed" style={{ color: "rgba(92,51,23,0.75)", maxWidth: 480 }}>
-              Каждый щенок рождается с любовью — здоровым, воспитанным и готовым стать лучшим другом.
+              Продажа щенков с документами UCI, прививками и микрочипом. Доставка по России, Беларуси и всему СНГ.
             </p>
           </div>
           <div className="flex flex-wrap gap-4">

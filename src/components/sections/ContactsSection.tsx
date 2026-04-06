@@ -13,10 +13,10 @@ export default function ContactsSection() {
       <div className="max-w-5xl mx-auto px-6 text-center">
         <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)", fontFamily: "'Golos Text', sans-serif" }}>Контакты</div>
         <h2 className="font-display mb-4" style={{ fontSize: "clamp(2.2rem, 5vw, 3.8rem)", color: "var(--cream)", fontWeight: 500 }}>
-          Готовы познакомиться<br /><em>с вашим малышом?</em>
+          Хотите купить щенка?<br /><em>Напишите нам!</em>
         </h2>
         <p className="text-base mb-10" style={{ color: "rgba(250,246,240,0.7)", fontFamily: "'Golos Text', sans-serif" }}>
-          Напишите нам — ответим на все вопросы, расскажем о доступных щенках и поможем выбрать идеального питомца
+          Расскажем о доступных щенках мальтипу, йорков, кавапу и пушон. Помогаем выбрать питомца и организуем доставку по всему СНГ
         </p>
         <div className="grid sm:grid-cols-3 gap-6 mb-10">
           {CONTACT_CARDS.map((c) => (
