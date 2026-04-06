@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import { IMAGES, KENNEL } from "@/data/content";
 
@@ -9,6 +10,8 @@ const ABOUT_FEATURES = [
 ];
 
 export default function AboutSection() {
+  const navigate = useNavigate();
+
   return (
     <section id="about" className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-6">
@@ -31,7 +34,7 @@ export default function AboutSection() {
             <p className="text-base leading-relaxed mb-8" style={{ color: "rgba(92,51,23,0.75)", fontFamily: "'Golos Text', sans-serif" }}>
               {KENNEL.aboutText2}
             </p>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 mb-8">
               {ABOUT_FEATURES.map((item) => (
                 <div key={item.text} className="flex gap-3 items-start p-4 rounded-xl" style={{ background: "var(--cream)" }}>
                   <Icon name={item.icon} size={20} className="mt-0.5 flex-shrink-0" style={{ color: "var(--brown)" }} />
@@ -39,6 +42,13 @@ export default function AboutSection() {
                 </div>
               ))}
             </div>
+            <button
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all hover:gap-3 hover:shadow-md"
+              style={{ background: "var(--brown)", color: "white", fontFamily: "'Golos Text', sans-serif" }}
+              onClick={() => navigate("/about")}
+            >
+              Подробнее о питомнике <Icon name="ArrowRight" size={16} />
+            </button>
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Gallery from "./pages/Gallery";
 import Breeds from "./pages/Breeds";
 import BreedDetail from "./pages/BreedDetail";
+import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import PawTrail from "./components/PawTrail";
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/breeds" element={<Breeds />} />
           <Route path="/breeds/:slug" element={<BreedDetail />} />
+          <Route path="/about" element={<About />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
