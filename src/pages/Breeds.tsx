@@ -22,37 +22,29 @@ export default function Breeds() {
         </div>
       </div>
 
-      {/* BREED CARDS */}
-      <div className="max-w-7xl mx-auto px-6 pb-8 grid md:grid-cols-3 gap-6">
-        {BREEDS.map((breed) => (
+      {/* BREED CARDS — Мальтипу и Йорк */}
+      <div className="max-w-7xl mx-auto px-6 pb-8 grid md:grid-cols-2 gap-6">
+        {BREEDS.filter((b) => b.slug !== "toy-poodle").map((breed) => (
           <div
             key={breed.slug}
             className="rounded-3xl overflow-hidden cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col"
             style={{ background: "white", border: "1px solid rgba(92,51,23,0.08)" }}
             onClick={() => navigate(`/breeds/${breed.slug}`)}
           >
-            {/* Название */}
             <div className="flex items-center justify-between px-6 pt-5 pb-3" style={{ background: breed.color }}>
               <h2 className="font-display text-2xl font-semibold leading-tight" style={{ color: "var(--brown)" }}>
                 {breed.name}
               </h2>
               <span className="text-2xl">{breed.emoji}</span>
             </div>
-
-            {/* Фото */}
-            <div className="relative overflow-hidden" style={{ height: 220 }}>
+            <div className="relative overflow-hidden" style={{ height: 260 }}>
               <img
                 src={breed.image || IMAGES.puppy}
                 alt={breed.name}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
-
-            {/* Текст */}
             <div className="flex flex-col flex-1 p-6" style={{ background: breed.color }}>
-              <div className="text-xs font-medium tracking-widest uppercase mb-2" style={{ color: breed.accentColor }}>
-                Порода
-              </div>
               <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(92,51,23,0.72)" }}>
                 {breed.desc}
               </p>
@@ -61,10 +53,6 @@ export default function Breeds() {
                   <span key={t} className="px-2.5 py-0.5 rounded-full text-xs font-medium"
                     style={{ background: "rgba(92,51,23,0.1)", color: "var(--brown)" }}>{t}</span>
                 ))}
-              </div>
-              <div className="flex gap-4 text-xs mb-5" style={{ color: "var(--brown-light)" }}>
-                <span><b style={{ color: "var(--brown)" }}>Вес:</b> {breed.weight}</span>
-                <span><b style={{ color: "var(--brown)" }}>Жизнь:</b> {breed.lifespan}</span>
               </div>
               <div className="mt-auto flex items-center gap-1.5 font-medium text-sm transition-all group-hover:gap-2.5"
                 style={{ color: "var(--brown)" }}>
