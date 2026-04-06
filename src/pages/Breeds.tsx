@@ -31,6 +31,14 @@ export default function Breeds() {
             style={{ background: "white", border: "1px solid rgba(92,51,23,0.08)" }}
             onClick={() => navigate(`/breeds/${breed.slug}`)}
           >
+            {/* Название */}
+            <div className="flex items-center justify-between px-6 pt-5 pb-3" style={{ background: breed.color }}>
+              <h2 className="font-display text-2xl font-semibold leading-tight" style={{ color: "var(--brown)" }}>
+                {breed.name}
+              </h2>
+              <span className="text-2xl">{breed.emoji}</span>
+            </div>
+
             {/* Фото */}
             <div className="relative overflow-hidden" style={{ height: 220 }}>
               <img
@@ -38,13 +46,6 @@ export default function Breeds() {
                 alt={breed.name}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(50,20,5,0.55) 0%, transparent 55%)" }} />
-              <div className="absolute bottom-4 left-5 right-5 flex items-end justify-between">
-                <h2 className="font-display text-2xl font-semibold leading-tight" style={{ color: "white", textShadow: "0 1px 6px rgba(0,0,0,0.35)" }}>
-                  {breed.name}
-                </h2>
-                <span className="text-2xl">{breed.emoji}</span>
-              </div>
             </div>
 
             {/* Текст */}
