@@ -1,7 +1,6 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
-import { BREEDS, IMAGES } from "@/data/content";
+import { BREEDS } from "@/data/content";
 
 const HERO_COLORS = [
   { bg: "#F5E6C8", border: "#E8C98A" },
@@ -10,9 +9,6 @@ const HERO_COLORS = [
 ];
 
 export default function BreedsSection() {
-  const [activeBreed, setActiveBreed] = useState(0);
-  const breed = BREEDS[activeBreed];
-  const colors = HERO_COLORS[activeBreed];
   const navigate = useNavigate();
 
   return (
@@ -23,49 +19,38 @@ export default function BreedsSection() {
           <h2 className="section-title whitespace-nowrap">Три породы — <em>одна любовь</em></h2>
         </div>
 
-        <div className="flex flex-wrap gap-2 justify-center mb-10">
-          {BREEDS.map((b, i) => (
-            <button key={b.name} onClick={() => setActiveBreed(i)}
-              className="px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300"
-              style={{
-                background: activeBreed === i ? HERO_COLORS[i].bg : "white",
-                color: "rgba(92,51,23,0.85)",
-                border: `1.5px solid ${HERO_COLORS[i].border}`,
-                boxShadow: activeBreed === i ? `0 4px 16px rgba(92,51,23,0.15)` : "none",
-                fontFamily: "'Golos Text', sans-serif",
-              }}>
-              {b.emoji} {b.name}
-            </button>
-          ))}
-        </div>
-
-        <div className="card-kennel p-8 lg:p-12 transition-all duration-300" style={{ background: colors.bg, border: `1.5px solid ${colors.border}` }}>
-          <div className="grid lg:grid-cols-2 gap-10 items-center">
-            <div>
-              <div className="text-5xl mb-4">{breed.emoji}</div>
-              <h3 className="font-display text-4xl font-semibold mb-2" style={{ color: "var(--brown)" }}>{breed.name}</h3>
-              <button
-                className="inline-flex items-center gap-1.5 text-sm font-semibold mb-6 transition-all hover:gap-2.5"
-                style={{ color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}
+        <div className="grid md:grid-cols-3 gap-6">
+          {BREEDS.map((breed, i) => {
+            const { bg, border } = HERO_COLORS[i];
+            return (
+              <div
+                key={breed.slug}
+                className="rounded-3xl p-8 flex flex-col cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                style={{ background: bg, border: `1.5px solid ${border}` }}
                 onClick={() => navigate(`/breeds/${breed.slug}`)}
               >
-                Смотреть <Icon name="ArrowRight" size={14} />
-              </button>
-              <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(92,51,23,0.75)", fontFamily: "'Golos Text', sans-serif" }}>{breed.desc}</p>
-              <div className="flex gap-2 flex-wrap mb-6">
-                {breed.traits.map((t) => (
-                  <span key={t} className="px-3 py-1 rounded-full text-sm font-medium" style={{ background: "rgba(92,51,23,0.1)", color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>{t}</span>
-                ))}
+                <div className="text-5xl mb-5">{breed.emoji}</div>
+                <h3 className="font-display text-3xl font-semibold mb-3" style={{ color: "var(--brown)" }}>
+                  {breed.name}
+                </h3>
+                <p className="text-base leading-relaxed mb-5" style={{ color: "rgba(92,51,23,0.75)", fontFamily: "'Golos Text', sans-serif" }}>
+                  {breed.desc}
+                </p>
+                <div className="flex gap-2 flex-wrap mb-6">
+                  {breed.traits.map((t) => (
+                    <span key={t} className="px-3 py-1 rounded-full text-sm font-medium"
+                      style={{ background: "rgba(92,51,23,0.12)", color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-auto flex items-center gap-2 text-base font-semibold transition-all group-hover:gap-3"
+                  style={{ color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>
+                  Смотреть <Icon name="ArrowRight" size={17} />
+                </div>
               </div>
-              <div className="flex items-center gap-2" style={{ color: "var(--brown-light)" }}>
-                <Icon name="Scale" size={16} />
-                <span className="text-sm" style={{ fontFamily: "'Golos Text', sans-serif" }}>Вес взрослой собаки: {breed.weight}</span>
-              </div>
-            </div>
-            <div className="rounded-2xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
-              <img src={breed.image || IMAGES.puppy} alt={breed.name} className="w-full h-full object-cover" />
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>
