@@ -13,14 +13,14 @@ export default function AboutSection() {
   const navigate = useNavigate();
 
   return (
-    <section id="about" className="py-12 bg-white">
+    <section id="about" className="py-12 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="relative">
+          <div className="relative pt-6 pr-6">
             <div className="rounded-3xl overflow-hidden shadow-xl" style={{ aspectRatio: "1/1" }}>
               <img src={IMAGES.about} alt="Наши щенки" className="w-full h-full object-cover" />
             </div>
-            <div className="absolute -top-6 -right-6 rounded-2xl p-5 shadow-lg" style={{ background: "var(--cream-dark)" }}>
+            <div className="absolute top-0 right-0 rounded-2xl p-5 shadow-lg" style={{ background: "var(--cream-dark)" }}>
               <div className="font-display text-4xl font-semibold" style={{ color: "var(--brown)" }}>14+</div>
               <div className="text-sm" style={{ color: "var(--brown-light)", fontFamily: "'Golos Text', sans-serif" }}>лет любви<br />к породам</div>
             </div>
