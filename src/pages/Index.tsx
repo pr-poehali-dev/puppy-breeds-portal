@@ -186,7 +186,7 @@ export default function Index() {
               <button className="btn-outline" onClick={() => scrollTo("about")}>О питомнике</button>
             </div>
             <div className="flex gap-8 mt-10">
-              {[["200+", "счастливых семей"], ["9 лет", "опыта разведения"], ["4 породы", "в питомнике"]].map(([num, label]) => (
+              {[["200+", "счастливых семей"], ["14 лет", "опыта разведения"], ["4 породы", "в питомнике"]].map(([num, label]) => (
                 <div key={label}>
                   <div className="font-display text-2xl font-semibold" style={{ color: "var(--brown)" }}>{num}</div>
                   <div className="text-sm" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>{label}</div>
@@ -214,7 +214,7 @@ export default function Index() {
                 <img src={IMG_PUPPY} alt="Наши щенки" className="w-full h-full object-cover" />
               </div>
               <div className="absolute -top-6 -right-6 rounded-2xl p-5 shadow-lg" style={{ background: "var(--cream-dark)" }}>
-                <div className="font-display text-4xl font-semibold" style={{ color: "var(--brown)" }}>9+</div>
+                <div className="font-display text-4xl font-semibold" style={{ color: "var(--brown)" }}>14+</div>
                 <div className="text-sm" style={{ color: "var(--brown-light)", fontFamily: "'Golos Text', sans-serif" }}>лет любви<br/>к породам</div>
               </div>
             </div>
