@@ -152,7 +152,18 @@ export const PARENTS = [
 // --- ГАЛЕРЕЯ ---
 // Добавляй сюда URL фотографий для галереи
 export const GALLERY_PHOTOS: string[] = [
-  // пример: "https://cdn.poehali.dev/...",
+  "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/e1b10a91-df02-43f8-a685-7500ecc4f0fe.png",
+  "https://cdn.poehali.dev/files/700d26e5-42f7-4ef8-a655-02a7bb3d11e8.jpg",
+  "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/5e0cad45-b08c-41e7-a75f-487ce65b1f11.jpg",
+  "https://cdn.poehali.dev/files/1d0919dd-9ba0-4e8d-950b-8b581e35ed68.jpg",
+  "https://cdn.poehali.dev/files/84e8652e-c722-4317-815f-6b272fcfe074.jpg",
+  "https://cdn.poehali.dev/files/df251150-2ca2-4043-bc68-795ef4351513.jpg",
+  "https://cdn.poehali.dev/files/3a000d96-5141-464e-a7c5-4edd45d3adc7.jpg",
+  "https://cdn.poehali.dev/files/32cefbd7-bb45-46ba-8a33-ef44914205c2.jpg",
+  "https://cdn.poehali.dev/files/7ebbce74-36c0-4e56-b69e-ebbb5a164df1.jpg",
+  "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/files/e141e916-3cf3-4a2a-93d8-c2a528532e22.jpg",
+  "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/files/99d8b0b3-6041-4fc5-a07f-16be722bd796.jpg",
+  "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/files/18c560f9-7eff-4625-a540-05deb8e7945d.jpg",
 ];
 
 // --- ОТЗЫВЫ ---
