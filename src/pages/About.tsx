@@ -3,11 +3,21 @@ import Icon from "@/components/ui/icon";
 import NavBar from "@/components/sections/NavBar";
 import { IMAGES, KENNEL } from "@/data/content";
 
-const FEATURES = [
-  { icon: "Shield", text: "Все щенки с ветпаспортом и прививками" },
-  { icon: "Award",  text: "Производители с титулами РКФ" },
-  { icon: "Heart",  text: "Воспитание в домашних условиях" },
-  { icon: "Phone",  text: "Поддержка после приобретения" },
+const PUPPY_PHOTO = "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/5467aa2a-7462-481d-b6d2-91301e91339e.png";
+
+const WHAT_YOU_GET = [
+  { icon: "BookOpen",    text: "Ветеринарный паспорт животного" },
+  { icon: "FileCheck",   text: "Справка от ветеринара о здоровье малыша" },
+  { icon: "Cpu",         text: "Микрочип" },
+  { icon: "FileText",    text: "Сертификат о легальном ввозе животного" },
+  { icon: "Heart",       text: "Малыш полностью готов к жизни в любящей семье" },
+];
+
+const CHECKLIST = [
+  "Всегда ли у вас есть время и место для малыша?",
+  "Можете ли покрыть расходы на корм, уход или ветеринарное лечение?",
+  "Совместимо ли содержание малыша с вашим образом жизни?",
+  "Есть ли у вас или вашей семьи аллергии?",
 ];
 
 export default function About() {
@@ -30,13 +40,13 @@ export default function About() {
         </div>
       </section>
 
-      {/* Main content */}
+      {/* Main story */}
       <section className="py-16 bg-white">
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div className="relative">
-              <div className="rounded-3xl overflow-hidden shadow-xl" style={{ aspectRatio: "4/3" }}>
-                <img src={IMAGES.about} alt="Питомник" className="w-full h-full object-cover" />
+              <div className="rounded-3xl overflow-hidden shadow-xl" style={{ aspectRatio: "1/1" }}>
+                <img src={PUPPY_PHOTO} alt="Щенки питомника" className="w-full h-full object-cover" />
               </div>
               <div className="absolute -top-6 -right-6 rounded-2xl p-5 shadow-lg" style={{ background: "var(--cream-dark)" }}>
                 <div className="font-display text-4xl font-semibold" style={{ color: "var(--brown)" }}>14+</div>
@@ -45,18 +55,24 @@ export default function About() {
             </div>
             <div>
               <p className="text-base leading-relaxed mb-4" style={{ color: "rgba(92,51,23,0.75)", fontFamily: "'Golos Text', sans-serif" }}>
-                {KENNEL.aboutText1}
+                Питомник «Из Поместья Мелешко» основан в 2012 году. Мы — небольшой семейный питомник, где каждый щенок воспитывается в доме, среди людей и получает максимум внимания и любви.
               </p>
-              <p className="text-base leading-relaxed mb-8" style={{ color: "rgba(92,51,23,0.75)", fontFamily: "'Golos Text', sans-serif" }}>
-                {KENNEL.aboutText2}
+              <p className="text-base leading-relaxed mb-4" style={{ color: "rgba(92,51,23,0.75)", fontFamily: "'Golos Text', sans-serif" }}>
+                Наши щенки растут в частном секторе, в отдельном доме с тёплыми полами. Ежедневно щенки бегают по улице, чтобы стать здоровой взрослой собакой. У щенков постоянное общение с детьми заводчиков, поэтому они адаптированы и любят людей.
               </p>
-              <div className="grid grid-cols-2 gap-4">
-                {FEATURES.map((item) => (
-                  <div key={item.text} className="flex gap-3 items-start p-4 rounded-xl" style={{ background: "var(--cream)" }}>
-                    <Icon name={item.icon} size={20} className="mt-0.5 flex-shrink-0" style={{ color: "var(--brown)" }} />
-                    <span className="text-sm" style={{ color: "rgba(92,51,23,0.8)", fontFamily: "'Golos Text', sans-serif" }}>{item.text}</span>
-                  </div>
-                ))}
+              <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(92,51,23,0.75)", fontFamily: "'Golos Text', sans-serif" }}>
+                Все наши производители проходят обязательные ветеринарные проверки, имеют титулы и чистые родословные. Мы следим за здоровьем каждого щенка с первых дней жизни и сопровождаем новых хозяев на протяжении всей жизни питомца.
+              </p>
+              {/* Registrations */}
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2 text-sm" style={{ color: "rgba(92,51,23,0.7)", fontFamily: "'Golos Text', sans-serif" }}>
+                  <Icon name="Award" size={16} style={{ color: "var(--pink)" }} />
+                  Зарегистрированы в UCI Беларусь — <em>Iz Pomest'ya Meleshko</em>
+                </div>
+                <div className="flex items-center gap-2 text-sm" style={{ color: "rgba(92,51,23,0.7)", fontFamily: "'Golos Text', sans-serif" }}>
+                  <Icon name="Award" size={16} style={{ color: "var(--pink)" }} />
+                  Зарегистрированы в Германии в клубе IHR — <em>Loving Heart</em>
+                </div>
               </div>
             </div>
           </div>
@@ -83,28 +99,62 @@ export default function About() {
         </div>
       </section>
 
-      {/* Owner photo */}
+      {/* What you get */}
       <section className="py-16 bg-white">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-6 shadow-lg">
-            <img src={IMAGES.owner} alt="Владелец питомника" className="w-full h-full object-cover" />
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="font-display text-3xl font-semibold mb-2 text-center" style={{ color: "var(--brown)" }}>Приобретая щенка у нас,</h2>
+          <p className="text-center mb-10 text-base" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>вы получите:</p>
+          <div className="flex flex-col gap-3">
+            {WHAT_YOU_GET.map((item) => (
+              <div key={item.text} className="flex items-center gap-4 p-4 rounded-2xl" style={{ background: "var(--cream)" }}>
+                <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "var(--pink)", opacity: 0.85 }}>
+                  <Icon name={item.icon} size={18} className="text-white" />
+                </div>
+                <span className="text-base" style={{ color: "rgba(92,51,23,0.85)", fontFamily: "'Golos Text', sans-serif" }}>{item.text}</span>
+              </div>
+            ))}
           </div>
-          <h2 className="font-display text-2xl font-semibold mb-3" style={{ color: "var(--brown)" }}>Владелец питомника</h2>
-          <p className="text-base leading-relaxed" style={{ color: "rgba(92,51,23,0.7)", fontFamily: "'Golos Text', sans-serif" }}>
-            Здесь появится текст о владельце — добавьте его в следующем сообщении.
+        </div>
+      </section>
+
+      {/* Checklist before buying */}
+      <section className="py-16" style={{ background: "var(--cream)" }}>
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="font-display text-3xl font-semibold mb-3 text-center" style={{ color: "var(--brown)" }}>Перед покупкой подумайте</h2>
+          <p className="text-center mb-10 text-base" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>
+            Щенок — это большая ответственность. Задайте себе несколько важных вопросов:
           </p>
+          <div className="flex flex-col gap-4">
+            {CHECKLIST.map((q) => (
+              <div key={q} className="flex items-start gap-3 p-4 rounded-2xl bg-white shadow-sm">
+                <Icon name="HelpCircle" size={20} className="flex-shrink-0 mt-0.5" style={{ color: "var(--pink)" }} />
+                <span className="text-base" style={{ color: "rgba(92,51,23,0.8)", fontFamily: "'Golos Text', sans-serif" }}>{q}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16" style={{ background: "var(--cream)" }}>
+      <section className="py-16 bg-white">
         <div className="max-w-xl mx-auto px-6 text-center">
-          <h2 className="font-display text-3xl font-semibold mb-4" style={{ color: "var(--brown)" }}>Хотите познакомиться?</h2>
-          <p className="mb-8 text-base" style={{ color: "rgba(92,51,23,0.7)", fontFamily: "'Golos Text', sans-serif" }}>
-            Напишите нам — расскажем о доступных щенках и ответим на любые вопросы.
+          <h2 className="font-display text-3xl font-semibold mb-4" style={{ color: "var(--brown)" }}>Мечтаете о питомце?</h2>
+          <p className="mb-3 text-base" style={{ color: "rgba(92,51,23,0.7)", fontFamily: "'Golos Text', sans-serif" }}>
+            Напишите нам — мы развёрнуто ответим на все вопросы и поможем подобрать малыша близкого по вашему характеру.
+          </p>
+          <p className="mb-8 text-base font-medium" style={{ color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>
+            WhatsApp: +375-33-676-67-48
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
-            <button className="btn-primary" onClick={() => navigate("/#contacts")}>Связаться с нами</button>
+            <a
+              href="https://wa.me/375336766748"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary inline-flex items-center gap-2"
+            >
+              <Icon name="MessageCircle" size={18} />
+              Написать в WhatsApp
+            </a>
             <button
               className="px-6 py-3 rounded-full font-medium text-sm border transition-all hover:shadow-md"
               style={{ color: "var(--brown)", borderColor: "var(--brown-light)", fontFamily: "'Golos Text', sans-serif" }}
