@@ -37,7 +37,7 @@ export const KENNEL = {
 // --- НАВИГАЦИЯ ---
 export const NAV_ITEMS = [
   { label: "Главная",     id: "home" },
-  { label: "О питомнике", id: "about" },
+  { label: "О питомнике", id: "about", href: "/about" },
   { label: "Породы",      id: "breeds", href: "/breeds" },
   { label: "Галерея",     id: "gallery", href: "/gallery" },
   { label: "Отзывы",      id: "reviews" },
