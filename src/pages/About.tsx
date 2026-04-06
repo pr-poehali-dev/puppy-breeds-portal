@@ -28,13 +28,13 @@ export default function About() {
       <NavBar />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 bg-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      <section className="pt-24 pb-10 bg-white">
+        <div className="max-w-2xl mx-auto px-6 text-center">
           <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)", fontFamily: "'Golos Text', sans-serif" }}>О нас</div>
-          <h1 className="font-display text-5xl font-semibold mb-6" style={{ color: "var(--brown)" }}>
-            Питомник с душой<br /><em>и историей</em>
+          <h1 className="font-display font-semibold mb-4 whitespace-nowrap" style={{ color: "var(--brown)", fontSize: "clamp(1.6rem, 4vw, 2.8rem)" }}>
+            Питомник с душой <em>и историей</em>
           </h1>
-          <p className="text-lg leading-relaxed" style={{ color: "rgba(92,51,23,0.7)", fontFamily: "'Golos Text', sans-serif" }}>
+          <p className="text-base leading-relaxed" style={{ color: "rgba(92,51,23,0.7)", fontFamily: "'Golos Text', sans-serif" }}>
             {KENNEL.tagline}
           </p>
         </div>
