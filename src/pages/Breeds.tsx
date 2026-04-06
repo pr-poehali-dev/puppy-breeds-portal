@@ -30,55 +30,49 @@ export default function Breeds() {
       </div>
 
       {/* BREED CARDS */}
-      <div className="max-w-7xl mx-auto px-6 pb-20 flex flex-col gap-10">
-        {BREEDS.map((breed, idx) => (
+      <div className="max-w-7xl mx-auto px-6 pb-20 grid md:grid-cols-3 gap-6">
+        {BREEDS.map((breed) => (
           <div
             key={breed.slug}
-            className="rounded-3xl overflow-hidden cursor-pointer group transition-all duration-300 hover:shadow-2xl"
+            className="rounded-3xl overflow-hidden cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col"
             style={{ background: "white", border: "1px solid rgba(92,51,23,0.08)" }}
             onClick={() => navigate(`/breeds/${breed.slug}`)}
           >
-            <div className={`grid lg:grid-cols-2 ${idx % 2 === 1 ? "lg:grid-flow-dense" : ""}`}>
-              {/* Фото */}
-              <div className={`relative overflow-hidden ${idx % 2 === 1 ? "lg:col-start-2" : ""}`} style={{ minHeight: 340 }}>
-                <img
-                  src={breed.image || IMAGES.puppy}
-                  alt={breed.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  style={{ minHeight: 340 }}
-                />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(0,0,0,0.08), transparent)" }} />
-                <div className="absolute top-6 left-6 text-5xl">{breed.emoji}</div>
-              </div>
+            {/* Фото */}
+            <div className="relative overflow-hidden" style={{ height: 220 }}>
+              <img
+                src={breed.image || IMAGES.puppy}
+                alt={breed.name}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.18), transparent)" }} />
+              <div className="absolute top-4 left-4 text-3xl">{breed.emoji}</div>
+            </div>
 
-              {/* Текст */}
-              <div className="flex flex-col justify-center p-10 lg:p-14" style={{ background: breed.color }}>
-                <div className="text-sm font-medium tracking-widest uppercase mb-2" style={{ color: breed.accentColor }}>
-                  Порода
-                </div>
-                <h2 className="font-display text-4xl lg:text-5xl font-semibold mb-4" style={{ color: "var(--brown)" }}>
-                  {breed.name}
-                </h2>
-                <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(92,51,23,0.75)" }}>
-                  {breed.desc}
-                </p>
-                <div className="flex gap-2 flex-wrap mb-8">
-                  {breed.traits.map((t) => (
-                    <span key={t} className="px-3 py-1 rounded-full text-sm font-medium"
-                      style={{ background: "rgba(92,51,23,0.1)", color: "var(--brown)" }}>{t}</span>
-                  ))}
-                </div>
-                <div className="flex items-center gap-6 mb-8 text-sm" style={{ color: "var(--brown-light)" }}>
-                  <span><b style={{ color: "var(--brown)" }}>Вес:</b> {breed.weight}</span>
-                  <span><b style={{ color: "var(--brown)" }}>Рост:</b> {breed.height}</span>
-                  <span><b style={{ color: "var(--brown)" }}>Жизнь:</b> {breed.lifespan}</span>
-                </div>
-                <button
-                  className="inline-flex items-center gap-2 self-start font-medium text-sm transition-all hover:gap-3"
-                  style={{ color: "var(--brown)" }}
-                >
-                  Подробнее о породе <Icon name="ArrowRight" size={16} />
-                </button>
+            {/* Текст */}
+            <div className="flex flex-col flex-1 p-6" style={{ background: breed.color }}>
+              <div className="text-xs font-medium tracking-widest uppercase mb-1" style={{ color: breed.accentColor }}>
+                Порода
+              </div>
+              <h2 className="font-display text-2xl font-semibold mb-3" style={{ color: "var(--brown)" }}>
+                {breed.name}
+              </h2>
+              <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(92,51,23,0.72)" }}>
+                {breed.desc}
+              </p>
+              <div className="flex gap-1.5 flex-wrap mb-4">
+                {breed.traits.map((t) => (
+                  <span key={t} className="px-2.5 py-0.5 rounded-full text-xs font-medium"
+                    style={{ background: "rgba(92,51,23,0.1)", color: "var(--brown)" }}>{t}</span>
+                ))}
+              </div>
+              <div className="flex gap-4 text-xs mb-5" style={{ color: "var(--brown-light)" }}>
+                <span><b style={{ color: "var(--brown)" }}>Вес:</b> {breed.weight}</span>
+                <span><b style={{ color: "var(--brown)" }}>Жизнь:</b> {breed.lifespan}</span>
+              </div>
+              <div className="mt-auto flex items-center gap-1.5 font-medium text-sm transition-all group-hover:gap-2.5"
+                style={{ color: "var(--brown)" }}>
+                Подробнее <Icon name="ArrowRight" size={15} />
               </div>
             </div>
           </div>
