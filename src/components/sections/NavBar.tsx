@@ -1,23 +1,35 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import { NAV_ITEMS, KENNEL } from "@/data/content";
 
-function scrollTo(id: string) {
+function scrollToId(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 }
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
   function handleNav(n: typeof NAV_ITEMS[0]) {
     if (n.href) {
       navigate(n.href);
+    } else if (isHome) {
+      scrollToId(n.id);
     } else {
-      scrollTo(n.id);
+      navigate(`/#${n.id}`);
     }
     setMenuOpen(false);
+  }
+
+  function handleContacts() {
+    if (isHome) {
+      scrollToId("contacts");
+    } else {
+      navigate("/#contacts");
+    }
   }
 
   return (
@@ -29,7 +41,7 @@ export default function NavBar() {
             <button key={n.id} className="nav-link" onClick={() => handleNav(n)}>{n.label}</button>
           ))}
         </div>
-        <button className="hidden lg:block btn-primary text-sm py-2.5 px-6" onClick={() => scrollTo("contacts")}>
+        <button className="hidden lg:block btn-primary text-sm py-2.5 px-6" onClick={handleContacts}>
           Связаться
         </button>
         <button className="lg:hidden" onClick={() => setMenuOpen(!menuOpen)} style={{ color: "var(--brown)" }}>

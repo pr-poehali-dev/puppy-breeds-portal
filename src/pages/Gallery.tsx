@@ -1,14 +1,13 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
-import { GALLERY_PHOTOS, IMAGES, KENNEL } from "@/data/content";
+import NavBar from "@/components/sections/NavBar";
+import { GALLERY_PHOTOS, IMAGES } from "@/data/content";
 
 const photos = GALLERY_PHOTOS.length > 0
   ? GALLERY_PHOTOS
   : [IMAGES.hero, IMAGES.puppy, IMAGES.owner];
 
 export default function Gallery() {
-  const navigate = useNavigate();
   const [lightbox, setLightbox] = useState<number | null>(null);
 
   const prev = () => setLightbox((i) => (i! - 1 + photos.length) % photos.length);
@@ -23,20 +22,10 @@ export default function Gallery() {
   return (
     <div className="min-h-screen" style={{ background: "var(--cream)", fontFamily: "'Golos Text', sans-serif" }}>
 
-      {/* HEADER */}
-      <div className="sticky top-0 z-40 border-b backdrop-blur-md" style={{ background: "rgba(250,246,240,0.92)", borderColor: "rgba(92,51,23,0.1)" }}>
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center gap-4">
-          <button onClick={() => navigate("/")} className="flex items-center gap-2 transition-opacity hover:opacity-70" style={{ color: "var(--brown)" }}>
-            <Icon name="ArrowLeft" size={20} />
-            <span className="text-sm font-medium" style={{ fontFamily: "'Golos Text', sans-serif" }}>На главную</span>
-          </button>
-          <div className="h-5 w-px" style={{ background: "rgba(92,51,23,0.15)" }} />
-          <img src={IMAGES.logo} alt={KENNEL.name} className="h-8" />
-        </div>
-      </div>
+      <NavBar />
 
       {/* TITLE */}
-      <div className="max-w-7xl mx-auto px-6 py-12 text-center">
+      <div className="pt-16 max-w-7xl mx-auto px-6 py-12 text-center">
         <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)", fontFamily: "'Golos Text', sans-serif" }}>Галерея</div>
         <h1 className="section-title mb-2">Наши <em>малыши</em></h1>
         <p className="text-sm" style={{ color: "rgba(92,51,23,0.5)", fontFamily: "'Golos Text', sans-serif" }}>

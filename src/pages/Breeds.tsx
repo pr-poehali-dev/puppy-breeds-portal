@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
-import { BREEDS, IMAGES, KENNEL } from "@/data/content";
+import NavBar from "@/components/sections/NavBar";
+import { BREEDS, IMAGES } from "@/data/content";
 
 export default function Breeds() {
   const navigate = useNavigate();
@@ -8,25 +9,17 @@ export default function Breeds() {
   return (
     <div className="min-h-screen" style={{ background: "var(--cream)", fontFamily: "'Golos Text', sans-serif" }}>
 
-      {/* HEADER */}
-      <div className="sticky top-0 z-40 border-b backdrop-blur-md" style={{ background: "rgba(250,246,240,0.92)", borderColor: "rgba(92,51,23,0.1)" }}>
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center gap-4">
-          <button onClick={() => navigate("/")} className="flex items-center gap-2 transition-opacity hover:opacity-70" style={{ color: "var(--brown)" }}>
-            <Icon name="ArrowLeft" size={20} />
-            <span className="text-sm font-medium">На главную</span>
-          </button>
-          <div className="h-5 w-px" style={{ background: "rgba(92,51,23,0.15)" }} />
-          <span className="font-display text-base font-semibold cursor-pointer" style={{ color: "var(--brown)" }} onClick={() => navigate("/")}>{KENNEL.nameEn}</span>
-        </div>
-      </div>
+      <NavBar />
 
       {/* TITLE */}
-      <div className="max-w-7xl mx-auto px-6 py-16 text-center">
-        <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)" }}>Наши породы</div>
-        <h1 className="section-title mb-4">Три породы —<br /><em>одна любовь</em></h1>
-        <p className="text-base max-w-xl mx-auto" style={{ color: "rgba(92,51,23,0.6)" }}>
-          Мы разводим только те породы, в которых уверены: здоровые линии, чистые родословные и характеры, проверенные годами
-        </p>
+      <div className="pt-16">
+        <div className="max-w-2xl mx-auto px-6 py-12 text-center">
+          <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)" }}>Наши породы</div>
+          <h1 className="section-title mb-4 whitespace-nowrap">Три породы — <em>одна любовь</em></h1>
+          <p className="text-base" style={{ color: "rgba(92,51,23,0.6)" }}>
+            Мы разводим только те породы, в которых уверены: здоровые линии, чистые родословные и характеры, проверенные годами
+          </p>
+        </div>
       </div>
 
       {/* BREED CARDS */}
@@ -45,18 +38,20 @@ export default function Breeds() {
                 alt={breed.name}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.18), transparent)" }} />
-              <div className="absolute top-4 left-4 text-3xl">{breed.emoji}</div>
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(50,20,5,0.55) 0%, transparent 55%)" }} />
+              <div className="absolute bottom-4 left-5 right-5 flex items-end justify-between">
+                <h2 className="font-display text-2xl font-semibold leading-tight" style={{ color: "white", textShadow: "0 1px 6px rgba(0,0,0,0.35)" }}>
+                  {breed.name}
+                </h2>
+                <span className="text-2xl">{breed.emoji}</span>
+              </div>
             </div>
 
             {/* Текст */}
             <div className="flex flex-col flex-1 p-6" style={{ background: breed.color }}>
-              <div className="text-xs font-medium tracking-widest uppercase mb-1" style={{ color: breed.accentColor }}>
+              <div className="text-xs font-medium tracking-widest uppercase mb-2" style={{ color: breed.accentColor }}>
                 Порода
               </div>
-              <h2 className="font-display text-2xl font-semibold mb-3" style={{ color: "var(--brown)" }}>
-                {breed.name}
-              </h2>
               <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(92,51,23,0.72)" }}>
                 {breed.desc}
               </p>

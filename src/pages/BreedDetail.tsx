@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Icon from "@/components/ui/icon";
-import { BREEDS, PUPPIES, IMAGES, KENNEL } from "@/data/content";
+import NavBar from "@/components/sections/NavBar";
+import { BREEDS, PUPPIES, IMAGES } from "@/data/content";
 
 export default function BreedDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -35,20 +36,10 @@ export default function BreedDetail() {
   return (
     <div className="min-h-screen" style={{ background: "var(--cream)", fontFamily: "'Golos Text', sans-serif" }}>
 
-      {/* HEADER */}
-      <div className="sticky top-0 z-40 border-b backdrop-blur-md" style={{ background: "rgba(250,246,240,0.92)", borderColor: "rgba(92,51,23,0.1)" }}>
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center gap-4">
-          <button onClick={() => navigate("/breeds")} className="flex items-center gap-2 transition-opacity hover:opacity-70" style={{ color: "var(--brown)" }}>
-            <Icon name="ArrowLeft" size={20} />
-            <span className="text-sm font-medium">Все породы</span>
-          </button>
-          <div className="h-5 w-px" style={{ background: "rgba(92,51,23,0.15)" }} />
-          <span className="font-display text-base font-semibold cursor-pointer" style={{ color: "var(--brown)" }} onClick={() => navigate("/")}>{KENNEL.nameEn}</span>
-        </div>
-      </div>
+      <NavBar />
 
       {/* HERO */}
-      <div className="relative" style={{ background: breed.color }}>
+      <div className="relative pt-16" style={{ background: breed.color }}>
         <div className="max-w-7xl mx-auto px-6 py-16 grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <div className="text-6xl mb-4">{breed.emoji}</div>
