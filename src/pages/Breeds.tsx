@@ -22,9 +22,9 @@ export default function Breeds() {
         </div>
       </div>
 
-      {/* BREED CARDS — Мальтипу и Йорк */}
-      <div className="max-w-7xl mx-auto px-6 pb-8 grid md:grid-cols-2 gap-6">
-        {BREEDS.filter((b) => b.slug !== "toy-poodle").map((breed) => (
+      {/* BREED CARDS */}
+      <div className="max-w-7xl mx-auto px-6 pb-8 grid md:grid-cols-3 gap-6">
+        {BREEDS.map((breed) => (
           <div
             key={breed.slug}
             className="rounded-3xl overflow-hidden cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col"
@@ -37,7 +37,7 @@ export default function Breeds() {
               </h2>
               <span className="text-2xl">{breed.emoji}</span>
             </div>
-            <div className="relative overflow-hidden" style={{ height: 260 }}>
+            <div className="relative overflow-hidden" style={{ height: 220 }}>
               <img
                 src={breed.image || IMAGES.puppy}
                 alt={breed.name}
