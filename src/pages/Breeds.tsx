@@ -22,75 +22,66 @@ export default function Breeds() {
         </div>
       </div>
 
-      {/* BREED CARDS */}
-      <div className="max-w-7xl mx-auto px-6 pb-8 grid md:grid-cols-3 gap-6">
-        {BREEDS.map((breed) => (
-          <div
-            key={breed.slug}
-            className="rounded-3xl overflow-hidden cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col"
-            style={{ background: "white", border: "1px solid rgba(92,51,23,0.08)" }}
-            onClick={() => navigate(`/breeds/${breed.slug}`)}
-          >
-            <div className="flex items-center justify-between px-6 pt-5 pb-3" style={{ background: breed.color }}>
-              <h2 className="font-display text-2xl font-semibold leading-tight" style={{ color: "var(--brown)" }}>
-                {breed.name}
-              </h2>
-              <span className="text-2xl">{breed.emoji}</span>
-            </div>
-            <div className="relative overflow-hidden" style={{ height: 220 }}>
-              <img
-                src={breed.image || IMAGES.puppy}
-                alt={breed.name}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-            <div className="flex flex-col flex-1 p-6" style={{ background: breed.color }}>
-              <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(92,51,23,0.72)" }}>
-                {breed.desc}
-              </p>
-              <div className="flex gap-1.5 flex-wrap mb-4">
-                {breed.traits.map((t) => (
-                  <span key={t} className="px-2.5 py-0.5 rounded-full text-xs font-medium"
-                    style={{ background: "rgba(92,51,23,0.1)", color: "var(--brown)" }}>{t}</span>
-                ))}
-              </div>
-              <div className="mt-auto flex items-center gap-1.5 font-medium text-sm transition-all group-hover:gap-2.5"
-                style={{ color: "var(--brown)" }}>
-                Подробнее <Icon name="ArrowRight" size={15} />
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* SUBTYPES SECTION */}
-      <div className="max-w-7xl mx-auto px-6 pb-20">
+      {/* MALTIPOO SUBTYPES */}
+      <div className="max-w-7xl mx-auto px-6 pb-16">
         <div className="mb-8">
           <div className="text-sm font-medium tracking-widest uppercase mb-2" style={{ color: "var(--pink)" }}>Подвиды мальтипу</div>
-          <h2 className="font-display text-3xl font-semibold" style={{ color: "var(--brown)" }}>
-            Мальтипу и его родственники
-          </h2>
-          <p className="mt-2 text-base" style={{ color: "rgba(92,51,23,0.6)" }}>
-            Гибридные породы с участием пуделя — умные, ласковые и почти без линьки
-          </p>
+          <h2 className="font-display text-3xl font-semibold" style={{ color: "var(--brown)" }}>Мальтипу и его родственники</h2>
+          <p className="mt-2 text-base" style={{ color: "rgba(92,51,23,0.6)" }}>Гибридные породы с участием пуделя — умные, ласковые и почти без линьки</p>
         </div>
-
         <SubtypeGrid subtypes={MALTIPOO_SUBTYPES} navigate={navigate} />
       </div>
 
-      {/* YORK SUBTYPES SECTION */}
-      <div className="max-w-7xl mx-auto px-6 pb-20">
+      {/* YORK SUBTYPES */}
+      <div className="max-w-7xl mx-auto px-6 pb-16">
         <div className="mb-8">
           <div className="text-sm font-medium tracking-widest uppercase mb-2" style={{ color: "var(--pink)" }}>Подвиды йорка</div>
-          <h2 className="font-display text-3xl font-semibold" style={{ color: "var(--brown)" }}>
-            Йорк и его разновидности
-          </h2>
-          <p className="mt-2 text-base" style={{ color: "rgba(92,51,23,0.6)" }}>
-            Маленькие, смелые и невероятно преданные — йорки в классическом и редком исполнении
-          </p>
+          <h2 className="font-display text-3xl font-semibold" style={{ color: "var(--brown)" }}>Йорк и его разновидности</h2>
+          <p className="mt-2 text-base" style={{ color: "rgba(92,51,23,0.6)" }}>Маленькие, смелые и невероятно преданные — йорки в классическом и редком исполнении</p>
         </div>
         <SubtypeGrid subtypes={YORK_SUBTYPES} navigate={navigate} />
       </div>
+
+      {/* TOY POODLE */}
+      {(() => {
+        const poodle = BREEDS.find((b) => b.slug === "toy-poodle")!;
+        return (
+          <div className="max-w-7xl mx-auto px-6 pb-20">
+            <div className="mb-8">
+              <div className="text-sm font-medium tracking-widest uppercase mb-2" style={{ color: "var(--pink)" }}>Также у нас</div>
+              <h2 className="font-display text-3xl font-semibold" style={{ color: "var(--brown)" }}>Той-пудель</h2>
+              <p className="mt-2 text-base" style={{ color: "rgba(92,51,23,0.6)" }}>Одна из умнейших пород мира — элегантный, преданный компаньон</p>
+            </div>
+            <div className="max-w-sm">
+              <div
+                className="rounded-3xl overflow-hidden cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col"
+                style={{ background: "white", border: "1px solid rgba(92,51,23,0.08)" }}
+                onClick={() => navigate(`/breeds/${poodle.slug}`)}
+              >
+                <div className="flex items-center justify-between px-6 pt-5 pb-3" style={{ background: poodle.color }}>
+                  <h3 className="font-display text-2xl font-semibold" style={{ color: "var(--brown)" }}>{poodle.name}</h3>
+                  <span className="text-2xl">{poodle.emoji}</span>
+                </div>
+                <div className="overflow-hidden" style={{ height: 220 }}>
+                  <img src={poodle.image || IMAGES.puppy} alt={poodle.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                </div>
+                <div className="flex flex-col flex-1 p-6" style={{ background: poodle.color }}>
+                  <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(92,51,23,0.72)" }}>{poodle.desc}</p>
+                  <div className="flex gap-1.5 flex-wrap mb-4">
+                    {poodle.traits.map((t) => (
+                      <span key={t} className="px-2.5 py-0.5 rounded-full text-xs font-medium"
+                        style={{ background: "rgba(92,51,23,0.1)", color: "var(--brown)" }}>{t}</span>
+                    ))}
+                  </div>
+                  <div className="mt-auto flex items-center gap-1.5 font-medium text-sm transition-all group-hover:gap-2.5" style={{ color: "var(--brown)" }}>
+                    Подробнее <Icon name="ArrowRight" size={15} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
     </div>
   );
 }
