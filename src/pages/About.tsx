@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Icon from "@/components/ui/icon";
 import NavBar from "@/components/sections/NavBar";
 import { IMAGES, KENNEL } from "@/data/content";
@@ -25,6 +26,13 @@ export default function About() {
 
   return (
     <div className="min-h-screen" style={{ background: "var(--cream)" }}>
+      <Helmet>
+        <title>О питомнике «Из Поместья Мелешко» — Семейный питомник в Беларуси</title>
+        <meta name="description" content="Семейный питомник декоративных собак «Из Поместья Мелешко». Документы UCI и РКФ, ветпаспорт, прививки, микрочип. Мальтипу, йорк, бивер-йорк, той-пудель. Доставка по Беларуси, России и СНГ." />
+        <meta property="og:title" content="О питомнике «Из Поместья Мелешко»" />
+        <meta property="og:description" content="Семейный питомник декоративных пород в Беларуси. Документы, прививки, доставка по СНГ." />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
       <NavBar />
 
       {/* Hero */}

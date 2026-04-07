@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Icon from "@/components/ui/icon";
 import NavBar from "@/components/sections/NavBar";
 import { BREEDS, PUPPIES, IMAGES } from "@/data/content";
@@ -33,8 +34,19 @@ export default function BreedDetail() {
   const prev = () => setLightbox((i) => (i! - 1 + photos.length) % photos.length);
   const next = () => setLightbox((i) => (i! + 1) % photos.length);
 
+  const seoTitle = (breed as {seoTitle?: string}).seoTitle ?? `Купить щенка ${breed.name} с документами | Питомник Из Поместья Мелешко`;
+  const seoDesc = (breed as {seoDesc?: string}).seoDesc ?? `Щенки ${breed.name} из семейного питомника «Из Поместья Мелешко». Документы UCI, прививки, микрочип. Доставка по России, Беларуси и СНГ.`;
+
   return (
     <div className="min-h-screen" style={{ background: "var(--cream)", fontFamily: "'Golos Text', sans-serif" }}>
+      <Helmet>
+        <title>{seoTitle}</title>
+        <meta name="description" content={seoDesc} />
+        <meta property="og:title" content={seoTitle} />
+        <meta property="og:description" content={seoDesc} />
+        {breed.image && <meta property="og:image" content={breed.image} />}
+        <meta name="robots" content="index, follow" />
+      </Helmet>
 
       <NavBar />
 

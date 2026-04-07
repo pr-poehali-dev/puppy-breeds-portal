@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Icon from "@/components/ui/icon";
 import NavBar from "@/components/sections/NavBar";
 import { MALTIPOO_SUBTYPES, YORK_SUBTYPES, BREEDS, IMAGES } from "@/data/content";
@@ -12,6 +13,13 @@ export default function Gallery() {
 
   return (
     <div className="min-h-screen" style={{ background: "var(--cream)", fontFamily: "'Golos Text', sans-serif" }}>
+      <Helmet>
+        <title>Галерея щенков — Мальтипу, Йорк, Пудель, Бивер-йорк | Питомник Из Поместья Мелешко</title>
+        <meta name="description" content="Фото щенков мальтипу, йоркширского терьера, бивер-йорка, той-пуделя, кавапу и пушона из питомника «Из Поместья Мелешко». Смотрите реальные фото наших малышей с доставкой по России, Беларуси и СНГ." />
+        <meta property="og:title" content="Галерея щенков питомника «Из Поместья Мелешко»" />
+        <meta property="og:description" content="Фото мальтипу, йорка, бивер-йорка, той-пуделя — реальные щенки с документами UCI." />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
       <NavBar />
 
       <div className="pt-16">
