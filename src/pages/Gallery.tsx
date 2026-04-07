@@ -19,6 +19,15 @@ export default function Gallery() {
         <meta property="og:title" content="Галерея щенков питомника «Из Поместья Мелешко»" />
         <meta property="og:description" content="Фото мальтипу, йорка, бивер-йорка, той-пуделя — реальные щенки с документами UCI." />
         <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://puppy-breeds-portal.poehali.dev/gallery" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://puppy-breeds-portal.poehali.dev/" },
+            { "@type": "ListItem", "position": 2, "name": "Галерея", "item": "https://puppy-breeds-portal.poehali.dev/gallery" }
+          ]
+        })}</script>
       </Helmet>
       <NavBar />
 

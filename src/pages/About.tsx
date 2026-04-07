@@ -32,6 +32,15 @@ export default function About() {
         <meta property="og:title" content="О питомнике «Из Поместья Мелешко»" />
         <meta property="og:description" content="Семейный питомник декоративных пород в Беларуси. Документы, прививки, доставка по СНГ." />
         <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://puppy-breeds-portal.poehali.dev/about" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://puppy-breeds-portal.poehali.dev/" },
+            { "@type": "ListItem", "position": 2, "name": "О питомнике", "item": "https://puppy-breeds-portal.poehali.dev/about" }
+          ]
+        })}</script>
       </Helmet>
       <NavBar />
 

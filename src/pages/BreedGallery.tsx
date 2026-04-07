@@ -120,6 +120,16 @@ export default function BreedGallery() {
         <meta property="og:description" content={seoDesc} />
         {breed.image && <meta property="og:image" content={breed.image} />}
         <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={`https://puppy-breeds-portal.poehali.dev/gallery/${breed.slug}`} />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://puppy-breeds-portal.poehali.dev/" },
+            { "@type": "ListItem", "position": 2, "name": "Галерея", "item": "https://puppy-breeds-portal.poehali.dev/gallery" },
+            { "@type": "ListItem", "position": 3, "name": breed.name, "item": `https://puppy-breeds-portal.poehali.dev/gallery/${breed.slug}` }
+          ]
+        })}</script>
       </Helmet>
       <NavBar />
 

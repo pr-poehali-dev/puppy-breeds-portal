@@ -16,6 +16,20 @@ export default function Index() {
         <meta property="og:title" content="Питомник «Из Поместья Мелешко» — щенки с документами" />
         <meta property="og:description" content="Мальтипу, йорк, бивер-йорк, той-пудель — домашнее воспитание, документы UCI, доставка по СНГ." />
         <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://puppy-breeds-portal.poehali.dev/" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Питомник Из Поместья Мелешко",
+          "url": "https://puppy-breeds-portal.poehali.dev/",
+          "description": "Семейный питомник декоративных собак в Беларуси. Мальтипу, йоркширский терьер, бивер-йорк, той-пудель, кавапу, пушон.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "BY"
+          },
+          "sameAs": [],
+          "knowsAbout": ["мальтипу", "йоркширский терьер", "бивер-йорк", "той-пудель", "кавапу", "пушон"]
+        })}</script>
       </Helmet>
       <NavBar />
       <HeroSection />

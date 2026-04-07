@@ -46,6 +46,16 @@ export default function BreedDetail() {
         <meta property="og:description" content={seoDesc} />
         {breed.image && <meta property="og:image" content={breed.image} />}
         <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={`https://puppy-breeds-portal.poehali.dev/breeds/${breed.slug}`} />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://puppy-breeds-portal.poehali.dev/" },
+            { "@type": "ListItem", "position": 2, "name": "Породы", "item": "https://puppy-breeds-portal.poehali.dev/breeds" },
+            { "@type": "ListItem", "position": 3, "name": breed.name, "item": `https://puppy-breeds-portal.poehali.dev/breeds/${breed.slug}` }
+          ]
+        })}</script>
       </Helmet>
 
       <NavBar />
