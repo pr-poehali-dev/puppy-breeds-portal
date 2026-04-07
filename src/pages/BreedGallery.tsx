@@ -4,6 +4,69 @@ import Icon from "@/components/ui/icon";
 import NavBar from "@/components/sections/NavBar";
 import { MALTIPOO_SUBTYPES, YORK_SUBTYPES, BREEDS, IMAGES } from "@/data/content";
 
+const SEO_CAPTIONS: Record<string, string[]> = {
+  "maltipoo-mini": [
+    "Щенок мальтипу — купить с доставкой по Беларуси, России и СНГ",
+    "Мальтипу мини — гипоаллергенная порода, не линяет, с документами UCI",
+    "Купить щенка мальтипу из питомника — домашнее воспитание, прививки",
+    "Мальтипу — идеальный компаньон для семьи с детьми",
+    "Щенки мальтипу от проверенных производителей, документы РКФ/UCI",
+    "Купить мальтипу недорого — питомник «Из Поместья Мелешко»",
+    "Мальтипу щенок — доставка по России, Беларуси, Украине, Казахстану",
+    "Мальтипу мини — умная, ласковая порода для квартиры",
+  ],
+  "cavapoo": [
+    "Щенок кавапу — купить с документами и доставкой по СНГ",
+    "Кавапу — гибрид кавалера и пуделя, не линяет, гипоаллергенный",
+    "Купить кавапу из питомника — домашнее воспитание, ветпаспорт",
+    "Кавапу щенок — нежный и общительный, идеален для семьи",
+    "Кавапу мини — доставка по России, Беларуси и СНГ",
+    "Купить щенка кавапу — питомник «Из Поместья Мелешко», Беларусь",
+    "Кавапу с документами UCI — прививки, микрочип, справка о здоровье",
+    "Кавапу — одна из самых популярных дизайнерских пород",
+  ],
+  "pooshon": [
+    "Щенок пушона — купить с доставкой по России и СНГ",
+    "Пушон (бишон × пудель) — гипоаллергенный, не линяет, весёлый",
+    "Купить пушона из питомника с документами UCI",
+    "Пушон щенок — игривый, пушистый, идеален для квартиры",
+    "Пушон мини — доставка по Беларуси, России, Казахстану",
+    "Купить щенка пушона — питомник «Из Поместья Мелешко»",
+    "Пушон с документами — домашнее воспитание, прививки, микрочип",
+    "Пушон — редкая и очаровательная порода для всей семьи",
+  ],
+  "yorkshire-terrier-sub": [
+    "Щенок йорка — купить с документами и доставкой по СНГ",
+    "Йоркширский терьер мини — не линяет, смелый, преданный",
+    "Купить йорка из питомника — ветпаспорт, прививки, микрочип",
+    "Йорк щенок — один из самых популярных питомцев в мире",
+    "Купить йоркширского терьера — доставка по России и Беларуси",
+    "Йорк с документами UCI от проверенных производителей",
+    "Щенки йорка из семейного питомника «Из Поместья Мелешко»",
+    "Йоркширский терьер — идеальная порода для городской квартиры",
+  ],
+  "beaver-york": [
+    "Щенок бивер-йорка — купить с доставкой по России и СНГ",
+    "Бивер-йорк — редкий трёхцветный окрас, с документами UCI",
+    "Купить бивер-йорка из питомника — домашнее воспитание",
+    "Бивер-йорк щенок — ласковый, компактный, не линяет",
+    "Купить бивер-йорка — доставка по Беларуси, России, Казахстану",
+    "Бивер-йорк с документами — прививки, микрочип, справка о здоровье",
+    "Щенки бивер-йорка от питомника «Из Поместья Мелешко»",
+    "Бивер-йорк — уникальный трёхцветный окрас белый, рыжий, шоколадный",
+  ],
+  "toy-poodle": [
+    "Щенок той-пуделя — купить с документами и доставкой по СНГ",
+    "Той-пудель — топ-2 умнейших пород, гипоаллергенный, не линяет",
+    "Купить той-пуделя из питомника — домашнее воспитание, прививки",
+    "Той-пудель щенок — рыжий, абрикосовый, шоколадный окрас",
+    "Купить той-пуделя — доставка по России, Беларуси и СНГ",
+    "Той-пудель с документами UCI от проверенных производителей",
+    "Щенки той-пуделя из семейного питомника «Из Поместья Мелешко»",
+    "Той-пудель — элегантный, умный и преданный компаньон",
+  ],
+};
+
 const poodle = BREEDS.find((b) => b.slug === "toy-poodle")!;
 const poodleCard = { slug: poodle.slug, name: poodle.name, emoji: poodle.emoji, color: poodle.color, image: poodle.image, traits: poodle.traits, galleryPhotos: poodle.galleryPhotos };
 const ALL_BREEDS = [...MALTIPOO_SUBTYPES, ...YORK_SUBTYPES, poodleCard];
@@ -81,26 +144,34 @@ export default function BreedGallery() {
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            {photos.map((src, i) => (
-              <div
-                key={i}
-                className="relative overflow-hidden rounded-2xl group cursor-pointer"
-                style={{ aspectRatio: "1/1" }}
-                onClick={() => setLightbox(i)}
-              >
-                <img
-                  src={src}
-                  alt={`${breed.name} фото ${i + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-                  style={{ background: "rgba(92,51,23,0.25)" }}
-                >
-                  <Icon name="ZoomIn" size={28} style={{ color: "white" }} />
+            {photos.map((src, i) => {
+              const captions = SEO_CAPTIONS[breed.slug] ?? [];
+              const caption = captions[i % captions.length] ?? `${breed.name} — купить щенка с доставкой по СНГ`;
+              return (
+                <div key={i} className="flex flex-col gap-1">
+                  <div
+                    className="relative overflow-hidden rounded-2xl group cursor-pointer"
+                    style={{ aspectRatio: "1/1" }}
+                    onClick={() => setLightbox(i)}
+                  >
+                    <img
+                      src={src}
+                      alt={caption}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                      style={{ background: "rgba(92,51,23,0.25)" }}
+                    >
+                      <Icon name="ZoomIn" size={28} style={{ color: "white" }} />
+                    </div>
+                  </div>
+                  <p className="text-xs text-center px-1 leading-snug" style={{ color: "rgba(92,51,23,0.45)" }}>
+                    {caption}
+                  </p>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
