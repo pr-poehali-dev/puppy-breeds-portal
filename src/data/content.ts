@@ -160,7 +160,7 @@ export const MALTIPOO_SUBTYPES = [
     emoji: "🧡",
     color: "#FFF8F0",
     accentColor: "#f4a460",
-    image: "",
+    image: "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/2c5d7311-74a8-4543-99fa-e8c31f8b126f.jpg",
     shortDesc: "Купить щенка кавапу с доставкой по СНГ. Добрый, ласковый, гипоаллергенный — идеален для семей с детьми.",
     weight: "4–8 кг",
     lifespan: "12–15 лет",
