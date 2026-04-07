@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import { NAV_ITEMS, KENNEL } from "@/data/content";
+import ContactModal from "@/components/ContactModal";
 
 function scrollToId(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -9,6 +10,7 @@ function scrollToId(id: string) {
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const isHome = location.pathname === "/";
@@ -25,14 +27,11 @@ export default function NavBar() {
   }
 
   function handleContacts() {
-    if (isHome) {
-      scrollToId("contacts");
-    } else {
-      navigate("/#contacts");
-    }
+    setContactOpen(true);
   }
 
   return (
+    <>
     <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b" style={{ background: "rgba(250,246,240,0.92)", borderColor: "rgba(92,51,23,0.1)" }}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
         <span className="font-display text-lg font-semibold cursor-pointer" style={{ color: "var(--brown)" }} onClick={() => navigate("/")}>{KENNEL.nameEn}</span>
@@ -63,5 +62,7 @@ export default function NavBar() {
         </div>
       )}
     </nav>
+    {contactOpen && <ContactModal onClose={() => setContactOpen(false)} />}
+    </>
   );
 }
