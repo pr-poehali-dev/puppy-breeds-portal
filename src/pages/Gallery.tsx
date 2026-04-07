@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import NavBar from "@/components/sections/NavBar";
-import { MALTIPOO_SUBTYPES, YORK_SUBTYPES, IMAGES } from "@/data/content";
+import { MALTIPOO_SUBTYPES, YORK_SUBTYPES, BREEDS, IMAGES } from "@/data/content";
 
-const ALL_BREEDS = [...MALTIPOO_SUBTYPES, ...YORK_SUBTYPES];
+const poodle = BREEDS.find((b) => b.slug === "toy-poodle")!;
+const poodleCard = { slug: poodle.slug, name: poodle.name, emoji: poodle.emoji, color: poodle.color, image: poodle.image, traits: poodle.traits, galleryPhotos: poodle.galleryPhotos };
+const ALL_BREEDS = [...MALTIPOO_SUBTYPES, ...YORK_SUBTYPES, poodleCard];
 
 export default function Gallery() {
   const navigate = useNavigate();

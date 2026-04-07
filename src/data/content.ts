@@ -84,9 +84,8 @@ export const BREEDS = [
     color: "#FFF8F0",
     accentColor: "#f4a460",
     image: "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/1e6fb354-117e-4cde-b50e-d506593ca524.jpg", // главное фото породы
-    photos: [
-      // добавь фото: "https://cdn.poehali.dev/..."
-    ],
+    photos: [] as string[],
+    galleryPhotos: [] as string[],
     facts: [
       { icon: "Brain",      label: "Интеллект",   value: "Входит в топ-2 умнейших пород" },
       { icon: "Leaf",       label: "Шерсть",      value: "Кудрявая, гипоаллергенная" },
