@@ -70,14 +70,14 @@ export default function ContactModal({ onClose }: Props) {
         </button>
 
         <h2
-          className="font-display text-2xl font-semibold mb-1"
+          className="font-display text-3xl font-bold mb-1"
           style={{ color: "var(--brown)" }}
         >
           Как вам удобно связаться?
         </h2>
         <p
-          className="text-sm mb-6"
-          style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}
+          className="text-base mb-6"
+          style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif", fontWeight: 500 }}
         >
           Выберите удобный способ
         </p>
@@ -89,25 +89,25 @@ export default function ContactModal({ onClose }: Props) {
               href={c.lines[0].href}
               target={c.lines[0].href.startsWith("http") ? "_blank" : undefined}
               rel="noopener noreferrer"
-              className="flex items-center gap-4 rounded-2xl px-4 py-3.5 transition-all hover:opacity-80"
+              className="flex items-center gap-4 rounded-2xl px-5 py-4 transition-all hover:opacity-80"
               style={{ background: "rgba(92,51,23,0.07)", border: "1px solid rgba(92,51,23,0.1)" }}
             >
-              <Icon name={c.icon} size={20} style={{ color: "var(--brown)" }} />
+              <Icon name={c.icon} size={24} style={{ color: "var(--brown)" }} />
               <div>
                 <div
-                  className="text-sm font-semibold"
+                  className="text-base font-bold"
                   style={{ color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}
                 >
                   {c.label}
                 </div>
                 <div
-                  className="text-xs"
-                  style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}
+                  className="text-sm font-medium"
+                  style={{ color: "rgba(92,51,23,0.65)", fontFamily: "'Golos Text', sans-serif" }}
                 >
                   {c.lines[0].text}
                 </div>
               </div>
-              <Icon name="ChevronRight" size={16} className="ml-auto opacity-40" style={{ color: "var(--brown)" }} />
+              <Icon name="ChevronRight" size={18} className="ml-auto opacity-40" style={{ color: "var(--brown)" }} />
             </a>
           ))}
         </div>
