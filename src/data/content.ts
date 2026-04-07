@@ -280,7 +280,7 @@ export const YORK_SUBTYPES = [
     emoji: "🤎",
     color: "#FDF5EC",
     accentColor: "#c8915a",
-    image: "",
+    image: "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/9dc3cbeb-6b80-4e25-9932-599b0f09a942.jpg",
     shortDesc: "Купить щенка бивер-йорка с доставкой по СНГ. Редкий трёхцветный окрас, ласковый характер, с документами.",
     weight: "2–3.5 кг",
     lifespan: "12–15 лет",
