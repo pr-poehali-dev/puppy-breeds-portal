@@ -58,7 +58,7 @@ export const BREEDS = [
     lifespan: "12–15 лет",
     color: "#FAF0F2",
     accentColor: "#e8a4b0",
-    image: "", // главное фото породы
+    image: "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/c1e815f4-b612-420e-b792-f1fa5178ee03.jpg",
     photos: [
       // добавь фото: "https://cdn.poehali.dev/..."
     ],
