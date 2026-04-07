@@ -83,17 +83,17 @@ export default function About() {
       <section className="py-12" style={{ background: "var(--cream)" }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-3 gap-3 sm:gap-6 text-center">
-            <div className="p-4 sm:p-6 rounded-2xl bg-white shadow-sm">
-              <div className="font-display text-2xl sm:text-4xl font-semibold mb-1" style={{ color: "var(--brown)" }}>{KENNEL.yearsLabel}</div>
+            <div className="p-3 sm:p-6 rounded-2xl bg-white shadow-sm">
+              <div className="font-display text-xl sm:text-4xl font-semibold mb-1 leading-tight" style={{ color: "var(--brown)" }}>{KENNEL.yearsLabel}</div>
               <div className="text-xs sm:text-sm" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>работы</div>
             </div>
-            <div className="p-4 sm:p-6 rounded-2xl bg-white shadow-sm">
-              <div className="font-display text-2xl sm:text-4xl font-semibold mb-1" style={{ color: "var(--brown)" }}>{KENNEL.happyFamilies}</div>
-              <div className="text-xs sm:text-sm" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>счастливых семей</div>
+            <div className="p-3 sm:p-6 rounded-2xl bg-white shadow-sm">
+              <div className="font-display text-xl sm:text-4xl font-semibold mb-1 leading-tight" style={{ color: "var(--brown)" }}>{KENNEL.happyFamilies}</div>
+              <div className="text-xs sm:text-sm" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>семей</div>
             </div>
-            <div className="p-4 sm:p-6 rounded-2xl bg-white shadow-sm">
-              <div className="font-display text-2xl sm:text-4xl font-semibold mb-1" style={{ color: "var(--brown)" }}>{KENNEL.breedsCount}</div>
-              <div className="text-xs sm:text-sm" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>в нашей семье</div>
+            <div className="p-3 sm:p-6 rounded-2xl bg-white shadow-sm">
+              <div className="font-display text-xl sm:text-4xl font-semibold mb-1 leading-tight" style={{ color: "var(--brown)" }}>{KENNEL.breedsCount}</div>
+              <div className="text-xs sm:text-sm" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>в семье</div>
             </div>
           </div>
         </div>
