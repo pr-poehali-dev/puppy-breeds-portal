@@ -53,6 +53,13 @@ export default function NavBar() {
           {NAV_ITEMS.map((n) => (
             <button key={n.id} className="nav-link text-left" onClick={() => handleNav(n)}>{n.label}</button>
           ))}
+          <button
+            className="nav-link text-left font-semibold"
+            style={{ color: "var(--brown)" }}
+            onClick={() => { handleContacts(); setMenuOpen(false); }}
+          >
+            Связаться
+          </button>
         </div>
       )}
     </nav>
