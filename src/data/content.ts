@@ -251,7 +251,7 @@ export const YORK_SUBTYPES = [
     emoji: "💛",
     color: "#FFFFF0",
     accentColor: "#c4963a",
-    image: "",
+    image: "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/921507c2-2fd1-4b22-9877-63bf85162b14.jpg",
     shortDesc: "Купить щенка йоркширского терьера с документами. Не линяет, смелый, преданный — один из самых популярных питомцев в мире.",
     weight: "2–3 кг",
     lifespan: "13–16 лет",
