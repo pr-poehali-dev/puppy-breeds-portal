@@ -175,7 +175,14 @@ export const MALTIPOO_SUBTYPES = [
 Шёрстка кавапу бывает кудрявой или волнистой, практически не линяет, что делает их отличным выбором для людей с аллергией. При этом порода отличается крепким здоровьем и долголетием.
 
 В нашем питомнике щенки кавапу растут в тёплом доме с большим двором, ежедневно гуляют на улице и привыкают к жизни в семье с первых дней жизни.`,
-    galleryPhotos: [] as string[],
+    galleryPhotos: [
+      "https://cdn.poehali.dev/files/db821371-f91d-4ecc-91fe-dd931d19efd8.jpg",
+      "https://cdn.poehali.dev/files/552b3c3f-def3-4fc3-ac87-3355c7e4dd1e.jpg",
+      "https://cdn.poehali.dev/files/d3d9d38b-98bf-4a7f-bd9b-8ba65abc99d3.jpg",
+      "https://cdn.poehali.dev/files/d710ed9b-a582-4682-b4e6-84b2bd519ab1.jpg",
+      "https://cdn.poehali.dev/files/644a52ed-1853-4877-9307-45e1112c600c.jpg",
+      "https://cdn.poehali.dev/files/2591d172-73a3-4f87-a9f0-0111384742b9.jpg",
+    ],
     facts: [
       { icon: "Heart",    label: "Характер",   value: "Добрый, спокойный, нежный" },
       { icon: "Leaf",     label: "Шерсть",     value: "Кудрявая или волнистая, не линяет" },
