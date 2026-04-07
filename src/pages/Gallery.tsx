@@ -42,7 +42,7 @@ export default function Gallery() {
               <div className="overflow-hidden" style={{ aspectRatio: "1 / 1" }}>
                 <img
                   src={breed.image || IMAGES.puppy}
-                  alt={breed.name}
+                  alt={`Щенок ${breed.name} — питомник Из Поместья Мелешко`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
@@ -60,6 +60,30 @@ export default function Gallery() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-20 rounded-3xl p-8 sm:p-12" style={{ background: "white", border: "1px solid rgba(92,51,23,0.08)" }}>
+          <h2 className="font-display text-2xl font-semibold mb-6" style={{ color: "var(--brown)" }}>
+            Фото щенков из питомника «Из Поместья Мелешко»
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-8 text-sm leading-relaxed" style={{ color: "rgba(92,51,23,0.7)" }}>
+            <div>
+              <h3 className="font-semibold mb-2" style={{ color: "var(--brown)" }}>Купить щенка мальтипу с документами</h3>
+              <p>Мальтипу — гипоаллергенная порода, которая не линяет и идеально подходит для семей с детьми и аллергиками. В нашем питомнике вы можете посмотреть фото щенков мальтипу, кавапу и пушона — все малыши воспитаны в домашних условиях и передаются с документами UCI.</p>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-2" style={{ color: "var(--brown)" }}>Купить щенка йорка и бивер-йорка</h3>
+              <p>Йоркширский терьер и бивер-йорк — одни из самых популярных декоративных пород. Компактные, смелые, не линяют. Фото щенков йорка и бивер-йорка с уникальным трёхцветным окрасом — в нашей галерее. Доставка по России, Беларуси и СНГ.</p>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-2" style={{ color: "var(--brown)" }}>Той-пудель — фото щенков</h3>
+              <p>Той-пудель входит в топ-2 умнейших пород мира. Гипоаллергенный, обучаемый, преданный компаньон. Смотрите фотографии наших щенков той-пуделя — рыжие, абрикосовые, шоколадные окрасы от проверенных производителей с документами.</p>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-2" style={{ color: "var(--brown)" }}>Семейный питомник в Беларуси</h3>
+              <p>Питомник «Из Поместья Мелешко» — это домашнее разведение декоративных пород с документами РКФ и UCI. Все щенки социализированы с первых дней жизни, вакцинированы и микрочипированы. Возможна доставка в любой город России, Украины и СНГ.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
