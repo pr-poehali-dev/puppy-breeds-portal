@@ -131,7 +131,7 @@ export const MALTIPOO_SUBTYPES = [
     emoji: "🤍",
     color: "#FAF0F2",
     accentColor: "#e8a4b0",
-    image: "",
+    image: "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/c1e815f4-b612-420e-b792-f1fa5178ee03.jpg",
     shortDesc: "Купить щенка мальтипу с доставкой по СНГ. Гипоаллергенный, не линяет, идеален для семьи с детьми.",
     weight: "2–4 кг",
     lifespan: "12–15 лет",
