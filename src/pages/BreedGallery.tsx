@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Icon from "@/components/ui/icon";
 import NavBar from "@/components/sections/NavBar";
 import { MALTIPOO_SUBTYPES, YORK_SUBTYPES, BREEDS, IMAGES } from "@/data/content";
@@ -106,8 +107,20 @@ export default function BreedGallery() {
     if (e.key === "Escape") setLightbox(null);
   };
 
+  const breedExtra = breed as { seoTitle?: string; seoDesc?: string };
+  const seoTitle = breedExtra.seoTitle ?? `Купить щенка ${breed.name} с документами | Питомник Из Поместья Мелешко`;
+  const seoDesc = breedExtra.seoDesc ?? `Фото щенков ${breed.name} из питомника «Из Поместья Мелешко». Домашнее воспитание, документы UCI, доставка по России, Беларуси и СНГ.`;
+
   return (
     <div className="min-h-screen" style={{ background: "var(--cream)", fontFamily: "'Golos Text', sans-serif" }}>
+      <Helmet>
+        <title>{seoTitle}</title>
+        <meta name="description" content={seoDesc} />
+        <meta property="og:title" content={seoTitle} />
+        <meta property="og:description" content={seoDesc} />
+        {breed.image && <meta property="og:image" content={breed.image} />}
+        <meta name="robots" content="index, follow" />
+      </Helmet>
       <NavBar />
 
       <div className="pt-16">
