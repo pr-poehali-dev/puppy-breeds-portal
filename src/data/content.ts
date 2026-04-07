@@ -186,7 +186,7 @@ export const MALTIPOO_SUBTYPES = [
   {
     slug: "pooshon",
     name: "Пушон",
-    emoji: "🩵",
+    emoji: "🩷",
     color: "#FDF0FA",
     accentColor: "#d48ab0",
     image: "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/34740370-5307-4f3a-ba0e-f793e8246d0e.jpg",
