@@ -62,7 +62,7 @@ export default function Breeds() {
                   <h3 className="font-display text-2xl font-semibold" style={{ color: "var(--brown)" }}>{poodle.name}</h3>
                   <span className="text-2xl">{poodle.emoji}</span>
                 </div>
-                <div className="overflow-hidden" style={{ height: 220 }}>
+                <div className="overflow-hidden" style={{ aspectRatio: "1 / 1" }}>
                   <img src={poodle.image || IMAGES.puppy} alt={poodle.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 </div>
                 <div className="flex flex-col flex-1 p-6" style={{ background: poodle.color }}>
@@ -102,7 +102,7 @@ function SubtypeGrid({ subtypes, navigate }: { subtypes: typeof MALTIPOO_SUBTYPE
             </h3>
             <span className="text-xl">{sub.emoji}</span>
           </div>
-          <div className="overflow-hidden" style={{ height: 180 }}>
+          <div className="overflow-hidden" style={{ aspectRatio: "1 / 1" }}>
             <img
               src={sub.image || IMAGES.puppy}
               alt={sub.name}
