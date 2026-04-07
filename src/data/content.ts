@@ -218,7 +218,7 @@ export const MALTIPOO_SUBTYPES = [
     emoji: "💜",
     color: "#F5F0FF",
     accentColor: "#9b7fd4",
-    image: "",
+    image: "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/f5c12f27-2286-42fd-ba34-635876f0b8cd.jpg",
     shortDesc: "Купить щенка помапу с доставкой по СНГ. Шпиц × Пудель — маленький, пышный, харизматичный питомец.",
     weight: "2–4 кг",
     lifespan: "12–16 лет",
