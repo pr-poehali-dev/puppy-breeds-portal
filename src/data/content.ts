@@ -235,7 +235,24 @@ export const MALTIPOO_SUBTYPES = [
 Шёрстка помапу может варьироваться от прямой и пышной до слегка кудрявой. Линяют значительно меньше, чем чистокровные шпицы, что делает их более комфортными в уходе.
 
 Щенки помапу из питомника «Из Поместья Мелешко» воспитываются в семье, с детства приучены к людям и другим животным. Каждый малыш передаётся полностью здоровым, с документами.`,
-    galleryPhotos: [] as string[],
+    galleryPhotos: [
+      "https://cdn.poehali.dev/files/0e1cfca0-0f80-4b55-848e-894b4d563b5f.jpg",
+      "https://cdn.poehali.dev/files/ab6ccd55-f2fb-4aa2-a7f9-ca4707a7cfd5.jpg",
+      "https://cdn.poehali.dev/files/4ece2a4d-832a-48b2-90d2-a136c166a2cf.jpg",
+      "https://cdn.poehali.dev/files/218a8130-0924-44fa-938c-cb471da82b99.jpg",
+      "https://cdn.poehali.dev/files/8ea4e6a3-2ba3-4b27-9d76-a3313dbc8e5e.jpg",
+      "https://cdn.poehali.dev/files/9fbd2e1e-35e3-414a-b63b-5e610425b6c4.jpg",
+      "https://cdn.poehali.dev/files/948e9d26-e744-45d1-8bb5-70d923c12b72.jpg",
+      "https://cdn.poehali.dev/files/f730787a-f7f2-4a27-b5d1-26690f16081f.jpg",
+      "https://cdn.poehali.dev/files/cc4e9e0f-9fb3-4e67-9006-1082ab2b309d.jpg",
+      "https://cdn.poehali.dev/files/24df2d2e-1aa1-4103-a40e-761b1280afd5.jpg",
+      "https://cdn.poehali.dev/files/de854cdc-e45c-4e65-9442-5a744dc388e9.jpg",
+      "https://cdn.poehali.dev/files/9946821a-6df9-4b0d-b73f-ad05e73f706e.jpg",
+      "https://cdn.poehali.dev/files/404948a7-7154-42ea-ab95-161fb51aa947.jpg",
+      "https://cdn.poehali.dev/files/3ec8aad1-d118-42ed-9f0c-1d04126bba1d.jpg",
+      "https://cdn.poehali.dev/files/9e0b7776-7b8d-426b-b5eb-ffca868cbc80.jpg",
+      "https://cdn.poehali.dev/files/b35d67d9-f108-4fd2-8d78-cc7215eec68e.jpg",
+    ],
     facts: [
       { icon: "Flame",    label: "Характер",   value: "Смелый, активный, харизматичный" },
       { icon: "Leaf",     label: "Шерсть",     value: "Пышная, линяет мало" },
