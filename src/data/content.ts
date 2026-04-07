@@ -570,9 +570,11 @@ export const PARENTS = [
 // --- ГАЛЕРЕЯ ---
 // Добавляй сюда URL фотографий для галереи
 export const GALLERY_PHOTOS: string[] = [
+  "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/e4b3b7bb-5b3b-493b-907c-b34500481f62.jpg",
   "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/e1b10a91-df02-43f8-a685-7500ecc4f0fe.png",
   "https://cdn.poehali.dev/files/700d26e5-42f7-4ef8-a655-02a7bb3d11e8.jpg",
   "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/5e0cad45-b08c-41e7-a75f-487ce65b1f11.jpg",
+  "https://cdn.poehali.dev/projects/bc8ff6ee-f80d-483c-9941-b013281e7ebf/bucket/f8e71d97-bb73-4db7-9fb5-8e94f491041e.jpg",
   "https://cdn.poehali.dev/files/1d0919dd-9ba0-4e8d-950b-8b581e35ed68.jpg",
   "https://cdn.poehali.dev/files/84e8652e-c722-4317-815f-6b272fcfe074.jpg",
   "https://cdn.poehali.dev/files/df251150-2ca2-4043-bc68-795ef4351513.jpg",
