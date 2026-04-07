@@ -406,7 +406,23 @@ export const YORK_SUBTYPES = [
 Эта порода отлично подходит как для одиноких людей, так и для семей с детьми. Йорки быстро привязываются к хозяину и становятся верными компаньонами на долгие годы.
 
 В питомнике «Из Поместья Мелешко» щенки йорка воспитываются в домашних условиях, с детства общаются с людьми и другими животными. Передаются с полным пакетом документов, прививками и микрочипом.`,
-    galleryPhotos: [] as string[],
+    galleryPhotos: [
+      "https://cdn.poehali.dev/files/6d2b0c9e-e6c5-4483-89f5-b43c7cfed465.jpg",
+      "https://cdn.poehali.dev/files/2d75e8cb-4d9c-4753-bc2a-bee43f80cfe9.jpg",
+      "https://cdn.poehali.dev/files/e6983fa0-d8dc-420f-b792-281f750091b6.jpg",
+      "https://cdn.poehali.dev/files/05fa3b03-449b-4de7-b807-4bf1ee28aef6.jpg",
+      "https://cdn.poehali.dev/files/43082669-2e5c-44e5-bb07-b4d6836213f8.jpg",
+      "https://cdn.poehali.dev/files/98169b04-f9c9-4b7e-9d33-459c48b27f16.jpg",
+      "https://cdn.poehali.dev/files/8a81fc79-ca5c-4a0e-9d25-a71630830e80.jpg",
+      "https://cdn.poehali.dev/files/b4a261a4-4109-4d7d-b9d3-788775ac0d77.jpg",
+      "https://cdn.poehali.dev/files/0f5ad3b5-b303-4688-9e61-1f5572570bfe.jpg",
+      "https://cdn.poehali.dev/files/0e140393-8e97-4e77-a71e-0f501db1e2a1.jpg",
+      "https://cdn.poehali.dev/files/e497f29e-19ce-4d98-8c62-baa0447d6f05.jpg",
+      "https://cdn.poehali.dev/files/d1c562dc-a1b6-4f8e-95f2-dd8d9e6d572a.jpg",
+      "https://cdn.poehali.dev/files/fda63bb6-e2c4-41ed-b139-e912f8a483e6.jpg",
+      "https://cdn.poehali.dev/files/f5c78e2b-6885-4119-b0b4-050543c2b9d7.jpg",
+      "https://cdn.poehali.dev/files/89dff0e1-682b-4409-bc9c-5b188811e26a.jpg",
+    ],
     facts: [
       { icon: "Flame",    label: "Характер",    value: "Смелый, энергичный, любопытный" },
       { icon: "Leaf",     label: "Шерсть",      value: "Шелковистая, не линяет" },
