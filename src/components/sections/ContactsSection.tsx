@@ -9,26 +9,26 @@ const CONTACT_CARDS = [
 
 export default function ContactsSection() {
   return (
-    <section id="contacts" className="py-24" style={{ background: "var(--brown)" }}>
-      <div className="max-w-5xl mx-auto px-6 text-center">
+    <section id="contacts" className="py-16 sm:py-24" style={{ background: "var(--brown)" }}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
         <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)", fontFamily: "'Golos Text', sans-serif" }}>Контакты</div>
-        <h2 className="font-display mb-4" style={{ fontSize: "clamp(2.2rem, 5vw, 3.8rem)", color: "var(--cream)", fontWeight: 500 }}>
+        <h2 className="font-display mb-4" style={{ fontSize: "clamp(1.8rem, 5vw, 3.8rem)", color: "var(--cream)", fontWeight: 500 }}>
           Хотите купить щенка?<br /><em>Напишите нам!</em>
         </h2>
-        <p className="text-base mb-10" style={{ color: "rgba(250,246,240,0.7)", fontFamily: "'Golos Text', sans-serif" }}>
+        <p className="text-sm sm:text-base mb-8 sm:mb-10 px-2" style={{ color: "rgba(250,246,240,0.7)", fontFamily: "'Golos Text', sans-serif" }}>
           Расскажем о доступных щенках мальтипу, йорков, кавапу и пушон. Помогаем выбрать питомца и организуем доставку по всему СНГ
         </p>
-        <div className="grid sm:grid-cols-3 gap-6 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-10">
           {CONTACT_CARDS.map((c) => (
-            <div key={c.label} className="rounded-2xl p-6 text-center" style={{ background: "rgba(250,246,240,0.08)", border: "1px solid rgba(250,246,240,0.15)" }}>
+            <div key={c.label} className="rounded-2xl p-5 sm:p-6 text-center" style={{ background: "rgba(250,246,240,0.08)", border: "1px solid rgba(250,246,240,0.15)" }}>
               <Icon name={c.icon} size={24} className="mx-auto mb-3" style={{ color: "var(--pink)" }} />
               <div className="text-xs uppercase tracking-widest mb-1" style={{ color: "rgba(250,246,240,0.5)", fontFamily: "'Golos Text', sans-serif" }}>{c.label}</div>
-              <div className="font-display text-lg font-semibold mb-1" style={{ color: "var(--cream)" }}>{c.value}</div>
+              <div className="font-display text-base sm:text-lg font-semibold mb-1 break-all" style={{ color: "var(--cream)" }}>{c.value}</div>
               <div className="text-sm" style={{ color: "rgba(250,246,240,0.6)", fontFamily: "'Golos Text', sans-serif" }}>{c.sub}</div>
             </div>
           ))}
         </div>
-        <div className="rounded-2xl p-8 text-left max-w-xl mx-auto" style={{ background: "rgba(250,246,240,0.07)", border: "1px solid rgba(250,246,240,0.12)" }}>
+        <div className="rounded-2xl p-5 sm:p-8 text-left max-w-xl mx-auto" style={{ background: "rgba(250,246,240,0.07)", border: "1px solid rgba(250,246,240,0.12)" }}>
           <h3 className="font-display text-xl font-semibold mb-5" style={{ color: "var(--cream)" }}>Написать нам</h3>
           <div className="flex flex-col gap-3">
             <input type="text" placeholder="Ваше имя"

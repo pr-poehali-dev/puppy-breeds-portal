@@ -6,9 +6,9 @@ function scrollTo(id: string) {
 
 export default function PuppiesSection() {
   return (
-    <section id="puppies" className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-14">
+    <section id="puppies" className="py-16 sm:py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-10 sm:mb-14">
           <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)", fontFamily: "'Golos Text', sans-serif" }}>Щенки</div>
           <h2 className="section-title">Доступные малыши</h2>
           <p className="text-base mt-4" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>Актуальность наличия уточняйте у нас — обновляем регулярно</p>

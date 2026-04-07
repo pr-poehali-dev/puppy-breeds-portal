@@ -29,9 +29,9 @@ export default function About() {
 
       {/* Hero */}
       <section className="pt-24 pb-10 bg-white">
-        <div className="max-w-2xl mx-auto px-6 text-center">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
           <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)", fontFamily: "'Golos Text', sans-serif" }}>О нас</div>
-          <h1 className="font-display font-semibold mb-4 whitespace-nowrap" style={{ color: "var(--brown)", fontSize: "clamp(1.6rem, 4vw, 2.8rem)" }}>
+          <h1 className="font-display font-semibold mb-4" style={{ color: "var(--brown)", fontSize: "clamp(1.6rem, 4vw, 2.8rem)" }}>
             Питомник с душой <em>и историей</em>
           </h1>
           <p className="text-base leading-relaxed" style={{ color: "rgba(92,51,23,0.7)", fontFamily: "'Golos Text', sans-serif" }}>
@@ -41,16 +41,16 @@ export default function About() {
       </section>
 
       {/* Main story */}
-      <section className="py-16 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            <div className="relative">
+      <section className="py-12 sm:py-16 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+            <div className="relative pt-6 pr-6 sm:pr-8">
               <div className="rounded-3xl overflow-hidden shadow-xl" style={{ aspectRatio: "1/1" }}>
                 <img src={PUPPY_PHOTO} alt="Щенки питомника" className="w-full h-full object-cover" />
               </div>
-              <div className="absolute -top-6 -right-6 rounded-2xl p-5 shadow-lg" style={{ background: "var(--cream-dark)" }}>
-                <div className="font-display text-4xl font-semibold" style={{ color: "var(--brown)" }}>14+</div>
-                <div className="text-sm" style={{ color: "var(--brown-light)", fontFamily: "'Golos Text', sans-serif" }}>лет любви<br />к породам</div>
+              <div className="absolute top-0 right-0 rounded-2xl p-4 shadow-lg" style={{ background: "var(--cream-dark)" }}>
+                <div className="font-display text-3xl sm:text-4xl font-semibold" style={{ color: "var(--brown)" }}>14+</div>
+                <div className="text-xs sm:text-sm" style={{ color: "var(--brown-light)", fontFamily: "'Golos Text', sans-serif" }}>лет любви<br />к породам</div>
               </div>
             </div>
             <div>
@@ -81,29 +81,29 @@ export default function About() {
 
       {/* Stats */}
       <section className="py-12" style={{ background: "var(--cream)" }}>
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="grid grid-cols-3 gap-6 text-center">
-            <div className="p-6 rounded-2xl bg-white shadow-sm">
-              <div className="font-display text-4xl font-semibold mb-1" style={{ color: "var(--brown)" }}>{KENNEL.yearsLabel}</div>
-              <div className="text-sm" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>работы</div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-3 gap-3 sm:gap-6 text-center">
+            <div className="p-4 sm:p-6 rounded-2xl bg-white shadow-sm">
+              <div className="font-display text-2xl sm:text-4xl font-semibold mb-1" style={{ color: "var(--brown)" }}>{KENNEL.yearsLabel}</div>
+              <div className="text-xs sm:text-sm" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>работы</div>
             </div>
-            <div className="p-6 rounded-2xl bg-white shadow-sm">
-              <div className="font-display text-4xl font-semibold mb-1" style={{ color: "var(--brown)" }}>{KENNEL.happyFamilies}</div>
-              <div className="text-sm" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>счастливых семей</div>
+            <div className="p-4 sm:p-6 rounded-2xl bg-white shadow-sm">
+              <div className="font-display text-2xl sm:text-4xl font-semibold mb-1" style={{ color: "var(--brown)" }}>{KENNEL.happyFamilies}</div>
+              <div className="text-xs sm:text-sm" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>счастливых семей</div>
             </div>
-            <div className="p-6 rounded-2xl bg-white shadow-sm">
-              <div className="font-display text-4xl font-semibold mb-1" style={{ color: "var(--brown)" }}>{KENNEL.breedsCount}</div>
-              <div className="text-sm" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>в нашей семье</div>
+            <div className="p-4 sm:p-6 rounded-2xl bg-white shadow-sm">
+              <div className="font-display text-2xl sm:text-4xl font-semibold mb-1" style={{ color: "var(--brown)" }}>{KENNEL.breedsCount}</div>
+              <div className="text-xs sm:text-sm" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>в нашей семье</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* What you get */}
-      <section className="py-16 bg-white">
-        <div className="max-w-3xl mx-auto px-6">
-          <h2 className="font-display text-3xl font-semibold mb-2 text-center" style={{ color: "var(--brown)" }}>Приобретая щенка у нас,</h2>
-          <p className="text-center mb-10 text-base" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>вы получите:</p>
+      <section className="py-12 sm:py-16 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <h2 className="font-display text-2xl sm:text-3xl font-semibold mb-2 text-center" style={{ color: "var(--brown)" }}>Приобретая щенка у нас,</h2>
+          <p className="text-center mb-8 sm:mb-10 text-base" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>вы получите:</p>
           <div className="flex flex-col gap-3">
             {WHAT_YOU_GET.map((item) => (
               <div key={item.text} className="flex items-center gap-4 p-4 rounded-2xl" style={{ background: "var(--cream)" }}>
@@ -118,9 +118,9 @@ export default function About() {
       </section>
 
       {/* Checklist before buying */}
-      <section className="py-16" style={{ background: "var(--cream)" }}>
-        <div className="max-w-3xl mx-auto px-6">
-          <h2 className="font-display text-3xl font-semibold mb-3 text-center" style={{ color: "var(--brown)" }}>Перед покупкой подумайте</h2>
+      <section className="py-12 sm:py-16" style={{ background: "var(--cream)" }}>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <h2 className="font-display text-2xl sm:text-3xl font-semibold mb-3 text-center" style={{ color: "var(--brown)" }}>Перед покупкой подумайте</h2>
           <p className="text-center mb-10 text-base" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>
             Щенок — это большая ответственность. Задайте себе несколько важных вопросов:
           </p>
@@ -136,8 +136,8 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-white">
-        <div className="max-w-xl mx-auto px-6 text-center">
+      <section className="py-12 sm:py-16 bg-white">
+        <div className="max-w-xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="font-display text-3xl font-semibold mb-4" style={{ color: "var(--brown)" }}>Мечтаете о питомце?</h2>
           <p className="mb-3 text-base" style={{ color: "rgba(92,51,23,0.7)", fontFamily: "'Golos Text', sans-serif" }}>
             Напишите нам — мы развёрнуто ответим на все вопросы и поможем подобрать малыша близкого по вашему характеру.

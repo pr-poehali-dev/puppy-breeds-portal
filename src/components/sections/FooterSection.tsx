@@ -4,9 +4,9 @@ import { IMAGES, KENNEL } from "@/data/content";
 export default function FooterSection() {
   return (
     <footer className="py-8 border-t" style={{ background: "var(--brown-dark)", borderColor: "rgba(250,246,240,0.1)" }}>
-      <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
         <img src={IMAGES.logo} alt={KENNEL.name} className="h-10" />
-        <p className="text-sm text-center" style={{ color: "rgba(250,246,240,0.4)", fontFamily: "'Golos Text', sans-serif" }}>
+        <p className="text-xs sm:text-sm text-center px-2 break-words" style={{ color: "rgba(250,246,240,0.4)", fontFamily: "'Golos Text', sans-serif", maxWidth: "100%" }}>
           {KENNEL.footerText}
         </p>
         <div className="flex gap-4">

@@ -13,9 +13,9 @@ export default function Breeds() {
 
       {/* TITLE */}
       <div className="pt-16">
-        <div className="max-w-2xl mx-auto px-6 py-12 text-center">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-10 sm:py-12 text-center">
           <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)" }}>Наши породы</div>
-          <h1 className="section-title mb-4 whitespace-nowrap">Три породы — <em>одна любовь</em></h1>
+          <h1 className="section-title mb-4">Три породы — <em>одна любовь</em></h1>
           <p className="text-base" style={{ color: "rgba(92,51,23,0.6)" }}>
             Мы разводим только те породы, в которых уверены: здоровые линии, чистые родословные и характеры, проверенные годами
           </p>
@@ -23,20 +23,20 @@ export default function Breeds() {
       </div>
 
       {/* MALTIPOO SUBTYPES */}
-      <div className="max-w-7xl mx-auto px-6 pb-16">
-        <div className="mb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-12 sm:pb-16">
+        <div className="mb-6 sm:mb-8">
           <div className="text-sm font-medium tracking-widest uppercase mb-2" style={{ color: "var(--pink)" }}>Подвиды мальтипу</div>
-          <h2 className="font-display text-3xl font-semibold" style={{ color: "var(--brown)" }}>Мальтипу и его родственники</h2>
+          <h2 className="font-display text-2xl sm:text-3xl font-semibold" style={{ color: "var(--brown)" }}>Мальтипу и его родственники</h2>
           <p className="mt-2 text-base" style={{ color: "rgba(92,51,23,0.6)" }}>Гибридные породы с участием пуделя — умные, ласковые и почти без линьки</p>
         </div>
         <SubtypeGrid subtypes={MALTIPOO_SUBTYPES} navigate={navigate} />
       </div>
 
       {/* YORK SUBTYPES */}
-      <div className="max-w-7xl mx-auto px-6 pb-16">
-        <div className="mb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-12 sm:pb-16">
+        <div className="mb-6 sm:mb-8">
           <div className="text-sm font-medium tracking-widest uppercase mb-2" style={{ color: "var(--pink)" }}>Подвиды йорка</div>
-          <h2 className="font-display text-3xl font-semibold" style={{ color: "var(--brown)" }}>Йорк и его разновидности</h2>
+          <h2 className="font-display text-2xl sm:text-3xl font-semibold" style={{ color: "var(--brown)" }}>Йорк и его разновидности</h2>
           <p className="mt-2 text-base" style={{ color: "rgba(92,51,23,0.6)" }}>Маленькие, смелые и невероятно преданные — йорки в классическом и редком исполнении</p>
         </div>
         <SubtypeGrid subtypes={YORK_SUBTYPES} navigate={navigate} />
@@ -46,7 +46,7 @@ export default function Breeds() {
       {(() => {
         const poodle = BREEDS.find((b) => b.slug === "toy-poodle")!;
         return (
-          <div className="max-w-7xl mx-auto px-6 pb-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20">
             <div className="mb-8">
               <div className="text-sm font-medium tracking-widest uppercase mb-2" style={{ color: "var(--pink)" }}>Также у нас</div>
               <h2 className="font-display text-3xl font-semibold" style={{ color: "var(--brown)" }}>Той-пудель</h2>

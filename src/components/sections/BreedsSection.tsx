@@ -13,13 +13,13 @@ export default function BreedsSection() {
 
   return (
     <section id="breeds" className="py-20" style={{ background: "var(--cream)" }}>
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-14">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-10 sm:mb-14">
           <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)", fontFamily: "'Golos Text', sans-serif" }}>Наши породы</div>
           <h2 className="section-title">Три породы — <em>одна любовь</em></h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {BREEDS.map((breed, i) => {
             const { bg, border } = HERO_COLORS[i];
             return (

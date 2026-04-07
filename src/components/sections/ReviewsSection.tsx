@@ -7,13 +7,13 @@ export default function ReviewsSection() {
   const ownerPhotos = OWNER_PHOTOS.length > 0 ? OWNER_PHOTOS : FALLBACK_OWNER;
 
   return (
-    <section id="reviews" className="py-24" style={{ background: "var(--cream)" }}>
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-14">
+    <section id="reviews" className="py-16 sm:py-24" style={{ background: "var(--cream)" }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-10 sm:mb-14">
           <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)", fontFamily: "'Golos Text', sans-serif" }}>Отзывы</div>
           <h2 className="section-title">Счастливые хозяева</h2>
         </div>
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-8 mb-12 sm:mb-16">
           {REVIEWS.map((r) => (
             <div key={r.name} className="card-kennel bg-white p-7">
               <div className="flex gap-1 mb-4">
@@ -53,7 +53,7 @@ export default function ReviewsSection() {
         </div>
 
         {/* Условия продажи */}
-        <div className="rounded-3xl p-10 lg:p-14" style={{ background: "white" }}>
+        <div className="rounded-3xl p-6 sm:p-10 lg:p-14" style={{ background: "white" }}>
           <div className="text-center mb-10">
             <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)", fontFamily: "'Golos Text', sans-serif" }}>Документы и гарантии</div>
             <h2 className="section-title">Условия продажи</h2>

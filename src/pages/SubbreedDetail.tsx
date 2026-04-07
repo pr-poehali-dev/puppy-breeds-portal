@@ -33,16 +33,16 @@ export default function SubbreedDetail() {
 
       {/* Hero */}
       <section className="pt-24 pb-0 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <button
-            className="flex items-center gap-2 text-sm mb-8 hover:gap-3 transition-all"
+            className="flex items-center gap-2 text-sm mb-6 sm:mb-8 hover:gap-3 transition-all"
             style={{ color: "rgba(92,51,23,0.55)", fontFamily: "'Golos Text', sans-serif" }}
             onClick={() => navigate("/breeds")}
           >
             <Icon name="ArrowLeft" size={15} /> Все породы
           </button>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-start pb-16">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-start pb-12 sm:pb-16">
             {/* Фото */}
             <div>
               <div
@@ -73,21 +73,21 @@ export default function SubbreedDetail() {
             </div>
 
             {/* Info */}
-            <div>
+            <div className="min-w-0">
               <div className="text-sm font-medium tracking-widest uppercase mb-2" style={{ color: breed.accentColor, fontFamily: "'Golos Text', sans-serif" }}>
                 Порода
               </div>
-              <h1 className="font-display text-4xl font-semibold mb-2" style={{ color: "var(--brown)" }}>
+              <h1 className="font-display text-3xl sm:text-4xl font-semibold mb-2" style={{ color: "var(--brown)" }}>
                 {breed.name} {breed.emoji}
               </h1>
-              <div className="flex gap-3 mb-6 text-sm" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>
+              <div className="flex flex-wrap gap-3 mb-5 sm:mb-6 text-sm" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>
                 <span>⚖️ {breed.weight}</span>
                 <span>🗓 {breed.lifespan}</span>
               </div>
 
-              <div className="flex gap-2 flex-wrap mb-6">
+              <div className="flex gap-2 flex-wrap mb-5 sm:mb-6">
                 {breed.traits.map((t) => (
-                  <span key={t} className="px-3 py-1 rounded-full text-sm font-medium"
+                  <span key={t} className="px-3 py-1 rounded-full text-xs sm:text-sm font-medium"
                     style={{ background: "rgba(92,51,23,0.1)", color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>
                     {t}
                   </span>
@@ -122,8 +122,8 @@ export default function SubbreedDetail() {
       </section>
 
       {/* Description */}
-      <section className="py-16 bg-white">
-        <div className="max-w-3xl mx-auto px-6">
+      <section className="py-12 sm:py-16 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <h2 className="font-display text-3xl font-semibold mb-6" style={{ color: "var(--brown)" }}>
             О породе {breed.name}
           </h2>
@@ -137,7 +137,7 @@ export default function SubbreedDetail() {
 
       {/* Other subtypes */}
       <section className="py-12" style={{ background: "var(--cream)" }}>
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <h2 className="font-display text-2xl font-semibold mb-6" style={{ color: "var(--brown)" }}>Другие породы питомника</h2>
           <div className="grid sm:grid-cols-3 gap-4">
             {ALL_SUBTYPES.filter((b) => b.slug !== breed.slug).map((b) => (

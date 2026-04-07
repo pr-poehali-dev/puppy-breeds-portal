@@ -40,31 +40,31 @@ export default function BreedDetail() {
 
       {/* HERO */}
       <div className="relative pt-16" style={{ background: breed.color }}>
-        <div className="max-w-7xl mx-auto px-6 py-16 grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <div className="text-6xl mb-4">{breed.emoji}</div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16 grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+          <div className="min-w-0">
+            <div className="text-5xl sm:text-6xl mb-4">{breed.emoji}</div>
             <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: breed.accentColor }}>Порода</div>
-            <h1 className="font-display mb-6" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", color: "var(--brown)", fontWeight: 500, lineHeight: 1.1 }}>
+            <h1 className="font-display mb-5 sm:mb-6" style={{ fontSize: "clamp(2rem, 6vw, 4.5rem)", color: "var(--brown)", fontWeight: 500, lineHeight: 1.1 }}>
               {breed.name}
             </h1>
-            <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(92,51,23,0.75)", maxWidth: 520 }}>
+            <p className="text-sm sm:text-base leading-relaxed mb-5 sm:mb-6" style={{ color: "rgba(92,51,23,0.75)" }}>
               {breed.descFull}
             </p>
-            <div className="flex gap-2 flex-wrap mb-8">
+            <div className="flex gap-2 flex-wrap mb-6 sm:mb-8">
               {breed.traits.map((t) => (
-                <span key={t} className="px-4 py-1.5 rounded-full text-sm font-medium"
+                <span key={t} className="px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium"
                   style={{ background: "rgba(92,51,23,0.1)", color: "var(--brown)" }}>{t}</span>
               ))}
             </div>
-            <div className="flex gap-6 text-sm mb-8">
+            <div className="grid grid-cols-3 gap-3 text-sm mb-6 sm:mb-8">
               {[
                 { label: "Вес", value: breed.weight },
                 { label: "Рост", value: breed.height },
-                { label: "Продолжительность жизни", value: breed.lifespan },
+                { label: "Жизнь", value: breed.lifespan },
               ].map(({ label, value }) => (
-                <div key={label}>
+                <div key={label} className="min-w-0">
                   <div className="text-xs uppercase tracking-widest mb-1" style={{ color: "rgba(92,51,23,0.45)" }}>{label}</div>
-                  <div className="font-semibold" style={{ color: "var(--brown)" }}>{value}</div>
+                  <div className="font-semibold text-xs sm:text-sm" style={{ color: "var(--brown)" }}>{value}</div>
                 </div>
               ))}
             </div>

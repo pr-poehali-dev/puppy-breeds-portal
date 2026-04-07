@@ -14,15 +14,15 @@ export default function AboutSection() {
 
   return (
     <section id="about" className="py-20 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="relative pt-6 pr-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div className="relative pt-6 pr-6 sm:pr-8">
             <div className="rounded-3xl overflow-hidden shadow-xl" style={{ aspectRatio: "1/1" }}>
               <img src={IMAGES.about} alt="Наши щенки" className="w-full h-full object-cover" />
             </div>
-            <div className="absolute top-0 right-0 rounded-2xl p-5 shadow-lg" style={{ background: "var(--cream-dark)" }}>
-              <div className="font-display text-4xl font-semibold" style={{ color: "var(--brown)" }}>14+</div>
-              <div className="text-sm" style={{ color: "var(--brown-light)", fontFamily: "'Golos Text', sans-serif" }}>лет любви<br />к породам</div>
+            <div className="absolute top-0 right-0 rounded-2xl p-4 shadow-lg" style={{ background: "var(--cream-dark)" }}>
+              <div className="font-display text-3xl sm:text-4xl font-semibold" style={{ color: "var(--brown)" }}>14+</div>
+              <div className="text-xs sm:text-sm" style={{ color: "var(--brown-light)", fontFamily: "'Golos Text', sans-serif" }}>лет любви<br />к породам</div>
             </div>
           </div>
           <div>
