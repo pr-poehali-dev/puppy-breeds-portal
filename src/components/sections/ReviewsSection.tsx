@@ -13,22 +13,32 @@ export default function ReviewsSection() {
           <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)", fontFamily: "'Golos Text', sans-serif" }}>Отзывы</div>
           <h2 className="section-title">Счастливые хозяева</h2>
         </div>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-8 mb-12 sm:mb-16">
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 sm:gap-6 mb-12 sm:mb-16 space-y-5 sm:space-y-6">
           {REVIEWS.map((r) => (
-            <div key={r.name} className="card-kennel bg-white p-7">
-              <div className="flex gap-1 mb-4">
-                {Array.from({ length: r.stars }).map((_, i) => (
-                  <span key={i} style={{ color: "var(--gold)" }}>★</span>
-                ))}
-              </div>
-              <p className="text-sm leading-relaxed mb-5 italic" style={{ color: "rgba(92,51,23,0.75)", fontFamily: "'Golos Text', sans-serif" }}>"{r.text}"</p>
-              <div className="flex items-center gap-3 pt-4 border-t" style={{ borderColor: "rgba(92,51,23,0.1)" }}>
-                <div className="w-10 h-10 rounded-full flex items-center justify-center text-lg flex-shrink-0" style={{ background: "var(--cream-dark)" }}>🐾</div>
+            <div key={r.name + r.text.slice(0, 10)} className="card-kennel bg-white p-6 break-inside-avoid">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-9 h-9 rounded-full flex items-center justify-center text-base flex-shrink-0 font-semibold" style={{ background: "var(--cream-dark)", color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>
+                  {r.name[0]}
+                </div>
                 <div>
-                  <div className="text-sm font-semibold" style={{ color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>{r.name}</div>
-                  <div className="text-xs" style={{ color: "rgba(92,51,23,0.5)", fontFamily: "'Golos Text', sans-serif" }}>{r.city} · {r.dog}</div>
+                  <div className="text-sm font-semibold leading-tight" style={{ color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>{r.name}</div>
+                  <div className="text-xs" style={{ color: "rgba(92,51,23,0.45)", fontFamily: "'Golos Text', sans-serif" }}>{"date" in r ? String(r.date) : ""} · Покупатель</div>
                 </div>
               </div>
+              <div className="flex gap-0.5 mb-3">
+                {Array.from({ length: r.stars }).map((_, i) => (
+                  <span key={i} style={{ color: "var(--gold)", fontSize: "15px" }}>★</span>
+                ))}
+              </div>
+              <p className="text-xs mb-1 font-medium" style={{ color: "rgba(92,51,23,0.45)", fontFamily: "'Golos Text', sans-serif" }}>{r.dog}</p>
+              <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(92,51,23,0.8)", fontFamily: "'Golos Text', sans-serif" }}>{r.text}</p>
+              {"tags" in r && Array.isArray(r.tags) && r.tags.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 pt-3 border-t" style={{ borderColor: "rgba(92,51,23,0.08)" }}>
+                  {r.tags.map((tag) => (
+                    <span key={tag} className="text-xs px-2.5 py-1 rounded-full" style={{ background: "var(--cream-dark)", color: "rgba(92,51,23,0.65)", fontFamily: "'Golos Text', sans-serif" }}>{tag}</span>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>
