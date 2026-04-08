@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Icon from "@/components/ui/icon";
 import NavBar from "@/components/sections/NavBar";
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 
 interface FaceOverlay {
   top: string;
@@ -84,6 +84,57 @@ const OWNER_PHOTOS: OwnerPhoto[] = [
     faces: [],
   },
 ];
+
+function LightboxImage({ photo }: { photo: OwnerPhoto }) {
+  const imgRef = useRef<HTMLImageElement>(null);
+  const [imgRect, setImgRect] = useState<{ w: number; h: number } | null>(null);
+
+  const handleLoad = useCallback(() => {
+    if (imgRef.current) {
+      const r = imgRef.current.getBoundingClientRect();
+      setImgRect({ w: r.width, h: r.height });
+    }
+  }, []);
+
+  return (
+    <div style={{ position: "relative", display: "inline-block", lineHeight: 0 }}>
+      <img
+        ref={imgRef}
+        src={photo.url}
+        alt={photo.alt}
+        onLoad={handleLoad}
+        style={{ maxHeight: "90vh", maxWidth: "90vw", borderRadius: "16px", objectFit: "contain", display: "block" }}
+      />
+      {imgRect && photo.faces.map((face, fi) => {
+        const top = parseFloat(face.top) / 100 * imgRect.h;
+        const left = parseFloat(face.left) / 100 * imgRect.w;
+        const size = parseFloat(face.width) / 100 * imgRect.w;
+        return (
+          <div
+            key={fi}
+            className="pointer-events-none select-none"
+            style={{
+              position: "absolute",
+              top,
+              left,
+              width: size,
+              height: size,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: size * 0.7,
+              lineHeight: 1,
+              zIndex: 10,
+              filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.2))",
+            }}
+          >
+            {face.emoji}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
 export default function OwnersGallery() {
   const navigate = useNavigate();
@@ -183,33 +234,8 @@ export default function OwnersGallery() {
           >
             <Icon name="ChevronLeft" size={22} style={{ color: "var(--brown)" }} />
           </button>
-          <div className="relative" style={{ display: "inline-block" }} onClick={(e) => e.stopPropagation()}>
-            <img
-              src={OWNER_PHOTOS[lightbox].url}
-              alt={OWNER_PHOTOS[lightbox].alt}
-              style={{ maxHeight: "90vh", maxWidth: "90vw", borderRadius: "16px", objectFit: "contain", display: "block" }}
-            />
-            {OWNER_PHOTOS[lightbox].faces.map((face, fi) => (
-              <div
-                key={fi}
-                className="absolute pointer-events-none select-none"
-                style={{
-                  top: face.top,
-                  left: face.left,
-                  width: face.width,
-                  aspectRatio: "1/1",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: `calc(${face.width} * 0.6)`,
-                  lineHeight: 1,
-                  zIndex: 10,
-                  filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.2))",
-                }}
-              >
-                {face.emoji}
-              </div>
-            ))}
+          <div onClick={(e) => e.stopPropagation()}>
+            <LightboxImage photo={OWNER_PHOTOS[lightbox]} />
           </div>
           <button
             className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full p-2 transition-opacity hover:opacity-70"
