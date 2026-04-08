@@ -4,7 +4,7 @@ import { REVIEWS, SALE_CONDITIONS, OWNER_PHOTOS, IMAGES } from "@/data/content";
 const FALLBACK_OWNER = [IMAGES.owner, IMAGES.owner, IMAGES.owner, IMAGES.owner];
 
 const ReviewCard = ({ r }: { r: typeof REVIEWS[number] }) => (
-  <div className="flex-shrink-0 w-80 sm:w-96 bg-white rounded-2xl p-6 mx-3" style={{ border: "1px solid rgba(92,51,23,0.08)", boxShadow: "0 2px 12px rgba(92,51,23,0.06)" }}>
+  <div className="review-card flex-shrink-0 w-80 sm:w-96 bg-white rounded-2xl p-6 mx-3" style={{ border: "1px solid rgba(92,51,23,0.08)", boxShadow: "0 2px 12px rgba(92,51,23,0.06)", transition: "box-shadow 0.3s ease" }}>
     <div className="flex items-center gap-3 mb-3">
       <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm flex-shrink-0 font-semibold" style={{ background: "var(--cream-dark)", color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>
         {r.name[0]}
@@ -20,7 +20,7 @@ const ReviewCard = ({ r }: { r: typeof REVIEWS[number] }) => (
       ))}
     </div>
     <p className="text-xs mb-2 font-medium" style={{ color: "rgba(92,51,23,0.4)", fontFamily: "'Golos Text', sans-serif" }}>{r.dog}</p>
-    <p className="text-sm leading-relaxed" style={{ color: "rgba(92,51,23,0.8)", fontFamily: "'Golos Text', sans-serif", display: "-webkit-box", WebkitLineClamp: 5, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{r.text}</p>
+    <p className="review-text text-sm leading-relaxed" style={{ color: "rgba(92,51,23,0.8)", fontFamily: "'Golos Text', sans-serif" }}>{r.text}</p>
   </div>
 );
 
@@ -53,9 +53,26 @@ export default function ReviewsSection() {
         }
         .reviews-marquee {
           animation: marquee 55s linear infinite;
+          align-items: flex-start;
         }
         .reviews-marquee:hover {
           animation-play-state: paused;
+        }
+        .review-text {
+          display: -webkit-box;
+          -webkit-line-clamp: 4;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          transition: max-height 0.4s ease, -webkit-line-clamp 0.4s ease;
+        }
+        .review-card:hover .review-text {
+          display: block;
+          overflow: visible;
+        }
+        .review-card:hover {
+          box-shadow: 0 8px 32px rgba(92,51,23,0.14) !important;
+          z-index: 10;
+          position: relative;
         }
       `}</style>
 
