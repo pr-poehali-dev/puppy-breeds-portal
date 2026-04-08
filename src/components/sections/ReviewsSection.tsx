@@ -3,8 +3,30 @@ import { REVIEWS, SALE_CONDITIONS, OWNER_PHOTOS, IMAGES } from "@/data/content";
 
 const FALLBACK_OWNER = [IMAGES.owner, IMAGES.owner, IMAGES.owner, IMAGES.owner];
 
+const ReviewCard = ({ r }: { r: typeof REVIEWS[number] }) => (
+  <div className="flex-shrink-0 w-80 sm:w-96 bg-white rounded-2xl p-6 mx-3" style={{ border: "1px solid rgba(92,51,23,0.08)", boxShadow: "0 2px 12px rgba(92,51,23,0.06)" }}>
+    <div className="flex items-center gap-3 mb-3">
+      <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm flex-shrink-0 font-semibold" style={{ background: "var(--cream-dark)", color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>
+        {r.name[0]}
+      </div>
+      <div>
+        <div className="text-sm font-semibold leading-tight" style={{ color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>{r.name}</div>
+        <div className="text-xs" style={{ color: "rgba(92,51,23,0.4)", fontFamily: "'Golos Text', sans-serif" }}>{"date" in r ? String(r.date) : ""} · Покупатель</div>
+      </div>
+    </div>
+    <div className="flex gap-0.5 mb-2">
+      {Array.from({ length: r.stars }).map((_, i) => (
+        <span key={i} style={{ color: "var(--gold)", fontSize: "14px" }}>★</span>
+      ))}
+    </div>
+    <p className="text-xs mb-2 font-medium" style={{ color: "rgba(92,51,23,0.4)", fontFamily: "'Golos Text', sans-serif" }}>{r.dog}</p>
+    <p className="text-sm leading-relaxed" style={{ color: "rgba(92,51,23,0.8)", fontFamily: "'Golos Text', sans-serif", display: "-webkit-box", WebkitLineClamp: 5, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{r.text}</p>
+  </div>
+);
+
 export default function ReviewsSection() {
   const ownerPhotos = OWNER_PHOTOS.length > 0 ? OWNER_PHOTOS : FALLBACK_OWNER;
+  const doubled = [...REVIEWS, ...REVIEWS];
 
   return (
     <section id="reviews" className="py-16 sm:py-24" style={{ background: "var(--cream)" }}>
@@ -13,35 +35,25 @@ export default function ReviewsSection() {
           <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)", fontFamily: "'Golos Text', sans-serif" }}>Отзывы</div>
           <h2 className="section-title">Счастливые хозяева</h2>
         </div>
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 sm:gap-6 mb-12 sm:mb-16 space-y-5 sm:space-y-6">
-          {REVIEWS.map((r) => (
-            <div key={r.name + r.text.slice(0, 10)} className="card-kennel bg-white p-6 break-inside-avoid">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-9 h-9 rounded-full flex items-center justify-center text-base flex-shrink-0 font-semibold" style={{ background: "var(--cream-dark)", color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>
-                  {r.name[0]}
-                </div>
-                <div>
-                  <div className="text-sm font-semibold leading-tight" style={{ color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>{r.name}</div>
-                  <div className="text-xs" style={{ color: "rgba(92,51,23,0.45)", fontFamily: "'Golos Text', sans-serif" }}>{"date" in r ? String(r.date) : ""} · Покупатель</div>
-                </div>
-              </div>
-              <div className="flex gap-0.5 mb-3">
-                {Array.from({ length: r.stars }).map((_, i) => (
-                  <span key={i} style={{ color: "var(--gold)", fontSize: "15px" }}>★</span>
-                ))}
-              </div>
-              <p className="text-xs mb-1 font-medium" style={{ color: "rgba(92,51,23,0.45)", fontFamily: "'Golos Text', sans-serif" }}>{r.dog}</p>
-              <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(92,51,23,0.8)", fontFamily: "'Golos Text', sans-serif" }}>{r.text}</p>
-              {"tags" in r && Array.isArray(r.tags) && r.tags.length > 0 && (
-                <div className="flex flex-wrap gap-1.5 pt-3 border-t" style={{ borderColor: "rgba(92,51,23,0.08)" }}>
-                  {r.tags.map((tag) => (
-                    <span key={tag} className="text-xs px-2.5 py-1 rounded-full" style={{ background: "var(--cream-dark)", color: "rgba(92,51,23,0.65)", fontFamily: "'Golos Text', sans-serif" }}>{tag}</span>
-                  ))}
-                </div>
-              )}
-            </div>
+      </div>
+
+      {/* Бегущая строка */}
+      <div className="overflow-hidden mb-12 sm:mb-16" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
+        <div className="flex" style={{ animation: "marquee 55s linear infinite", width: "max-content" }}>
+          {doubled.map((r, i) => (
+            <ReviewCard key={i} r={r} />
           ))}
         </div>
+      </div>
+
+      <style>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* Фото у хозяев */}
         <div className="rounded-3xl overflow-hidden mb-16" style={{ background: "white", border: "1px solid rgba(92,51,23,0.08)" }}>
