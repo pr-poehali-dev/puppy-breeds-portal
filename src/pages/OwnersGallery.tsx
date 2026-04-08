@@ -19,16 +19,6 @@ interface OwnerPhoto {
 
 const OWNER_PHOTOS: OwnerPhoto[] = [
   {
-    url: "https://cdn.poehali.dev/files/f011f403-7430-498c-9909-8e6e1ee36731.jpg",
-    alt: "Щенок мальтипу у новых хозяев",
-    faces: [{ top: "2%", left: "20%", width: "55%", emoji: "😊" }],
-  },
-  {
-    url: "https://cdn.poehali.dev/files/2495a535-e7ad-4c42-9695-2cbe73bba2b4.jpg",
-    alt: "Девочка с щенком мальтипу",
-    faces: [{ top: "1%", left: "18%", width: "48%", emoji: "🥰" }],
-  },
-  {
     url: "https://cdn.poehali.dev/files/e776ae4a-b405-4017-853c-f90fb27fe43a.jpg",
     alt: "Девочка целует щенка",
     faces: [{ top: "0%", left: "22%", width: "58%", emoji: "😄" }],
