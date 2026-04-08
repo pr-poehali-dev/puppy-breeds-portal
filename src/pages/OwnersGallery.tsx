@@ -183,7 +183,7 @@ export default function OwnersGallery() {
           >
             <Icon name="ChevronLeft" size={22} style={{ color: "var(--brown)" }} />
           </button>
-          <div className="relative" style={{ maxHeight: "90vh", maxWidth: "90vw" }} onClick={(e) => e.stopPropagation()}>
+          <div className="relative" style={{ display: "inline-block" }} onClick={(e) => e.stopPropagation()}>
             <img
               src={OWNER_PHOTOS[lightbox].url}
               alt={OWNER_PHOTOS[lightbox].alt}
@@ -201,10 +201,13 @@ export default function OwnersGallery() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  fontSize: `calc(${face.width} * 0.6)`,
+                  lineHeight: 1,
                   zIndex: 10,
+                  filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.2))",
                 }}
               >
-                <span style={{ fontSize: "80%", lineHeight: 1 }}>{face.emoji}</span>
+                {face.emoji}
               </div>
             ))}
           </div>
