@@ -4,6 +4,15 @@ import Icon from "@/components/ui/icon";
 import NavBar from "@/components/sections/NavBar";
 import { MALTIPOO_SUBTYPES, YORK_SUBTYPES, BREEDS, IMAGES } from "@/data/content";
 
+const OWNERS_CARD = {
+  slug: "owners",
+  name: "У хозяев",
+  emoji: "🏠",
+  color: "#fce8f3",
+  image: "https://cdn.poehali.dev/files/f011f403-7430-498c-9909-8e6e1ee36731.jpg",
+  traits: ["Наши питомцы", "Счастливые семьи", "Реальные фото"],
+};
+
 const poodle = BREEDS.find((b) => b.slug === "toy-poodle")!;
 const poodleCard = { slug: poodle.slug, name: poodle.name, emoji: poodle.emoji, color: poodle.color, image: poodle.image, traits: poodle.traits, galleryPhotos: poodle.galleryPhotos };
 const ALL_BREEDS = [...MALTIPOO_SUBTYPES, ...YORK_SUBTYPES, poodleCard];
@@ -43,12 +52,12 @@ export default function Gallery() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-5">
-          {ALL_BREEDS.map((breed) => (
+          {[...ALL_BREEDS, OWNERS_CARD].map((breed) => (
             <div
               key={breed.slug}
               className="rounded-3xl overflow-hidden cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col"
               style={{ background: "white", border: "1px solid rgba(92,51,23,0.08)" }}
-              onClick={() => navigate(`/gallery/${breed.slug}`)}
+              onClick={() => navigate(breed.slug === "owners" ? "/gallery/owners" : `/gallery/${breed.slug}`)}
             >
               <div className="flex items-center justify-between px-5 pt-4 pb-3" style={{ background: breed.color }}>
                 <h3 className="font-display text-xl font-semibold" style={{ color: "var(--brown)" }}>

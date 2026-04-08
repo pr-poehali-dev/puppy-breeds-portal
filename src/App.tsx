@@ -12,6 +12,7 @@ import Breeds from "./pages/Breeds";
 import BreedDetail from "./pages/BreedDetail";
 import About from "./pages/About";
 import SubbreedDetail from "./pages/SubbreedDetail";
+import OwnersGallery from "./pages/OwnersGallery";
 import NotFound from "./pages/NotFound";
 import PawTrail from "./components/PawTrail";
 
@@ -34,6 +35,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/gallery/owners" element={<OwnersGallery />} />
           <Route path="/gallery/:slug" element={<BreedGallery />} />
           <Route path="/breeds" element={<Breeds />} />
           <Route path="/breeds/:slug" element={<BreedDetail />} />
