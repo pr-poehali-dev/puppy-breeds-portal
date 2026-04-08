@@ -39,7 +39,7 @@ export default function ReviewsSection() {
 
       {/* Бегущая строка */}
       <div className="overflow-hidden mb-12 sm:mb-16" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
-        <div className="flex" style={{ animation: "marquee 55s linear infinite", width: "max-content" }}>
+        <div className="flex reviews-marquee" style={{ width: "max-content" }}>
           {doubled.map((r, i) => (
             <ReviewCard key={i} r={r} />
           ))}
@@ -50,6 +50,12 @@ export default function ReviewsSection() {
         @keyframes marquee {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
+        }
+        .reviews-marquee {
+          animation: marquee 55s linear infinite;
+        }
+        .reviews-marquee:hover {
+          animation-play-state: paused;
         }
       `}</style>
 
