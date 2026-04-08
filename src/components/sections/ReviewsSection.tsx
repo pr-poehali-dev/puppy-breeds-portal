@@ -1,7 +1,5 @@
 import Icon from "@/components/ui/icon";
-import { REVIEWS, SALE_CONDITIONS, OWNER_PHOTOS, IMAGES } from "@/data/content";
-
-const FALLBACK_OWNER = [IMAGES.owner, IMAGES.owner, IMAGES.owner, IMAGES.owner];
+import { REVIEWS, SALE_CONDITIONS } from "@/data/content";
 
 const ReviewCard = ({ r }: { r: typeof REVIEWS[number] }) => (
   <div className="review-card flex-shrink-0 w-80 sm:w-96 bg-white rounded-2xl p-6 mx-3" style={{ border: "1px solid rgba(92,51,23,0.08)", boxShadow: "0 2px 12px rgba(92,51,23,0.06)", transition: "box-shadow 0.3s ease" }}>
@@ -25,7 +23,6 @@ const ReviewCard = ({ r }: { r: typeof REVIEWS[number] }) => (
 );
 
 export default function ReviewsSection() {
-  const ownerPhotos = OWNER_PHOTOS.length > 0 ? OWNER_PHOTOS : FALLBACK_OWNER;
   const doubled = [...REVIEWS, ...REVIEWS];
 
   return (
@@ -77,25 +74,6 @@ export default function ReviewsSection() {
       `}</style>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-
-        {/* Фото у хозяев */}
-        <div className="rounded-3xl overflow-hidden mb-16" style={{ background: "white", border: "1px solid rgba(92,51,23,0.08)" }}>
-          <div className="p-8 text-center border-b" style={{ borderColor: "rgba(92,51,23,0.08)" }}>
-            <h3 className="font-display text-2xl font-semibold" style={{ color: "var(--brown)" }}>Фото наших питомцев у новых хозяев</h3>
-            <p className="text-sm mt-2" style={{ color: "rgba(92,51,23,0.5)", fontFamily: "'Golos Text', sans-serif" }}>Делитесь своими фото — мы публикуем самые милые моменты</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-0">
-            {ownerPhotos.slice(0, 4).map((src, i) => (
-              <div key={i} className="relative group cursor-pointer overflow-hidden" style={{ aspectRatio: "1/1" }}>
-                <img src={src} alt={`Владелец ${i + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-4"
-                  style={{ background: "linear-gradient(to top, rgba(92,51,23,0.6) 0%, transparent 60%)" }}>
-                  <span className="text-xs text-white font-medium" style={{ fontFamily: "'Golos Text', sans-serif" }}>Наш выпускник 🐾</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* Условия продажи */}
         <div className="rounded-3xl p-6 sm:p-10 lg:p-14" style={{ background: "white" }}>

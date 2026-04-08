@@ -3,7 +3,6 @@ import NavBar from "@/components/sections/NavBar";
 import HeroSection from "@/components/sections/HeroSection";
 import AboutSection from "@/components/sections/AboutSection";
 import BreedsSection from "@/components/sections/BreedsSection";
-import GallerySection from "@/components/sections/GallerySection";
 import ReviewsSection from "@/components/sections/ReviewsSection";
 import ContactsSection from "@/components/sections/ContactsSection";
 import FooterSection from "@/components/sections/FooterSection";
@@ -36,7 +35,6 @@ export default function Index() {
       <HeroSection />
       <AboutSection />
       <BreedsSection />
-      <GallerySection />
       <ReviewsSection />
       <ContactsSection />
       <FooterSection />

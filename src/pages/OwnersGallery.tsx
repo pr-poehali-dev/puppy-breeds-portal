@@ -4,62 +4,59 @@ import Icon from "@/components/ui/icon";
 import NavBar from "@/components/sections/NavBar";
 import { useState } from "react";
 
-interface PhotoWithFaces {
-  url: string;
-  alt: string;
-  faces: { top: string; left: string; size: string; emoji: string }[];
+interface FaceOverlay {
+  top: string;
+  left: string;
+  width: string;
+  emoji: string;
 }
 
-const OWNER_PHOTOS: PhotoWithFaces[] = [
+interface OwnerPhoto {
+  url: string;
+  alt: string;
+  faces: FaceOverlay[];
+}
+
+const OWNER_PHOTOS: OwnerPhoto[] = [
   {
     url: "https://cdn.poehali.dev/files/f011f403-7430-498c-9909-8e6e1ee36731.jpg",
     alt: "Щенок мальтипу у новых хозяев",
-    faces: [{ top: "2%", left: "22%", size: "52%", emoji: "😊" }],
+    faces: [{ top: "2%", left: "20%", width: "55%", emoji: "😊" }],
   },
   {
     url: "https://cdn.poehali.dev/files/2495a535-e7ad-4c42-9695-2cbe73bba2b4.jpg",
     alt: "Девочка с щенком мальтипу",
-    faces: [{ top: "1%", left: "20%", size: "45%", emoji: "🥰" }],
-  },
-  {
-    url: "https://cdn.poehali.dev/files/7843724d-7ec1-4403-9a76-e1fa0987a65c.jpg",
-    alt: "Щенок с хозяином",
-    faces: [],
+    faces: [{ top: "1%", left: "18%", width: "48%", emoji: "🥰" }],
   },
   {
     url: "https://cdn.poehali.dev/files/e776ae4a-b405-4017-853c-f90fb27fe43a.jpg",
     alt: "Девочка целует щенка",
-    faces: [{ top: "0%", left: "25%", size: "55%", emoji: "😄" }],
+    faces: [{ top: "0%", left: "22%", width: "58%", emoji: "😄" }],
   },
   {
     url: "https://cdn.poehali.dev/files/89b64eda-da67-4392-b1af-f48e5d80ec6e.jpg",
     alt: "Щенок мальтипу белый на пляже",
-    faces: [{ top: "0%", left: "45%", size: "35%", emoji: "😎" }],
-  },
-  {
-    url: "https://cdn.poehali.dev/files/b17ea63b-f8a5-4af6-b8e1-92a865780520.jpg",
-    alt: "Маленький щенок пудель",
-    faces: [],
+    faces: [{ top: "0%", left: "42%", width: "38%", emoji: "😎" }],
   },
   {
     url: "https://cdn.poehali.dev/files/a7598585-2a66-418e-bd8b-070478a19d44.jpg",
     alt: "Девочка с щенком йорка",
-    faces: [{ top: "1%", left: "18%", size: "50%", emoji: "🤩" }],
+    faces: [{ top: "1%", left: "15%", width: "52%", emoji: "🤩" }],
   },
   {
     url: "https://cdn.poehali.dev/files/de64a2a4-5d5a-4f39-a909-a9f2a30632a7.jpg",
     alt: "Девочка с собакой у ёлки",
-    faces: [{ top: "28%", left: "48%", size: "32%", emoji: "😁" }],
+    faces: [{ top: "30%", left: "46%", width: "34%", emoji: "😁" }],
   },
   {
     url: "https://cdn.poehali.dev/files/a5b0598a-c1dc-4ccd-9188-418b93b76b0f.jpg",
     alt: "Парень забирает щенка",
-    faces: [{ top: "0%", left: "35%", size: "40%", emoji: "😍" }],
+    faces: [{ top: "0%", left: "30%", width: "42%", emoji: "😍" }],
   },
   {
     url: "https://cdn.poehali.dev/files/8a82b928-85ee-43b8-bf32-af61e3136b7a.jpg",
     alt: "Ребёнок со шпицем",
-    faces: [{ top: "20%", left: "30%", size: "45%", emoji: "😴" }],
+    faces: [{ top: "18%", left: "28%", width: "48%", emoji: "😴" }],
   },
   {
     url: "https://cdn.poehali.dev/files/aca6bcd7-5d77-4f40-a24a-e7a47b9f80d4.jpg",
@@ -74,6 +71,16 @@ const OWNER_PHOTOS: PhotoWithFaces[] = [
   {
     url: "https://cdn.poehali.dev/files/1504647b-468e-437c-ae67-899b7bb51a7e.jpg",
     alt: "Щенок кавапу с ребёнком",
+    faces: [],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/7843724d-7ec1-4403-9a76-e1fa0987a65c.jpg",
+    alt: "Щенок с хозяином на диване",
+    faces: [],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/b17ea63b-f8a5-4af6-b8e1-92a865780520.jpg",
+    alt: "Маленький щенок пудель",
     faces: [],
   },
 ];
@@ -125,14 +132,19 @@ export default function OwnersGallery() {
               {photo.faces.map((face, fi) => (
                 <div
                   key={fi}
-                  className="absolute pointer-events-none select-none flex items-center justify-center"
+                  className="absolute pointer-events-none select-none"
                   style={{
                     top: face.top,
                     left: face.left,
-                    width: face.size,
-                    fontSize: `calc(${face.size} * 0.7)`,
+                    width: face.width,
+                    aspectRatio: "1/1",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "8vw",
                     lineHeight: 1,
-                    filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))",
+                    zIndex: 10,
+                    filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.2))",
                   }}
                 >
                   {face.emoji}
@@ -171,25 +183,28 @@ export default function OwnersGallery() {
           >
             <Icon name="ChevronLeft" size={22} style={{ color: "var(--brown)" }} />
           </button>
-          <div className="relative max-h-[90vh] max-w-[90vw]" onClick={(e) => e.stopPropagation()}>
+          <div className="relative" style={{ maxHeight: "90vh", maxWidth: "90vw" }} onClick={(e) => e.stopPropagation()}>
             <img
               src={OWNER_PHOTOS[lightbox].url}
               alt={OWNER_PHOTOS[lightbox].alt}
-              className="max-h-[90vh] max-w-[90vw] rounded-2xl object-contain"
+              style={{ maxHeight: "90vh", maxWidth: "90vw", borderRadius: "16px", objectFit: "contain", display: "block" }}
             />
             {OWNER_PHOTOS[lightbox].faces.map((face, fi) => (
               <div
                 key={fi}
-                className="absolute pointer-events-none select-none flex items-center justify-center"
+                className="absolute pointer-events-none select-none"
                 style={{
                   top: face.top,
                   left: face.left,
-                  width: face.size,
-                  fontSize: `calc(${face.size} * 0.7)`,
-                  lineHeight: 1,
+                  width: face.width,
+                  aspectRatio: "1/1",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  zIndex: 10,
                 }}
               >
-                {face.emoji}
+                <span style={{ fontSize: "80%", lineHeight: 1 }}>{face.emoji}</span>
               </div>
             ))}
           </div>
