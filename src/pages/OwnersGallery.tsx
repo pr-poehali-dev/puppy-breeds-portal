@@ -17,63 +17,7 @@ interface OwnerPhoto {
   faces: FaceOverlay[];
 }
 
-const OWNER_PHOTOS: OwnerPhoto[] = [
-  {
-    url: "https://cdn.poehali.dev/files/e776ae4a-b405-4017-853c-f90fb27fe43a.jpg",
-    alt: "Девочка целует щенка",
-    faces: [{ top: "0%", left: "22%", width: "58%", emoji: "😄" }],
-  },
-  {
-    url: "https://cdn.poehali.dev/files/89b64eda-da67-4392-b1af-f48e5d80ec6e.jpg",
-    alt: "Щенок мальтипу белый на пляже",
-    faces: [{ top: "0%", left: "42%", width: "38%", emoji: "😎" }],
-  },
-  {
-    url: "https://cdn.poehali.dev/files/a7598585-2a66-418e-bd8b-070478a19d44.jpg",
-    alt: "Девочка с щенком йорка",
-    faces: [{ top: "1%", left: "15%", width: "52%", emoji: "🤩" }],
-  },
-  {
-    url: "https://cdn.poehali.dev/files/de64a2a4-5d5a-4f39-a909-a9f2a30632a7.jpg",
-    alt: "Девочка с собакой у ёлки",
-    faces: [{ top: "30%", left: "46%", width: "34%", emoji: "😁" }],
-  },
-  {
-    url: "https://cdn.poehali.dev/files/a5b0598a-c1dc-4ccd-9188-418b93b76b0f.jpg",
-    alt: "Парень забирает щенка",
-    faces: [{ top: "0%", left: "30%", width: "42%", emoji: "😍" }],
-  },
-  {
-    url: "https://cdn.poehali.dev/files/8a82b928-85ee-43b8-bf32-af61e3136b7a.jpg",
-    alt: "Ребёнок со шпицем",
-    faces: [{ top: "18%", left: "28%", width: "48%", emoji: "😴" }],
-  },
-  {
-    url: "https://cdn.poehali.dev/files/aca6bcd7-5d77-4f40-a24a-e7a47b9f80d4.jpg",
-    alt: "Щенок в машине",
-    faces: [],
-  },
-  {
-    url: "https://cdn.poehali.dev/files/c40a290b-9409-46e6-8103-1c3ab13b2fb8.jpg",
-    alt: "Щенок пудель у грумера",
-    faces: [],
-  },
-  {
-    url: "https://cdn.poehali.dev/files/1504647b-468e-437c-ae67-899b7bb51a7e.jpg",
-    alt: "Щенок кавапу с ребёнком",
-    faces: [],
-  },
-  {
-    url: "https://cdn.poehali.dev/files/7843724d-7ec1-4403-9a76-e1fa0987a65c.jpg",
-    alt: "Щенок с хозяином на диване",
-    faces: [],
-  },
-  {
-    url: "https://cdn.poehali.dev/files/b17ea63b-f8a5-4af6-b8e1-92a865780520.jpg",
-    alt: "Маленький щенок пудель",
-    faces: [],
-  },
-];
+const OWNER_PHOTOS: OwnerPhoto[] = [];
 
 export default function OwnersGallery() {
   const navigate = useNavigate();
