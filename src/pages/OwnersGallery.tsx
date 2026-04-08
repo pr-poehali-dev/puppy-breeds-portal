@@ -17,7 +17,73 @@ interface OwnerPhoto {
   faces: FaceOverlay[];
 }
 
-const OWNER_PHOTOS: OwnerPhoto[] = [];
+const OWNER_PHOTOS: OwnerPhoto[] = [
+  {
+    url: "https://cdn.poehali.dev/files/f396ea27-c4a6-4fdb-a25c-dfc4d2ae2e2c.jpg",
+    alt: "Белый щенок на пляже",
+    faces: [{ top: "0%", left: "44%", width: "36%", emoji: "😎" }],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/e9c7f08b-1681-4d74-a0e6-00676f699169.jpg",
+    alt: "Маленький щенок пудель",
+    faces: [],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/502c2b76-2305-46a6-af09-e0f5c8e4fb25.jpg",
+    alt: "Ребёнок со шпицем",
+    faces: [{ top: "20%", left: "30%", width: "44%", emoji: "😴" }],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/c2a94132-169e-4b83-a3ce-2a7ec63319b4.jpg",
+    alt: "Щенок в машине",
+    faces: [],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/a406aa64-27da-456d-ba97-72a528c4c5c4.jpg",
+    alt: "Щенок кавапу у хозяев",
+    faces: [],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/064a91ea-eb88-4b74-b5af-85706a36f0fe.jpg",
+    alt: "Щенок пудель у грумера",
+    faces: [],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/7c4e8fff-b968-4a94-b170-7e54890afe70.jpg",
+    alt: "Девочка с щенком йорка",
+    faces: [{ top: "1%", left: "15%", width: "52%", emoji: "🤩" }],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/80010130-0978-4ade-be84-6812ebbfe300.jpg",
+    alt: "Девочка с собакой у ёлки",
+    faces: [{ top: "30%", left: "46%", width: "34%", emoji: "😁" }],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/23a20b80-8bdf-4806-ab70-506b51cdb0cb.jpg",
+    alt: "Кавапу у хозяйки",
+    faces: [{ top: "0%", left: "44%", width: "36%", emoji: "😊" }],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/e2695699-009f-4162-843a-5252769ba0a8.jpg",
+    alt: "Девочка с щенком мальтипу",
+    faces: [{ top: "1%", left: "18%", width: "48%", emoji: "🥰" }],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/227699ba-5068-4c0e-b6b9-d3a215b3e770.jpg",
+    alt: "Щенок на руках хозяина",
+    faces: [],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/0aa73ac0-32cf-4538-9f6e-bc71bef491db.jpg",
+    alt: "Девочка целует щенка",
+    faces: [{ top: "0%", left: "22%", width: "58%", emoji: "😄" }],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/70bcfdc2-9038-460d-b3cf-a8d76d16c624.jpg",
+    alt: "Щенок кавапу с ребёнком",
+    faces: [],
+  },
+];
 
 export default function OwnersGallery() {
   const navigate = useNavigate();
