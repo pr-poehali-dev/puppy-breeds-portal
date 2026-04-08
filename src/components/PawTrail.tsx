@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 
 const PAW = `<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 100 100"><ellipse cx="50" cy="70" rx="28" ry="26" fill="#5C3317"/><path d="M38 60 C36 50 50 44 62 50 C64 42 56 36 50 40 C44 36 36 42 38 60Z" fill="#FAF6F0"/><ellipse cx="22" cy="40" rx="13" ry="15" fill="#5C3317"/><ellipse cx="38" cy="26" rx="12" ry="15" fill="#5C3317"/><ellipse cx="62" cy="26" rx="12" ry="15" fill="#5C3317"/><ellipse cx="78" cy="40" rx="13" ry="15" fill="#5C3317"/></svg>`;
 
-const HEART = `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 100 100"><path d="M50 82C50 82 12 58 12 32C12 19 21 10 33 10C41 10 48 14 50 20C52 14 59 10 67 10C79 10 88 19 88 32C88 58 50 82 50 82Z" fill="#FF6B00"/></svg>`;
+const HEART = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 100 100"><path d="M50 82C50 82 12 58 12 32C12 19 21 10 33 10C41 10 48 14 50 20C52 14 59 10 67 10C79 10 88 19 88 32C88 58 50 82 50 82Z" fill="#FF6B00"/></svg>`;
 
 const enc = (s: string) => `url('data:image/svg+xml;utf8,${encodeURIComponent(s)}')`;
 
@@ -14,7 +14,7 @@ export default function PawTrail() {
     const style = document.createElement("style");
     style.textContent = `
       * { cursor: ${enc(PAW)} 18 10, auto !important; }
-      a, button, [role="button"] { cursor: ${enc(HEART)} 15 13, pointer !important; }
+      a, button, [role="button"] { cursor: ${enc(HEART)} 8 7, pointer !important; }
     `;
     document.head.appendChild(style);
     return () => style.remove();
