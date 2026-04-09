@@ -2,9 +2,46 @@ import Icon from "@/components/ui/icon";
 import { CONTACTS } from "@/data/content";
 
 const CONTACT_CARDS = [
-  { icon: "Phone",         label: "Телефон",  value: CONTACTS.phone,     sub: "Звонки и WhatsApp" },
-  { icon: "MessageCircle", label: "Telegram", value: CONTACTS.telegram,   sub: "Напишите нам" },
-  { icon: "Instagram",     label: "Instagram",value: CONTACTS.instagram,  sub: "Фото и видео щенков" },
+  {
+    icon: "Phone",
+    label: "Телефон",
+    display: CONTACTS.phone,
+    href: `tel:${CONTACTS.phone}`,
+    sub: "Звонки и WhatsApp",
+    color: "#4CAF50",
+  },
+  {
+    icon: "Send",
+    label: "Телеграм канал",
+    display: "Перейти в канал",
+    href: CONTACTS.telegram,
+    sub: "@soba4ka_eu",
+    color: "#29B6F6",
+  },
+  {
+    icon: "Music",
+    label: "TikTok",
+    display: "Смотреть видео",
+    href: CONTACTS.tiktok,
+    sub: "@soba4ka.by",
+    color: "#EE1D52",
+  },
+  {
+    icon: "Users",
+    label: "ВКонтакте",
+    display: "Наша группа",
+    href: CONTACTS.vk,
+    sub: "vk.com/soba4kaby",
+    color: "#2196F3",
+  },
+  {
+    icon: "MessageSquare",
+    label: "Viber",
+    display: "Написать в Viber",
+    href: CONTACTS.viber,
+    sub: "Чат питомника",
+    color: "#7B1FA2",
+  },
 ];
 
 export default function ContactsSection() {
@@ -18,14 +55,26 @@ export default function ContactsSection() {
         <p className="text-sm sm:text-base mb-8 sm:mb-10 px-2" style={{ color: "rgba(250,246,240,0.7)", fontFamily: "'Golos Text', sans-serif" }}>
           Расскажем о доступных щенках мальтипу, йорков, кавапу и пушон. Помогаем выбрать питомца и организуем доставку по всему СНГ
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-8 sm:mb-10">
           {CONTACT_CARDS.map((c) => (
-            <div key={c.label} className="rounded-2xl p-5 sm:p-6 text-center" style={{ background: "rgba(250,246,240,0.08)", border: "1px solid rgba(250,246,240,0.15)" }}>
-              <Icon name={c.icon} size={24} className="mx-auto mb-3" style={{ color: "var(--pink)" }} />
+            <a
+              key={c.label}
+              href={c.href}
+              target={c.href.startsWith("http") ? "_blank" : undefined}
+              rel="noopener noreferrer"
+              className="rounded-2xl p-4 sm:p-5 text-center transition-all hover:scale-105 hover:opacity-90 no-underline block"
+              style={{ background: "rgba(250,246,240,0.08)", border: "1px solid rgba(250,246,240,0.15)" }}
+            >
+              <div
+                className="w-10 h-10 rounded-xl flex items-center justify-center mx-auto mb-3"
+                style={{ background: `${c.color}22` }}
+              >
+                <Icon name={c.icon} size={20} style={{ color: c.color }} />
+              </div>
               <div className="text-xs uppercase tracking-widest mb-1" style={{ color: "rgba(250,246,240,0.5)", fontFamily: "'Golos Text', sans-serif" }}>{c.label}</div>
-              <div className="font-display text-base sm:text-lg font-semibold mb-1 break-all" style={{ color: "var(--cream)" }}>{c.value}</div>
-              <div className="text-sm" style={{ color: "rgba(250,246,240,0.6)", fontFamily: "'Golos Text', sans-serif" }}>{c.sub}</div>
-            </div>
+              <div className="font-semibold text-sm mb-1" style={{ color: "var(--cream)", fontFamily: "'Golos Text', sans-serif" }}>{c.display}</div>
+              <div className="text-xs" style={{ color: "rgba(250,246,240,0.5)", fontFamily: "'Golos Text', sans-serif" }}>{c.sub}</div>
+            </a>
           ))}
         </div>
         <div className="rounded-2xl p-5 sm:p-8 text-left max-w-xl mx-auto" style={{ background: "rgba(250,246,240,0.07)", border: "1px solid rgba(250,246,240,0.12)" }}>

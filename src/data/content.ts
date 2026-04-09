@@ -13,9 +13,11 @@ export const IMAGES = {
 
 // --- КОНТАКТЫ ---
 export const CONTACTS = {
-  phone: "+7 (000) 000-00-00",
-  telegram: "@kennel_meleshko",
-  instagram: "@iz_pomestya",
+  phone: "+37533-676-67-48",
+  telegram: "https://t.me/soba4ka_eu",
+  tiktok: "https://tiktok.com/@soba4ka.by",
+  vk: "https://vk.com/soba4kaby",
+  viber: "https://invite.viber.com/?g2=AQB99pRL4wNfGlTDd%2Be4OUR8hSS5UmhGe5pKbNyGftIK1ij%2BTpl%2BFZ2u159K5as8",
 };
 
 // --- ОБЩАЯ ИНФОРМАЦИЯ О ПИТОМНИКЕ ---
