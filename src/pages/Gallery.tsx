@@ -9,7 +9,7 @@ const OWNERS_CARD = {
   name: "У хозяев",
   emoji: "🏠",
   color: "#fce8f3",
-  image: "https://cdn.poehali.dev/files/f011f403-7430-498c-9909-8e6e1ee36731.jpg",
+  image: "https://cdn.poehali.dev/files/1a92508b-8ca1-4010-81af-996abb5798ec.png",
   traits: ["Наши питомцы", "Счастливые семьи", "Реальные фото"],
 };
 
