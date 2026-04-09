@@ -70,12 +70,12 @@ export default function GallerySection() {
             Щенки из нашего питомника нашли свои семьи
           </p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
           {OWNER_PHOTOS.map((photo, i) => (
             <div
               key={i}
-              className="relative overflow-hidden rounded-2xl group cursor-pointer"
-              style={{ aspectRatio: "1/1" }}
+              className="relative overflow-hidden rounded-2xl group cursor-pointer flex-shrink-0"
+              style={{ aspectRatio: "1/1", width: "220px" }}
               onClick={() => navigate("/gallery/owners")}
             >
               <img
