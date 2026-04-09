@@ -64,7 +64,7 @@ export default function GallerySection() {
     <section id="gallery" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-14">
-          <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)", fontFamily: "'Golos Text', sans-serif" }}>Галерея</div>
+          <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--cream-dark)", fontFamily: "'Golos Text', sans-serif" }}>Галерея</div>
           <h2 className="section-title">Наши питомцы у <em>новых хозяев</em></h2>
           <p className="mt-3 text-base" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>
             Щенки из нашего питомника нашли свои семьи
@@ -112,7 +112,7 @@ export default function GallerySection() {
           <button
             onClick={() => navigate("/gallery/owners")}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all hover:opacity-80"
-            style={{ background: "var(--pink)", color: "white", fontFamily: "'Golos Text', sans-serif" }}
+            style={{ background: "var(--cream-dark)", color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}
           >
             Смотреть все фото <Icon name="ArrowRight" size={16} />
           </button>

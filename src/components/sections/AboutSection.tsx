@@ -26,7 +26,7 @@ export default function AboutSection() {
             </div>
           </div>
           <div>
-            <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)", fontFamily: "'Golos Text', sans-serif" }}>О нас</div>
+            <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--cream-dark)", fontFamily: "'Golos Text', sans-serif" }}>О нас</div>
             <h2 className="section-title mb-6">Питомник с душой<br /><em>и историей</em></h2>
             <p className="text-base leading-relaxed mb-4" style={{ color: "rgba(92,51,23,0.75)", fontFamily: "'Golos Text', sans-serif" }}>
               {KENNEL.aboutText1}

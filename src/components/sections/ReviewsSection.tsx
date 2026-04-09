@@ -29,7 +29,7 @@ export default function ReviewsSection() {
     <section id="reviews" className="py-16 sm:py-24" style={{ background: "var(--cream)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-10 sm:mb-14">
-          <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)", fontFamily: "'Golos Text', sans-serif" }}>Отзывы</div>
+          <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--cream-dark)", fontFamily: "'Golos Text', sans-serif" }}>Отзывы</div>
           <h2 className="section-title">Счастливые хозяева</h2>
         </div>
       </div>
@@ -78,7 +78,7 @@ export default function ReviewsSection() {
         {/* Условия продажи */}
         <div className="rounded-3xl p-6 sm:p-10 lg:p-14" style={{ background: "white" }}>
           <div className="text-center mb-10">
-            <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)", fontFamily: "'Golos Text', sans-serif" }}>Документы и гарантии</div>
+            <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--cream-dark)", fontFamily: "'Golos Text', sans-serif" }}>Документы и гарантии</div>
             <h2 className="section-title">Условия продажи</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

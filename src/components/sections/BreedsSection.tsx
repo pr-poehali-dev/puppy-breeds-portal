@@ -15,7 +15,7 @@ export default function BreedsSection() {
     <section id="breeds" className="py-20" style={{ background: "var(--cream)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-10 sm:mb-14">
-          <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--pink)", fontFamily: "'Golos Text', sans-serif" }}>Наши породы</div>
+          <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--cream-dark)", fontFamily: "'Golos Text', sans-serif" }}>Наши породы</div>
           <h2 className="section-title">Три породы — <em>одна любовь</em></h2>
         </div>
 
