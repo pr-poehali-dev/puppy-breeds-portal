@@ -70,6 +70,7 @@ export default function Gallery() {
                   src={breed.image || IMAGES.puppy}
                   alt={`Щенок ${breed.name} — питомник Из Поместья Мелешко`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  style={breed.slug === "owners" ? { objectPosition: "center 20%" } : undefined}
                 />
               </div>
               <div className="flex flex-col flex-1 p-5" style={{ background: breed.color }}>
