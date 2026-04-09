@@ -60,8 +60,8 @@ export default function HeroSection() {
             </p>
           </div>
           <div className="flex flex-wrap gap-3 sm:gap-4">
-            <button className="btn-primary" onClick={() => scrollTo("puppies")}>Смотреть щенков</button>
-            <button className="btn-outline" onClick={() => scrollTo("about")}>О питомнике</button>
+            <button className="btn-primary" onClick={() => scrollTo("puppies")}>Всегда в наличии</button>
+            <button className="btn-outline" style={{ cursor: "default", pointerEvents: "none" }}>Цены порадуют</button>
           </div>
           <div className="flex flex-wrap gap-6 sm:gap-8 mt-8 sm:mt-10">
             {HERO_STATS.map(([num, label]) => (
