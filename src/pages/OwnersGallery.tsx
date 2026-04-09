@@ -51,7 +51,7 @@ const OWNER_PHOTOS: OwnerPhoto[] = [
   {
     url: "https://cdn.poehali.dev/files/7c4e8fff-b968-4a94-b170-7e54890afe70.jpg",
     alt: "Девочка с щенком йорка",
-    faces: [{ top: "2%", left: "22%", width: "45%", emoji: "🤩" }],
+    faces: [{ top: "-43%", left: "22%", width: "45%", emoji: "🤩" }],
   },
   {
     url: "https://cdn.poehali.dev/files/80010130-0978-4ade-be84-6812ebbfe300.jpg",
