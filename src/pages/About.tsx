@@ -31,6 +31,7 @@ export default function About() {
         <meta name="description" content="Семейный питомник декоративных собак «Из Поместья Мелешко». Документы UCI и РКФ, ветпаспорт, прививки, микрочип. Мальтипу, йорк, бивер-йорк, той-пудель. Доставка по Беларуси, России и СНГ." />
         <meta property="og:title" content="О питомнике «Из Поместья Мелешко»" />
         <meta property="og:description" content="Семейный питомник декоративных пород в Беларуси. Документы, прививки, доставка по СНГ." />
+        <meta name="keywords" content="питомник мальтипу Беларусь, питомник йорков Минск, семейный питомник декоративных собак, купить щенка с документами UCI, щенки с микрочипом и прививками, документы РКФ UCI на щенка, питомник декоративных пород, доставка щенков по СНГ" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://puppy-breeds-portal.poehali.dev/about" />
         <script type="application/ld+json">{JSON.stringify({

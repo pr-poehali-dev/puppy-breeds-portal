@@ -125,6 +125,11 @@ export default function OwnersGallery() {
       <Helmet>
         <title>Наши питомцы у хозяев — фото счастливых владельцев | Питомник Из Поместья Мелешко</title>
         <meta name="description" content="Фотографии щенков из питомника «Из Поместья Мелешко» у своих новых хозяев. Счастливые семьи с мальтипу, йорком, той-пуделем и бивер-йорком." />
+        <meta property="og:title" content="Наши питомцы у хозяев — питомник «Из Поместья Мелешко»" />
+        <meta property="og:description" content="Счастливые хозяева щенков мальтипу, йорка, той-пуделя и бивер-йорка. Реальные фото владельцев." />
+        <meta name="keywords" content="щенок кавапу у хозяев фото, реальные фото щенков питомника, счастливые хозяева щенков, мальтипу у хозяев, йорк у хозяев, той-пудель у хозяев, отзывы покупателей питомника" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://puppy-breeds-portal.poehali.dev/gallery/owners" />
       </Helmet>
       <NavBar />
 

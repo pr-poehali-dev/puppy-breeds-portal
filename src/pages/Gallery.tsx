@@ -27,6 +27,7 @@ export default function Gallery() {
         <meta name="description" content="Фото щенков мальтипу, йоркширского терьера, бивер-йорка, той-пуделя, кавапу и пушона из питомника «Из Поместья Мелешко». Смотрите реальные фото наших малышей с доставкой по России, Беларуси и СНГ." />
         <meta property="og:title" content="Галерея щенков питомника «Из Поместья Мелешко»" />
         <meta property="og:description" content="Фото мальтипу, йорка, бивер-йорка, той-пуделя — реальные щенки с документами UCI." />
+        <meta name="keywords" content="фото щенков мальтипу, фото щенков йорка, фото щенков той-пуделя, фото щенков бивер-йорка, кавапу фото, пушон фото, галерея щенков питомника, реальные фото щенков, щенок кавапу у хозяев фото, реальные фото щенков питомника" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://puppy-breeds-portal.poehali.dev/gallery" />
         <script type="application/ld+json">{JSON.stringify({
