@@ -17,7 +17,53 @@ interface OwnerPhoto {
   faces: FaceOverlay[];
 }
 
-const OWNER_PHOTOS: OwnerPhoto[] = [];
+const OWNER_PHOTOS: OwnerPhoto[] = [
+  {
+    url: "https://cdn.poehali.dev/files/2a0684f4-b56a-4ab6-8974-5b7b771eb6f7.jpg",
+    alt: "Кавапу у хозяина на руках",
+    faces: [],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/62d4f30d-75af-4565-9167-22d911c2b5a7.jpg",
+    alt: "Маленький щенок пудель",
+    faces: [],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/e364cd75-d03b-4b46-bd29-d3252f97e368.jpg",
+    alt: "Щенок в машине у хозяина",
+    faces: [],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/4e1cad60-4b7e-4371-b218-121445a34cc3.jpg",
+    alt: "Щенок кавапу у хозяйки",
+    faces: [],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/05ac89e7-d41e-4a37-93c5-43b6de2085f5.jpg",
+    alt: "Щенок у грумера",
+    faces: [],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/514a2af1-e713-481b-835d-e039f20f73d3.png",
+    alt: "Девочка с собакой у ёлки",
+    faces: [],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/15ff0374-8d7d-4634-95e6-354f9a75f6a5.png",
+    alt: "Девочка с щенком йорка",
+    faces: [],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/af828416-0f6c-418f-a0f5-f5f07fee048e.png",
+    alt: "Молодой человек со щенком на улице",
+    faces: [],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/1a92508b-8ca1-4010-81af-996abb5798ec.png",
+    alt: "Кавапу у хозяина на прогулке",
+    faces: [],
+  },
+];
 
 function LightboxImage({ photo }: { photo: OwnerPhoto }) {
   const imgRef = useRef<HTMLImageElement>(null);

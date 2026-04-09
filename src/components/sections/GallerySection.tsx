@@ -16,44 +16,44 @@ interface OwnerPhoto {
 
 const OWNER_PHOTOS: OwnerPhoto[] = [
   {
-    url: "https://cdn.poehali.dev/files/f011f403-7430-498c-9909-8e6e1ee36731.jpg",
-    alt: "Щенок мальтипу у новых хозяев",
-    faces: [{ top: "2%", left: "22%", size: "52%", emoji: "😊" }],
-  },
-  {
-    url: "https://cdn.poehali.dev/files/2495a535-e7ad-4c42-9695-2cbe73bba2b4.jpg",
-    alt: "Девочка с щенком мальтипу",
-    faces: [{ top: "1%", left: "20%", size: "45%", emoji: "🥰" }],
-  },
-  {
-    url: "https://cdn.poehali.dev/files/7843724d-7ec1-4403-9a76-e1fa0987a65c.jpg",
-    alt: "Щенок с хозяином",
+    url: "https://cdn.poehali.dev/files/2a0684f4-b56a-4ab6-8974-5b7b771eb6f7.jpg",
+    alt: "Кавапу у хозяина на руках",
     faces: [],
   },
   {
-    url: "https://cdn.poehali.dev/files/e776ae4a-b405-4017-853c-f90fb27fe43a.jpg",
-    alt: "Девочка целует щенка",
-    faces: [{ top: "0%", left: "25%", size: "55%", emoji: "😄" }],
-  },
-  {
-    url: "https://cdn.poehali.dev/files/89b64eda-da67-4392-b1af-f48e5d80ec6e.jpg",
-    alt: "Щенок мальтипу белый на пляже",
-    faces: [{ top: "0%", left: "45%", size: "35%", emoji: "😎" }],
-  },
-  {
-    url: "https://cdn.poehali.dev/files/b17ea63b-f8a5-4af6-b8e1-92a865780520.jpg",
+    url: "https://cdn.poehali.dev/files/62d4f30d-75af-4565-9167-22d911c2b5a7.jpg",
     alt: "Маленький щенок пудель",
     faces: [],
   },
   {
-    url: "https://cdn.poehali.dev/files/a7598585-2a66-418e-bd8b-070478a19d44.jpg",
-    alt: "Девочка с щенком йорка",
-    faces: [{ top: "1%", left: "18%", size: "50%", emoji: "🤩" }],
+    url: "https://cdn.poehali.dev/files/e364cd75-d03b-4b46-bd29-d3252f97e368.jpg",
+    alt: "Щенок в машине у хозяина",
+    faces: [],
   },
   {
-    url: "https://cdn.poehali.dev/files/de64a2a4-5d5a-4f39-a909-a9f2a30632a7.jpg",
+    url: "https://cdn.poehali.dev/files/4e1cad60-4b7e-4371-b218-121445a34cc3.jpg",
+    alt: "Щенок кавапу у хозяйки",
+    faces: [],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/05ac89e7-d41e-4a37-93c5-43b6de2085f5.jpg",
+    alt: "Щенок у грумера",
+    faces: [],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/514a2af1-e713-481b-835d-e039f20f73d3.png",
     alt: "Девочка с собакой у ёлки",
-    faces: [{ top: "28%", left: "48%", size: "32%", emoji: "😁" }],
+    faces: [],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/15ff0374-8d7d-4634-95e6-354f9a75f6a5.png",
+    alt: "Девочка с щенком йорка",
+    faces: [],
+  },
+  {
+    url: "https://cdn.poehali.dev/files/af828416-0f6c-418f-a0f5-f5f07fee048e.png",
+    alt: "Молодой человек со щенком на улице",
+    faces: [],
   },
 ];
 
