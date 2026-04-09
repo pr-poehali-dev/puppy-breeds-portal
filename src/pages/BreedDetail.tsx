@@ -45,6 +45,7 @@ export default function BreedDetail() {
         <meta property="og:title" content={seoTitle} />
         <meta property="og:description" content={seoDesc} />
         {breed.image && <meta property="og:image" content={breed.image} />}
+        <meta name="keywords" content={`купить щенка ${breed.name}, ${breed.name} щенки с документами, ${breed.name} питомник Беларусь, ${breed.name} цена, ${breed.name} купить СНГ, гипоаллергенная собака маленькая, декоративные породы собак, собака для квартиры, щенки с микрочипом и прививками, доставка щенков по СНГ`} />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={`https://puppy-breeds-portal.poehali.dev/breeds/${breed.slug}`} />
         <script type="application/ld+json">{JSON.stringify({

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Icon from "@/components/ui/icon";
 import NavBar from "@/components/sections/NavBar";
 import { MALTIPOO_SUBTYPES, YORK_SUBTYPES, IMAGES } from "@/data/content";
@@ -27,8 +28,21 @@ export default function SubbreedDetail() {
 
   const photos = breed.image ? [breed.image] : [IMAGES.puppy, IMAGES.about];
 
+  const seoTitle = (breed as {seoTitle?: string}).seoTitle ?? `Купить щенка ${breed.name} с документами | Питомник Из Поместья Мелешко`;
+  const seoDesc = (breed as {seoDesc?: string}).seoDesc ?? `Щенки ${breed.name} из семейного питомника «Из Поместья Мелешко». Документы UCI, прививки, микрочип. Доставка по России, Беларуси и СНГ.`;
+
   return (
     <div className="min-h-screen" style={{ background: "var(--cream)" }}>
+      <Helmet>
+        <title>{seoTitle}</title>
+        <meta name="description" content={seoDesc} />
+        <meta property="og:title" content={seoTitle} />
+        <meta property="og:description" content={seoDesc} />
+        {breed.image && <meta property="og:image" content={breed.image} />}
+        <meta name="keywords" content={`купить щенка ${breed.name}, ${breed.name} щенки с документами, ${breed.name} питомник Беларусь, ${breed.name} цена, ${breed.name} купить СНГ, гипоаллергенная собака маленькая, декоративные породы собак, собака для квартиры, щенки с микрочипом и прививками, доставка щенков по СНГ`} />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={`https://puppy-breeds-portal.poehali.dev/breeds/${breed.slug}`} />
+      </Helmet>
       <NavBar />
 
       {/* Hero */}
