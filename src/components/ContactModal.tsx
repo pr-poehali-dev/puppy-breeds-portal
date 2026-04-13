@@ -215,9 +215,13 @@ export default function ContactModal({ onClose }: Props) {
             <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "rgba(192,57,43,0.1)" }}>
               <Icon name="MailX" size={32} style={{ color: "#c0392b" }} />
             </div>
-            <h2 className="font-display text-2xl font-bold mb-2" style={{ color: "var(--brown)" }}>Почему-то письмо не хочет уходить</h2>
+            <h2 className="font-display text-2xl font-bold mb-3" style={{ color: "var(--brown)" }}>Почему-то письмо не хочет уходить</h2>
+            <p className="text-base mb-2" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>
+              Выберите другой способ связи. Либо напишите напрямую со своей эл. почты на адрес:
+            </p>
+            <a href="mailto:7312007@mail.ru" className="inline-block mb-3 font-bold text-base" style={{ color: "var(--brown)", fontFamily: "'Golos Text', sans-serif", textDecoration: "underline", letterSpacing: "0.02em" }}>7312007@mail.ru</a>
             <p className="text-base mb-6" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>
-              Выберите другой способ связи. Приносим извинения за неудобства
+              Приносим извинения за неудобства
             </p>
             <div className="flex flex-col gap-3">
               <button

@@ -124,8 +124,10 @@ export default function ContactsSection() {
               <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "rgba(250,246,240,0.1)" }}>
                 <Icon name="MailX" size={28} style={{ color: "#ff8a80" }} />
               </div>
-              <h3 className="font-display text-xl font-semibold mb-2" style={{ color: "var(--cream)" }}>Почему-то письмо не хочет уходить</h3>
-              <p className="mb-5" style={{ color: "rgba(250,246,240,0.7)", fontFamily: "'Golos Text', sans-serif" }}>Выберите другой способ связи. Приносим извинения за неудобства</p>
+              <h3 className="font-display text-xl font-semibold mb-3" style={{ color: "var(--cream)" }}>Почему-то письмо не хочет уходить</h3>
+              <p className="mb-2" style={{ color: "rgba(250,246,240,0.7)", fontFamily: "'Golos Text', sans-serif" }}>Выберите другой способ связи. Либо напишите напрямую со своей эл. почты на адрес:</p>
+              <a href="mailto:7312007@mail.ru" className="inline-block mb-3 font-bold text-base" style={{ color: "var(--cream)", fontFamily: "'Golos Text', sans-serif", textDecoration: "underline", letterSpacing: "0.02em" }}>7312007@mail.ru</a>
+              <p className="mb-5" style={{ color: "rgba(250,246,240,0.7)", fontFamily: "'Golos Text', sans-serif" }}>Приносим извинения за неудобства</p>
               <button
                 onClick={() => setStatus("idle")}
                 className="px-6 py-2 rounded-xl text-sm font-semibold"
