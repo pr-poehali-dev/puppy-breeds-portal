@@ -40,7 +40,7 @@ interface Props {
   onClose: () => void;
 }
 
-type View = "list" | "email" | "sent";
+type View = "list" | "email" | "sent" | "error";
 
 export default function ContactModal({ onClose }: Props) {
   const [view, setView] = useState<View>("list");
@@ -66,10 +66,10 @@ export default function ContactModal({ onClose }: Props) {
       if (res.ok) {
         setView("sent");
       } else {
-        setError("Ошибка отправки. Попробуйте ещё раз.");
+        setView("error");
       }
     } catch {
-      setError("Ошибка отправки. Попробуйте ещё раз.");
+      setView("error");
     } finally {
       setLoading(false);
     }
@@ -196,9 +196,9 @@ export default function ContactModal({ onClose }: Props) {
             <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "rgba(92,51,23,0.1)" }}>
               <Icon name="CheckCircle" size={32} style={{ color: "var(--brown)" }} />
             </div>
-            <h2 className="font-display text-2xl font-bold mb-2" style={{ color: "var(--brown)" }}>Письмо отправлено!</h2>
+            <h2 className="font-display text-2xl font-bold mb-2" style={{ color: "var(--brown)" }}>Письмо отправлено</h2>
             <p className="text-base mb-6" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>
-              Мы свяжемся с вами в ближайшее время
+              Мы свяжемся с Вами
             </p>
             <button
               onClick={onClose}
@@ -207,6 +207,34 @@ export default function ContactModal({ onClose }: Props) {
             >
               Закрыть
             </button>
+          </div>
+        )}
+
+        {view === "error" && (
+          <div className="text-center py-6">
+            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "rgba(192,57,43,0.1)" }}>
+              <Icon name="MailX" size={32} style={{ color: "#c0392b" }} />
+            </div>
+            <h2 className="font-display text-2xl font-bold mb-2" style={{ color: "var(--brown)" }}>Почему-то письмо не хочет уходить</h2>
+            <p className="text-base mb-6" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>
+              Выберите другой способ связи. Приносим извинения за неудобства
+            </p>
+            <div className="flex flex-col gap-3">
+              <button
+                onClick={() => setView("list")}
+                className="w-full py-3 rounded-xl font-semibold text-sm"
+                style={{ background: "var(--brown)", color: "var(--cream)", fontFamily: "'Golos Text', sans-serif" }}
+              >
+                Другой способ связи
+              </button>
+              <button
+                onClick={onClose}
+                className="w-full py-3 rounded-xl font-semibold text-sm"
+                style={{ background: "rgba(92,51,23,0.1)", color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}
+              >
+                Закрыть
+              </button>
+            </div>
           </div>
         )}
       </div>
