@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Icon from "@/components/ui/icon";
 import NavBar from "@/components/sections/NavBar";
-import { BREEDS, PUPPIES, IMAGES } from "@/data/content";
+import { BREEDS, IMAGES } from "@/data/content";
 
 export default function BreedDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -24,21 +24,23 @@ export default function BreedDetail() {
     );
   }
 
-  const photos = breed.photos.length > 0
-    ? breed.photos
-    : [IMAGES.puppy, IMAGES.hero, IMAGES.owner];
+  const galleryPhotos = (breed as { galleryPhotos?: string[] }).galleryPhotos ?? [];
+  const photos = breed.image
+    ? [breed.image, ...galleryPhotos]
+    : galleryPhotos.length > 0
+      ? galleryPhotos
+      : [IMAGES.puppy, IMAGES.about];
 
-  const relatedPuppies = PUPPIES.filter((p) => p.breed === breed.name);
   const otherBreeds = BREEDS.filter((b) => b.slug !== breed.slug);
 
   const prev = () => setLightbox((i) => (i! - 1 + photos.length) % photos.length);
   const next = () => setLightbox((i) => (i! + 1) % photos.length);
 
-  const seoTitle = (breed as {seoTitle?: string}).seoTitle ?? `Купить щенка ${breed.name} с документами | Питомник Из Поместья Мелешко`;
-  const seoDesc = (breed as {seoDesc?: string}).seoDesc ?? `Щенки ${breed.name} из семейного питомника «Из Поместья Мелешко». Документы UCI, прививки, микрочип. Доставка по России, Беларуси и СНГ.`;
+  const seoTitle = (breed as { seoTitle?: string }).seoTitle ?? `Купить щенка ${breed.name} с документами | Питомник Из Поместья Мелешко`;
+  const seoDesc = (breed as { seoDesc?: string }).seoDesc ?? `Щенки ${breed.name} из семейного питомника «Из Поместья Мелешко». Документы UCI, прививки, микрочип. Доставка по России, Беларуси и СНГ.`;
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--cream)", fontFamily: "'Golos Text', sans-serif" }}>
+    <div className="min-h-screen" style={{ background: "var(--cream)" }}>
       <Helmet>
         <title>{seoTitle}</title>
         <meta name="description" content={seoDesc} />
@@ -61,191 +63,169 @@ export default function BreedDetail() {
 
       <NavBar />
 
-      {/* HERO */}
-      <div className="relative pt-16" style={{ background: breed.color }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16 grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-          <div className="min-w-0">
-            <div className="text-5xl sm:text-6xl mb-4">{breed.emoji}</div>
-            <div className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: breed.accentColor }}>Порода</div>
-            <h1 className="font-display mb-5 sm:mb-6" style={{ fontSize: "clamp(2rem, 6vw, 4.5rem)", color: "var(--brown)", fontWeight: 500, lineHeight: 1.1 }}>
-              {breed.name}
-            </h1>
-            <p className="text-sm sm:text-base leading-relaxed mb-5 sm:mb-6" style={{ color: "rgba(92,51,23,0.75)" }}>
-              {breed.descFull}
-            </p>
-            <div className="flex gap-2 flex-wrap mb-6 sm:mb-8">
-              {breed.traits.map((t) => (
-                <span key={t} className="px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium"
-                  style={{ background: "rgba(92,51,23,0.1)", color: "var(--brown)" }}>{t}</span>
-              ))}
-            </div>
-            <div className="grid grid-cols-3 gap-3 text-sm mb-6 sm:mb-8">
-              {[
-                { label: "Вес", value: breed.weight },
-                { label: "Рост", value: breed.height },
-                { label: "Жизнь", value: breed.lifespan },
-              ].map(({ label, value }) => (
-                <div key={label} className="min-w-0">
-                  <div className="text-xs uppercase tracking-widest mb-1" style={{ color: "rgba(92,51,23,0.45)" }}>{label}</div>
-                  <div className="font-semibold text-xs sm:text-sm" style={{ color: "var(--brown)" }}>{value}</div>
-                </div>
-              ))}
-            </div>
-            <button className="btn-primary" onClick={() => document.getElementById("contacts-cta")?.scrollIntoView({ behavior: "smooth" })}>
-              Узнать о щенках
-            </button>
-          </div>
-          <div className="rounded-3xl overflow-hidden shadow-xl" style={{ aspectRatio: "4/3" }}>
-            <img src={breed.image || IMAGES.puppy} alt={breed.name} className="w-full h-full object-cover" />
-          </div>
-        </div>
-      </div>
+      {/* Hero */}
+      <section className="pt-24 pb-0 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <button
+            className="flex items-center gap-2 text-sm mb-6 sm:mb-8 hover:gap-3 transition-all"
+            style={{ color: "rgba(92,51,23,0.55)", fontFamily: "'Golos Text', sans-serif" }}
+            onClick={() => navigate("/breeds")}
+          >
+            <Icon name="ArrowLeft" size={15} /> Все породы
+          </button>
 
-      {/* ФАКТЫ */}
-      <div className="bg-white py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-sm font-medium tracking-widest uppercase mb-3 text-center" style={{ color: "var(--pink)" }}>Характеристики</div>
-          <h2 className="section-title text-center mb-10">Всё о породе</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {breed.facts.map((fact) => (
-              <div key={fact.label} className="flex gap-4 p-6 rounded-2xl" style={{ background: "var(--cream)" }}>
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "rgba(92,51,23,0.1)" }}>
-                  <Icon name={fact.icon} size={20} style={{ color: "var(--brown)" }} />
-                </div>
-                <div>
-                  <div className="text-xs uppercase tracking-widest mb-1" style={{ color: "rgba(92,51,23,0.45)" }}>{fact.label}</div>
-                  <div className="text-sm font-medium" style={{ color: "var(--brown)" }}>{fact.value}</div>
-                </div>
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-start pb-12 sm:pb-16">
+            {/* Фото */}
+            <div>
+              <div
+                className="rounded-3xl overflow-hidden shadow-xl cursor-pointer"
+                style={{ aspectRatio: "1/1" }}
+                onClick={() => setLightbox(0)}
+              >
+                <img
+                  src={photos[0]}
+                  alt={breed.name}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
               </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ФОТОГАЛЕРЕЯ */}
-      <div className="py-16" style={{ background: "var(--cream)" }}>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-sm font-medium tracking-widest uppercase mb-3 text-center" style={{ color: "var(--pink)" }}>Фото</div>
-          <h2 className="section-title text-center mb-10">{breed.name} <em>в питомнике</em></h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {photos.map((src, i) => (
-              <div key={i} className="relative overflow-hidden rounded-2xl group cursor-pointer" style={{ aspectRatio: "1/1" }}
-                onClick={() => setLightbox(i)}>
-                <img src={src} alt={`${breed.name} фото ${i + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-                  style={{ background: "rgba(92,51,23,0.25)" }}>
-                  <Icon name="ZoomIn" size={28} style={{ color: "white" }} />
+              {photos.length > 1 && (
+                <div className="grid grid-cols-3 gap-3 mt-3">
+                  {photos.slice(1, 4).map((p, i) => (
+                    <div
+                      key={i}
+                      className="rounded-2xl overflow-hidden cursor-pointer"
+                      style={{ aspectRatio: "1/1" }}
+                      onClick={() => setLightbox(i + 1)}
+                    >
+                      <img src={p} alt="" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                    </div>
+                  ))}
                 </div>
+              )}
+            </div>
+
+            {/* Info */}
+            <div className="min-w-0">
+              <div className="text-sm font-medium tracking-widest uppercase mb-2" style={{ color: breed.accentColor, fontFamily: "'Golos Text', sans-serif" }}>
+                Порода
               </div>
-            ))}
-          </div>
-        </div>
-      </div>
+              <h1 className="font-display text-3xl sm:text-4xl font-semibold mb-2" style={{ color: "var(--brown)" }}>
+                {breed.name} {breed.emoji}
+              </h1>
+              <div className="flex flex-wrap gap-3 mb-5 sm:mb-6 text-sm" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>
+                <span>⚖️ {breed.weight}</span>
+                <span>📏 {breed.height}</span>
+                <span>🗓 {breed.lifespan}</span>
+              </div>
 
-      {/* ЩЕНКИ ЭТОЙ ПОРОДЫ */}
-      {relatedPuppies.length > 0 && (
-        <div className="bg-white py-16">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-sm font-medium tracking-widest uppercase mb-3 text-center" style={{ color: "var(--pink)" }}>Доступны сейчас</div>
-            <h2 className="section-title text-center mb-10">Щенки {breed.name}</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {relatedPuppies.map((p) => (
-                <div key={p.name} className="card-kennel" style={{ background: p.color }}>
-                  <div className="aspect-square relative overflow-hidden rounded-t-2xl">
-                    <img src={p.image || IMAGES.puppy} alt={p.name} className="w-full h-full object-cover" />
-                    <div className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold"
-                      style={{ background: p.status === "Резерв" ? "rgba(232,164,176,0.9)" : "rgba(92,51,23,0.85)", color: "white" }}>
-                      {p.status}
+              <div className="flex gap-2 flex-wrap mb-5 sm:mb-6">
+                {breed.traits.map((t) => (
+                  <span key={t} className="px-3 py-1 rounded-full text-xs sm:text-sm font-medium"
+                    style={{ background: "rgba(92,51,23,0.1)", color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>
+                    {t}
+                  </span>
+                ))}
+              </div>
+
+              {/* Facts */}
+              <div className="grid grid-cols-2 gap-3 mb-8">
+                {breed.facts.map((f) => (
+                  <div key={f.label} className="p-4 rounded-2xl" style={{ background: breed.color }}>
+                    <div className="flex items-center gap-2 mb-1">
+                      <Icon name={f.icon} size={15} style={{ color: breed.accentColor }} />
+                      <span className="text-xs font-medium uppercase tracking-wide" style={{ color: "rgba(92,51,23,0.5)", fontFamily: "'Golos Text', sans-serif" }}>{f.label}</span>
                     </div>
+                    <div className="text-sm font-medium" style={{ color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>{f.value}</div>
                   </div>
-                  <div className="p-5">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-display text-xl font-semibold" style={{ color: "var(--brown)" }}>{p.name} {p.sex}</h3>
-                      <span className="text-xs" style={{ color: "rgba(92,51,23,0.5)" }}>{p.age}</span>
-                    </div>
-                    <div className="flex justify-between items-center mt-3">
-                      <span className="font-display text-lg font-semibold" style={{ color: "var(--brown)" }}>{p.price}</span>
-                      <button className="text-sm font-medium hover:opacity-70" style={{ color: "var(--brown)" }}
-                        onClick={() => document.getElementById("contacts-cta")?.scrollIntoView({ behavior: "smooth" })}>
-                        Узнать →
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
+
+              <a
+                href="https://wa.me/375336766748"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary inline-flex items-center gap-2"
+              >
+                <Icon name="MessageCircle" size={18} />
+                Узнать о наличии щенков
+              </a>
             </div>
           </div>
         </div>
-      )}
+      </section>
 
-      {/* CTA */}
-      <div id="contacts-cta" className="py-16" style={{ background: "var(--brown)" }}>
-        <div className="max-w-2xl mx-auto px-6 text-center">
-          <div className="text-5xl mb-4">{breed.emoji}</div>
-          <h2 className="font-display text-3xl font-semibold mb-4" style={{ color: "var(--cream)" }}>
-            Хотите {breed.name}?
+      {/* Description */}
+      <section className="py-12 sm:py-16 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <h2 className="font-display text-3xl font-semibold mb-6" style={{ color: "var(--brown)" }}>
+            О породе {breed.name}
           </h2>
-          <p className="text-base mb-8" style={{ color: "rgba(250,246,240,0.7)" }}>
-            Напишите нам — расскажем о доступных щенках, ответим на все вопросы
-          </p>
-          <button className="btn-primary" style={{ background: "var(--cream)", color: "var(--brown)", borderColor: "var(--cream)" }}
-            onClick={() => navigate("/#contacts")}>
-            Связаться с нами
-          </button>
+          <div style={{ fontFamily: "'Golos Text', sans-serif", color: "rgba(92,51,23,0.8)", lineHeight: "1.8" }}>
+            {breed.descFull.split("\n\n").map((para, i) => (
+              <p key={i} className="mb-5 text-base">{para}</p>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* ДРУГИЕ ПОРОДЫ */}
-      <div className="py-16" style={{ background: "var(--cream)" }}>
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="section-title text-center mb-10">Другие породы</h2>
-          <div className="grid md:grid-cols-2 gap-6">
+      {/* Other breeds */}
+      <section className="py-12" style={{ background: "var(--cream)" }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <h2 className="font-display text-2xl font-semibold mb-6" style={{ color: "var(--brown)" }}>Другие породы питомника</h2>
+          <div className="grid sm:grid-cols-3 gap-4">
             {otherBreeds.map((b) => (
-              <div key={b.slug}
-                className="flex items-center gap-6 p-6 rounded-2xl cursor-pointer group transition-all hover:shadow-lg"
+              <div
+                key={b.slug}
+                className="rounded-2xl p-5 cursor-pointer flex items-center gap-4 hover:shadow-md transition-all"
                 style={{ background: "white", border: "1px solid rgba(92,51,23,0.08)" }}
-                onClick={() => navigate(`/breeds/${b.slug}`)}>
-                <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0">
-                  <img src={b.image || IMAGES.puppy} alt={b.name} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+                onClick={() => navigate(`/breeds/${b.slug}`)}
+              >
+                <span className="text-3xl">{b.emoji}</span>
+                <div>
+                  <div className="font-display font-semibold text-base" style={{ color: "var(--brown)" }}>{b.name}</div>
+                  <div className="text-xs mt-0.5" style={{ color: "rgba(92,51,23,0.5)", fontFamily: "'Golos Text', sans-serif" }}>{b.weight} · {b.lifespan}</div>
                 </div>
-                <div className="flex-1">
-                  <div className="text-2xl mb-1">{b.emoji}</div>
-                  <h3 className="font-display text-xl font-semibold mb-1" style={{ color: "var(--brown)" }}>{b.name}</h3>
-                  <p className="text-sm" style={{ color: "rgba(92,51,23,0.6)" }}>{b.desc.slice(0, 70)}…</p>
-                </div>
-                <Icon name="ChevronRight" size={20} style={{ color: "var(--brown-light)" }} />
               </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* LIGHTBOX */}
+      {/* Lightbox */}
       {lightbox !== null && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center"
-          style={{ background: "rgba(20,10,5,0.92)" }}
-          onClick={() => setLightbox(null)}>
-          <button className="absolute top-5 right-5 w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-all"
-            style={{ background: "rgba(255,255,255,0.12)", color: "white" }}
-            onClick={() => setLightbox(null)}>
-            <Icon name="X" size={20} />
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          style={{ background: "rgba(0,0,0,0.85)" }}
+          onClick={() => setLightbox(null)}
+        >
+          <img
+            src={photos[lightbox]}
+            alt=""
+            className="max-w-[90vw] max-h-[85vh] rounded-2xl object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <button
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center"
+            style={{ background: "rgba(255,255,255,0.15)" }}
+            onClick={(e) => { e.stopPropagation(); prev(); }}
+          >
+            <Icon name="ChevronLeft" size={22} style={{ color: "white" }} />
           </button>
-          <button className="absolute left-4 w-11 h-11 rounded-full flex items-center justify-center hover:scale-110 transition-all z-10"
-            style={{ background: "rgba(255,255,255,0.12)", color: "white" }}
-            onClick={(e) => { e.stopPropagation(); prev(); }}>
-            <Icon name="ChevronLeft" size={24} />
+          <button
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center"
+            style={{ background: "rgba(255,255,255,0.15)" }}
+            onClick={(e) => { e.stopPropagation(); next(); }}
+          >
+            <Icon name="ChevronRight" size={22} style={{ color: "white" }} />
           </button>
-          <img src={photos[lightbox]} alt={`${breed.name} ${lightbox + 1}`}
-            className="max-h-[85vh] max-w-[90vw] rounded-2xl shadow-2xl object-contain"
-            onClick={(e) => e.stopPropagation()} />
-          <button className="absolute right-4 w-11 h-11 rounded-full flex items-center justify-center hover:scale-110 transition-all z-10"
-            style={{ background: "rgba(255,255,255,0.12)", color: "white" }}
-            onClick={(e) => { e.stopPropagation(); next(); }}>
-            <Icon name="ChevronRight" size={24} />
+          <button
+            className="absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center"
+            style={{ background: "rgba(255,255,255,0.15)" }}
+            onClick={() => setLightbox(null)}
+          >
+            <Icon name="X" size={20} style={{ color: "white" }} />
           </button>
-          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full text-sm"
-            style={{ background: "rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.7)" }}>
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
             {lightbox + 1} / {photos.length}
           </div>
         </div>
