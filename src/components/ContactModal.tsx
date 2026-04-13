@@ -219,7 +219,7 @@ export default function ContactModal({ onClose }: Props) {
             <p className="text-base mb-2" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>
               Выберите другой способ связи. Либо напишите напрямую со своей эл. почты на адрес:
             </p>
-            <a href="mailto:7312007@mail.ru" className="inline-block mb-3 font-bold text-base" style={{ color: "var(--brown)", fontFamily: "'Golos Text', sans-serif", textDecoration: "underline", letterSpacing: "0.02em" }}>7312007@mail.ru</a>
+            <a href="mailto:7312007@mail.ru" className="inline-block mb-3 font-bold text-base break-all" style={{ color: "var(--brown)", fontFamily: "'Golos Text', sans-serif", textDecoration: "underline", letterSpacing: "0.02em" }}>7312007@mail.ru</a>
             <p className="text-base mb-6" style={{ color: "rgba(92,51,23,0.6)", fontFamily: "'Golos Text', sans-serif" }}>
               Приносим извинения за неудобства
             </p>

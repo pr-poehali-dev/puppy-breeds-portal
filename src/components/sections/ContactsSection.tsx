@@ -126,7 +126,7 @@ export default function ContactsSection() {
               </div>
               <h3 className="font-display text-xl font-semibold mb-3" style={{ color: "var(--cream)" }}>Почему-то письмо не хочет уходить</h3>
               <p className="mb-2" style={{ color: "rgba(250,246,240,0.7)", fontFamily: "'Golos Text', sans-serif" }}>Выберите другой способ связи. Либо напишите напрямую со своей эл. почты на адрес:</p>
-              <a href="mailto:7312007@mail.ru" className="inline-block mb-3 font-bold text-base" style={{ color: "var(--cream)", fontFamily: "'Golos Text', sans-serif", textDecoration: "underline", letterSpacing: "0.02em" }}>7312007@mail.ru</a>
+              <a href="mailto:7312007@mail.ru" className="inline-block mb-3 font-bold text-base break-all" style={{ color: "var(--cream)", fontFamily: "'Golos Text', sans-serif", textDecoration: "underline", letterSpacing: "0.02em" }}>7312007@mail.ru</a>
               <p className="mb-5" style={{ color: "rgba(250,246,240,0.7)", fontFamily: "'Golos Text', sans-serif" }}>Приносим извинения за неудобства</p>
               <button
                 onClick={() => setStatus("idle")}
