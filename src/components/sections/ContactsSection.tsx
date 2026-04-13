@@ -1,5 +1,8 @@
+import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import { CONTACTS } from "@/data/content";
+
+const SEND_EMAIL_URL = "https://functions.poehali.dev/7f3df0dd-111a-4ac9-b597-cc910934897c";
 
 const CONTACT_CARDS = [
   {
@@ -44,7 +47,34 @@ const CONTACT_CARDS = [
   },
 ];
 
+type Status = "idle" | "loading" | "sent" | "error";
+
 export default function ContactsSection() {
+  const [name, setName] = useState("");
+  const [contact, setContact] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<Status>("idle");
+  const [fieldError, setFieldError] = useState("");
+
+  async function handleSend() {
+    if (!name.trim() || !contact.trim()) {
+      setFieldError("Заполните имя и контакт");
+      return;
+    }
+    setFieldError("");
+    setStatus("loading");
+    try {
+      const res = await fetch(SEND_EMAIL_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, contact, message }),
+      });
+      setStatus(res.ok ? "sent" : "error");
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
     <section id="contacts" className="py-16 sm:py-24" style={{ background: "var(--brown)" }}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
@@ -77,23 +107,77 @@ export default function ContactsSection() {
             </a>
           ))}
         </div>
+
         <div className="rounded-2xl p-5 sm:p-8 text-left max-w-xl mx-auto" style={{ background: "rgba(250,246,240,0.07)", border: "1px solid rgba(250,246,240,0.12)" }}>
-          <h3 className="font-display text-xl font-semibold mb-5" style={{ color: "var(--cream)" }}>Написать нам</h3>
-          <div className="flex flex-col gap-3">
-            <input type="text" placeholder="Ваше имя"
-              className="w-full px-4 py-3 rounded-xl text-sm outline-none border"
-              style={{ background: "rgba(250,246,240,0.1)", borderColor: "rgba(250,246,240,0.2)", color: "var(--cream)", fontFamily: "'Golos Text', sans-serif" }} />
-            <input type="tel" placeholder="Телефон или мессенджер"
-              className="w-full px-4 py-3 rounded-xl text-sm outline-none border"
-              style={{ background: "rgba(250,246,240,0.1)", borderColor: "rgba(250,246,240,0.2)", color: "var(--cream)", fontFamily: "'Golos Text', sans-serif" }} />
-            <textarea rows={3} placeholder="Ваш вопрос или интересующая порода"
-              className="w-full px-4 py-3 rounded-xl text-sm outline-none border resize-none"
-              style={{ background: "rgba(250,246,240,0.1)", borderColor: "rgba(250,246,240,0.2)", color: "var(--cream)", fontFamily: "'Golos Text', sans-serif" }} />
-            <button className="w-full py-3 rounded-xl font-semibold text-sm transition-all hover:opacity-90"
-              style={{ background: "var(--cream)", color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}>
-              Отправить сообщение
-            </button>
-          </div>
+          {status === "sent" && (
+            <div className="text-center py-4">
+              <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "rgba(250,246,240,0.1)" }}>
+                <Icon name="CheckCircle" size={28} style={{ color: "var(--cream)" }} />
+              </div>
+              <h3 className="font-display text-xl font-semibold mb-2" style={{ color: "var(--cream)" }}>Письмо отправлено</h3>
+              <p style={{ color: "rgba(250,246,240,0.7)", fontFamily: "'Golos Text', sans-serif" }}>Мы свяжемся с Вами</p>
+            </div>
+          )}
+
+          {status === "error" && (
+            <div className="text-center py-4">
+              <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "rgba(250,246,240,0.1)" }}>
+                <Icon name="MailX" size={28} style={{ color: "#ff8a80" }} />
+              </div>
+              <h3 className="font-display text-xl font-semibold mb-2" style={{ color: "var(--cream)" }}>Почему-то письмо не хочет уходить</h3>
+              <p className="mb-5" style={{ color: "rgba(250,246,240,0.7)", fontFamily: "'Golos Text', sans-serif" }}>Выберите другой способ связи. Приносим извинения за неудобства</p>
+              <button
+                onClick={() => setStatus("idle")}
+                className="px-6 py-2 rounded-xl text-sm font-semibold"
+                style={{ background: "rgba(250,246,240,0.15)", color: "var(--cream)", fontFamily: "'Golos Text', sans-serif" }}
+              >
+                Попробовать снова
+              </button>
+            </div>
+          )}
+
+          {(status === "idle" || status === "loading") && (
+            <>
+              <h3 className="font-display text-xl font-semibold mb-5" style={{ color: "var(--cream)" }}>Написать нам</h3>
+              <div className="flex flex-col gap-3">
+                <input
+                  type="text"
+                  placeholder="Ваше имя *"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl text-sm outline-none border"
+                  style={{ background: "rgba(250,246,240,0.1)", borderColor: "rgba(250,246,240,0.2)", color: "var(--cream)", fontFamily: "'Golos Text', sans-serif" }}
+                />
+                <input
+                  type="tel"
+                  placeholder="Телефон или мессенджер *"
+                  value={contact}
+                  onChange={(e) => setContact(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl text-sm outline-none border"
+                  style={{ background: "rgba(250,246,240,0.1)", borderColor: "rgba(250,246,240,0.2)", color: "var(--cream)", fontFamily: "'Golos Text', sans-serif" }}
+                />
+                <textarea
+                  rows={3}
+                  placeholder="Ваш вопрос или интересующая порода"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl text-sm outline-none border resize-none"
+                  style={{ background: "rgba(250,246,240,0.1)", borderColor: "rgba(250,246,240,0.2)", color: "var(--cream)", fontFamily: "'Golos Text', sans-serif" }}
+                />
+                {fieldError && (
+                  <p className="text-sm" style={{ color: "#ff8a80", fontFamily: "'Golos Text', sans-serif" }}>{fieldError}</p>
+                )}
+                <button
+                  onClick={handleSend}
+                  disabled={status === "loading"}
+                  className="w-full py-3 rounded-xl font-semibold text-sm transition-all hover:opacity-90 disabled:opacity-60"
+                  style={{ background: "var(--cream)", color: "var(--brown)", fontFamily: "'Golos Text', sans-serif" }}
+                >
+                  {status === "loading" ? "Отправляем..." : "Отправить сообщение"}
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </section>
